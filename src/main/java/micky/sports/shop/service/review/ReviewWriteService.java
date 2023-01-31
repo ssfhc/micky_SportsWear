@@ -31,6 +31,10 @@ public class ReviewWriteService implements MickyServiceInter{
 //		String r_title=request.getParameter("r_title"); //여기 파일첨부
 		String r_content=request.getParameter("r_content");
 		
+		
+
+		
+		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
 		rdao.write(r_title,r_content);
 		

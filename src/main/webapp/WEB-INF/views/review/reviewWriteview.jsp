@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>reviewWriteview</h3>
-<form action="reviewWrite">
+<form action="reviewWrite" method="post" enctype="multipart/form-data">
 	<table>
 		<!-- <tr>
 			<td class="left">작성자</td>

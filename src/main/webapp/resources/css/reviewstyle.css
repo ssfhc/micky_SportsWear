@@ -15,7 +15,6 @@
 	vertical-align: top;
 }
 .col2{
-	
 	width: 20%;
 }
 .img_box>img{
@@ -24,4 +23,7 @@
 }
 div{
 	height: auto;
+}
+.user_content:active {
+	color: red;
 }

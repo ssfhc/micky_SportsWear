@@ -1,0 +1,27 @@
+.review_table{
+	display: table;
+	width: 100%;
+}
+.row{
+	display: table-row; /* tr */
+}
+.cell{
+	display: table-cell; /* td */
+	padding: 3px;
+	border-bottom: 1px solid #ddd;
+}
+.col1{
+	width: 80%;
+	vertical-align: top;
+}
+.col2{
+	
+	width: 20%;
+}
+.img_box>img{
+	width: 100px;
+	height: 100px;
+}
+div{
+	height: auto;
+}

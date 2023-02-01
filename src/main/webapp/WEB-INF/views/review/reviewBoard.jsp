@@ -12,11 +12,7 @@
 <script>
 	$(document).ready(function(){
 		$(".u_content").click(function(){
-			/* $(this).addClass("u_content"); */
 			$(this).toggleClass("u_content").toggleClass("u_contentGray");
-			/* $(this).click(function(){
-				$(".review_box").addClass("u_contentGray");
-			}); */
 		});
 	});
 </script>
@@ -41,8 +37,8 @@
 						<div class="product_option">
 							<strong>구매옵션</strong>&nbsp;<span>색상</span>&nbsp;<span>사이즈</span>
 						</div>
-						<div class="user_content"> <!-- commend -->
-							<p class="u_content">${list.r_content }</p>
+						<div class="user_content" onclick="user_content()"> <!-- commend -->
+							<p class="u_content">${list.r_content }</p> 
 						</div>
 					</div>
 				</div>
@@ -50,7 +46,7 @@
 		</div>
 		<div class="cell col2">
 			<div class="img_box">
-				<img src="../resources/img/icon_reply.gif" alt="그린 클리프 반팔 라운드티" />
+				<img src="../resources/img/icon_reply.gif" width="100" alt="그린 클리프 반팔 라운드티" />
 			</div>
 			<div>
 				<%-- <span>${list.r_date }</span> --%>
@@ -59,7 +55,7 @@
 		</div>
 	</div>
 </c:forEach>
-<a href="reviewWriteview">리뷰 쓰기</a>
+<a href="reviewWriteview">리뷰작성</a>
 </div>
 </body>
 </html>

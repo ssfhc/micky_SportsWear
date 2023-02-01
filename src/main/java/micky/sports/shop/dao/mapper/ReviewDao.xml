@@ -51,6 +51,6 @@
 	<insert id="write">
 		INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL,'TEMP',
 		#{param1},#{param2},'','','','n',SYSDATE,
-		REVIEW_SEQ.CURRVAL,0,0,'')
+		REVIEW_SEQ.CURRVAL,0,0,#{param3})
 	</insert>
 </mapper>

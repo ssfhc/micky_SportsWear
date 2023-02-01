@@ -1,9 +1,13 @@
+/* =============== reviewBoard=============== */
 .review_table{
 	display: table;
 	width: 80%;
 	margin-left:auto; 
 	margin-right:auto;
 }
+/* .review_total{
+	cursor: pointer;
+} */
 .row{
 	display: table-row; /* tr */
 }
@@ -41,7 +45,37 @@ div{
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
+	cursor: pointer;
 }
 .u_contentGray{
-	background-color: #ddd;
+	background-color: #eee;
+}
+
+
+
+/* =============== reviewWriteview=============== */
+.styleClassReviewWriteview{
+	opacity: 0;
+	display: none;
+	position: relative;
+	left: 100px;
+	width: auto;
+	padding: 20px;
+	background-color: white;
+	
+	width: 400px;
+	height: 100%;
+}
+
+#styleID_ReviewWriteview{
+	position: relative;
+}
+.popup_review_title{
+	border-bottom: 3px solid black;
+	font-weight: bolder;
+}
+#title_content{
+	padding: 10px;
+	top: 50px;
+	position: absolute;
 }

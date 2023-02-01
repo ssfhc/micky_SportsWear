@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/reviewstyle.css" />
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
+<script src="../resources/js/jquery.bpopup.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$(".u_content").click(function(){
@@ -45,17 +46,18 @@
 			</div>
 		</div>
 		<div class="cell col2">
-			<div class="img_box">
-				<img src="../resources/img/icon_reply.gif" width="100" alt="그린 클리프 반팔 라운드티" />
-			</div>
 			<div>
 				<%-- <span>${list.r_date }</span> --%>
 				<span><fmt:formatDate value="${list.r_date }" pattern="yyyy.MM.dd"/></span>
 			</div>
+			<div class="img_box">
+				<img src="../resources/img/icon_reply.gif" width="100" alt="그린 클리프 반팔 라운드티" />
+			</div>
+			
 		</div>
 	</div>
 </c:forEach>
-<a href="reviewWriteview">리뷰작성</a>
+<button onclick="location.href='reviewWriteview'">리뷰작성</button>
 </div>
 </body>
 </html>

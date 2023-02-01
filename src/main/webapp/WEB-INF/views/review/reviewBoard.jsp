@@ -8,6 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/reviewstyle.css" />
+<script src="../resources/js/jquery-3.6.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$(".u_content").click(function(){
+			/* $(this).addClass("u_content"); */
+			$(this).toggleClass("u_content").toggleClass("u_contentGray");
+			/* $(this).click(function(){
+				$(".review_box").addClass("u_contentGray");
+			}); */
+		});
+	});
+</script>
 </head>
 <body>
 <h3>Reviewboard</h3>
@@ -30,7 +42,7 @@
 							<strong>구매옵션</strong>&nbsp;<span>색상</span>&nbsp;<span>사이즈</span>
 						</div>
 						<div class="user_content"> <!-- commend -->
-							<p>${list.r_content }</p>
+							<p class="u_content">${list.r_content }</p>
 						</div>
 					</div>
 				</div>
@@ -47,7 +59,7 @@
 		</div>
 	</div>
 </c:forEach>
-</div>
 <a href="reviewWriteview">리뷰 쓰기</a>
+</div>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.review.ReviewDeleteService;
 import micky.sports.shop.service.review.ReviewMylistviewService;
+import micky.sports.shop.service.review.ReviewPopupcontentmodifyService;
 import micky.sports.shop.service.review.ReviewPopupcontentviewService;
 import micky.sports.shop.service.review.ReviewService;
 import micky.sports.shop.service.review.ReviewWriteService;
@@ -88,5 +89,18 @@ public class ReviewController {
 		mickyServiceInter.execute(model);
 		
 		return "review/reviewPopupcontentview";
+	}
+	
+//	Popup 수정하기
+	@RequestMapping("/reviewPopupcontentmodify")
+	public String reviewPopupcontentmodify(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewPopupcontentmodify====");
+		
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewPopupcontentmodifyService(sqlSession);
+		mickyServiceInter.execute(model);
+		
+		return "redirect:reviewBoard";
 	}
 }

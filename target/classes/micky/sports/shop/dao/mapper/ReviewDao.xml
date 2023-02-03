@@ -104,4 +104,10 @@
 		R_RECONTENT,R_YNN,R_DATE,R_GROUP,R_STEP,R_INDENT,R_FILESRC FROM REVIEW
 		WHERE R_NO=#{param1}
 	</select> -->
+	
+	<update id="modify">
+		UPDATE REVIEW SET R_TITLE=#{param2},
+		R_CONTENT=#{param3}
+		WHERE R_NO=#{param1}
+	</update>
 </mapper>

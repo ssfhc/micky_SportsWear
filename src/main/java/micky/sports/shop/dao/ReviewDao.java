@@ -11,4 +11,6 @@ public interface ReviewDao {
 	public void delete(String r_no);
 	public ArrayList<ReviewDto> mylistview();
 	public ReviewDto popupview(String r_no);
+	public void modify(String r_no, String r_title, String r_content);
+
 }

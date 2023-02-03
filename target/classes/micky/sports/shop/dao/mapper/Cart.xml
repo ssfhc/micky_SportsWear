@@ -1,0 +1,88 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="micky.sports.shop.dao.CartDao">
+	
+<!-- 	<resultMap type="micky.sports.shop.dto.ProductDto" id="ProductDto"> -->
+<!-- 		<id column="p_no" property="p_no"/> -->
+<!-- 		<result column="p_name" property="p_name"/> -->
+<!-- 		<result column="p_price" property="p_price"/> -->
+<!-- 		<result column="p_cnt" property="p_cnt"/> -->
+<!-- 		<result column="p_color" property="p_color"/> -->
+<!-- 		<result column="p_size" property="p_size"/> -->
+<!-- 		<result column="p_filesrc" property="p_filesrc"/> -->
+		
+<!-- 	</resultMap> -->
+	
+<!-- 	<resultMap type="micky.sports.shop.dto.CartDto" id="CartDto"> -->
+<!-- 		<result column="c_no" property="c_no"/> -->
+<!-- 		<result column="m_id" property="m_id"/> -->
+<!-- 		<result column="p_no" property="p_no"/> -->
+<!-- 		<result column="c_cnt" property="c_cnt"/> -->
+<!-- 	</resultMap> -->
+	
+	<select id="Productlist" resultType="micky.sports.shop.dto.ProductDto" >
+		SELECT * FROM PRODUCT
+	</select>
+	<select id="Detaillist" resultType="micky.sports.shop.dto.ProductDto">
+		SELECT * FROM PRODUCT WHERE P_NO=#{param1}
+	</select>
+	
+	<insert id="insertCart" >
+		INSERT INTO CART VALUES('1','BLUE',#{param1},'1')
+		
+	</insert>
+	
+<!-- 	<select id="Cartlist" resultType="micky.sports.shop.dto.CartDto"> -->
+<!-- 		SELECT -->
+<!-- 		    P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT -->
+<!-- 		FROM -->
+<!-- 		    CART C LEFT JOIN PRODUCT P ON C.P_NO = P.P_NO -->
+<!-- 		WHERE -->
+<!-- 		   C.M_ID=#{param1} -->
+<!-- 	</select> -->
+
+	<resultMap type="micky.sports.shop.dto.ProductDto" id="ProductDto" >	
+		<result column="p_no" property="p_no"/>
+		<result column="p_name" property="p_name"/>
+		<result column="p_price" property="p_price"/>
+		<result column="p_cnt" property="p_cnt"/>
+		<result column="p_color" property="p_color"/>
+		<result column="p_size" property="p_size"/>
+		<result column="p_filesrc" property="p_filesrc"/>
+	</resultMap>
+	
+	<resultMap type="micky.sports.shop.dto.CartDto" id="CartDto">
+		<result column="c_no" property="c_no"/>
+		<result column="m_id" property="m_id"/>
+		<result column="p_no" property="p_no"/>
+		<result column="c_cnt" property="c_cnt"/>
+		<collection property="productDto" resultMap="ProductDto"></collection>
+	</resultMap>
+	
+<!-- 	<select id="Cartlist" parameterType="micky.sports.shop.dto.CartDto" resultMap="CartDto"> -->
+<!-- 		SELECT -->
+<!-- 		    P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID -->
+<!-- 		FROM -->
+<!-- 		    CART C LEFT JOIN PRODUCT P ON C.P_NO = P.P_NO -->
+<!-- 		WHERE -->
+<!-- 		   C.M_ID=#{param1} -->
+<!-- 	</select> -->
+	
+	<select id="Cartlist" parameterType="micky.sports.shop.dto.CartDto" resultMap="CartDto">
+		SELECT
+		    P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID, C.C_NO
+		FROM
+		    CART C
+		LEFT JOIN
+		    PRODUCT P
+		ON
+		    C.P_NO = P.P_NO
+		WHERE
+			C.M_ID=#{param1}
+		ORDER BY
+    		C.C_NO ASC 
+	</select>
+	
+</mapper>

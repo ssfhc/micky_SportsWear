@@ -75,7 +75,7 @@
 						<div>
 							<div>${mylist.r_title }</div>
 							<div>${mylist.r_content }</div>
-							<div><img src="../resources/reviewupload/NT7UN10J_NT7UN10J_primary.jpg" width="200" alt="" /></div>
+							<div><div><img src="../resources/reviewupload/${mylist.r_filesrc }" width="200" alt="" /></div></div>
 						</div>
 					</div>
 				</div>

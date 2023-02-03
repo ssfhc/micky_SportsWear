@@ -30,11 +30,15 @@ public class ReviewWriteService implements MickyServiceInter{
 		HttpServletRequest request=
 				(HttpServletRequest) map.get("request");
 		
+		
 //		reviewupload code=================
 		String attachPath="resources\\reviewupload\\";
 		String uploadPath=request.getSession().getServletContext().getRealPath("/");
 		
+//		학원에서 작업
 		String path="C:\\2022spring\\springwork1\\micky_SportsWear_review\\src\\main\\webapp\\resources\\reviewupload";
+//		노트북에서 작업
+//		String path="C:\\2023spring\\springwork1\\micky_SportsWear_review\\src\\main\\webapp\\resources\\reviewupload";
 		
 		MultipartRequest req=null;
 		try {
@@ -44,6 +48,7 @@ public class ReviewWriteService implements MickyServiceInter{
 			e.printStackTrace();
 		}
 		
+		String m_id=req.getParameter("m_id");
 		
 		String r_title=req.getParameter("r_title");
 		String r_content=req.getParameter("r_content");
@@ -54,7 +59,9 @@ public class ReviewWriteService implements MickyServiceInter{
 		}
 		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
-		rdao.write(r_title,r_content,r_filesrc);
+//		rdao.write(r_title,r_content,r_filesrc);
+		
+		rdao.write(m_id,r_title,r_content,r_filesrc);
 		
 	}
 

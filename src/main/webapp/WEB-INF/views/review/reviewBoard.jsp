@@ -21,6 +21,8 @@
 <body>
 <h3>Reviewboard</h3>
 
+<a href="reviewMylistview" >마이페이지</a>
+
 <div class="review_table">
 
 <!-- core태그 사용 -->
@@ -53,11 +55,15 @@
 			<div class="img_box">
 				<img src="../resources/img/icon_reply.gif" width="100" alt="그린 클리프 반팔 라운드티" />
 			</div>
-			
+			<div >
+				<!-- 수정/삭제 -->
+				<a class="atag" href="reviewPopupcontentview?r_no=${list.r_no }">수정</a>
+				<a class="atag" href="reviewDelete?r_no=${list.r_no }">삭제</a>
+			</div>
 		</div>
 	</div>
 </c:forEach>
-<button onclick="location.href='reviewWriteview'">리뷰작성</button>
+<button type="button" onclick="location.href='reviewWriteview'">리뷰작성</button>
 </div>
 </body>
 </html>

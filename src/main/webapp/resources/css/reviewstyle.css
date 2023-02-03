@@ -1,3 +1,7 @@
+.clear{
+	clear: both;
+}
+
 /* =============== reviewBoard=============== */
 .review_table{
 	display: table;
@@ -48,8 +52,12 @@ div{
 	cursor: pointer;
 }
 .u_contentGray{
-	background-color: #eee;
+	/* background-color: #eee; */
 	cursor: pointer;
+}
+.atag{
+	display: hidden;
+	/* visibility: hidden; */
 }
 
 
@@ -79,4 +87,18 @@ div{
 	padding: 10px;
 	top: 50px;
 	position: absolute;
+}
+
+
+/* =============== reviewListview=============== */
+.reviewListview_total{
+	display: table;
+	width: 80%;
+}
+.col11{
+	width: 30%;
+	vertical-align: top;
+}
+.col22{
+	width: 70%;
 }

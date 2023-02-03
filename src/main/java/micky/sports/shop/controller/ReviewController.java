@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.review.ReviewDeleteService;
+import micky.sports.shop.service.review.ReviewMylistviewService;
+import micky.sports.shop.service.review.ReviewPopupcontentviewService;
 import micky.sports.shop.service.review.ReviewService;
 import micky.sports.shop.service.review.ReviewWriteService;
 
@@ -20,6 +23,7 @@ public class ReviewController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+//	임시 메인페이지
 	@RequestMapping("/reviewBoard")
 	public String reviewBoard(HttpServletRequest request,Model model) {
 		System.out.println("=====reviewBoard====");
@@ -30,6 +34,19 @@ public class ReviewController {
 		return "review/reviewBoard";
 	}
 	
+//	마이페이지-카테고리 리뷰로 접근
+	@RequestMapping("/reviewMylistview")
+	public String reviewListview(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewMylistview====");
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewMylistviewService(sqlSession);
+		mickyServiceInter.execute(model);
+		
+		return "review/reviewMylistview";
+	}
+	
+//	작성 폼(Popup)
 	@RequestMapping("/reviewWriteview")
 	public String reviewWriteview(Model model) {
 		System.out.println("=====reviewWriteview====");
@@ -37,6 +54,7 @@ public class ReviewController {
 		return "review/reviewWriteview";
 	}
 	
+//	작성
 	@RequestMapping("/reviewWrite")
 	public String reviewWrite(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewWrite====");
@@ -46,5 +64,29 @@ public class ReviewController {
 		mickyServiceInter.execute(model);
 		
 		return "redirect:reviewBoard";
+	}
+	
+//	삭제
+	@RequestMapping("/reviewDelete")
+	public String reviewDelete(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewDelete====");
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewDeleteService(sqlSession);
+		mickyServiceInter.execute(model);
+		
+		return "redirect:reviewBoard";
+	}
+	
+//	Popup 수정폼
+	@RequestMapping("/reviewPopupcontentview")
+	public String reviewPopupcontentview(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewPopupview====");
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewPopupcontentviewService(sqlSession);
+		mickyServiceInter.execute(model);
+		
+		return "review/reviewPopupcontentview";
 	}
 }

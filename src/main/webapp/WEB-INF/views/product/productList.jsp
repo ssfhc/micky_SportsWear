@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>조인은 아직...</h2>
 <h3>상품리스트</h3>
 <table width="500" border="1">
 	<tr>

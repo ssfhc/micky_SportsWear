@@ -10,5 +10,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<h1><a href="main">메인화면</a></h1>
 </body>
 </html>

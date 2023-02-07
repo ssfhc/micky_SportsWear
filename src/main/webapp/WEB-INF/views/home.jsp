@@ -21,8 +21,7 @@
 <a href="review/reviewBoard">review</a>
 <a href="Cart/before">Cart</a>
 <a href="admin_olist">admin_olist</a>
-<a href="loginform">loginform</a>
-
+<a href="member/loginform">loginform</a>
 
 </body>
 </html>

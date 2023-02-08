@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.member.JoinIdCheckService;
+import micky.sports.shop.service.member.JoinNickNameCheckService;
 import micky.sports.shop.service.member.JoinService;
 import micky.sports.shop.service.member.LogOutService;
 import micky.sports.shop.service.member.LoginService;
@@ -22,7 +23,9 @@ import micky.sports.shop.service.member.MemberDeleteService;
 import micky.sports.shop.service.member.MemberListService;
 import micky.sports.shop.service.member.MemberUpdateFormService;
 import micky.sports.shop.service.member.MemberUpdateService;
+import micky.sports.shop.service.member.QnaDetailService;
 import micky.sports.shop.service.member.QnaListService;
+import micky.sports.shop.service.member.QnaWriteService;
 
 @Controller
 @RequestMapping("/member")
@@ -65,7 +68,7 @@ public class MemberController {
 		public String logout(HttpServletRequest request,Model model) {
 			System.out.println("@@@MemberController/logout()@@@");
 				
-			model.addAttribute("request",request);
+			//model.addAttribute("request",request);
 			mickyServiceInter = new LogOutService(sqlSession,session);
 			mickyServiceInter.execute(model);
 				
@@ -96,6 +99,25 @@ public class MemberController {
 		
 		return overlapcheck_result;
 	}
+	//닉네임중복검사기능
+	@RequestMapping(value="/joinnicknamecheck",method = RequestMethod.GET)
+	@ResponseBody
+	public int joinnicknamecheck(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/joinnicknamecheck()@@@");
+		
+		model.addAttribute("request",request);
+		mickyServiceInter = new JoinNickNameCheckService(sqlSession);
+		mickyServiceInter.execute(model);
+		
+		Map<String, Object> map = model.asMap();
+		int overlapcheck_result = (Integer) map.get("overlapcheck_result");
+		
+//		String overlapcheck_result = request.getParameter("count");
+		
+		System.out.println("결과 : "+overlapcheck_result);
+		
+		return overlapcheck_result;
+	}	
 	//회원가입기능
 	@RequestMapping("/join")
 	public String join(HttpServletRequest request,Model model) {
@@ -150,7 +172,7 @@ public class MemberController {
 		mickyServiceInter = new MemberUpdateService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 				
-		return "/member/redirect:memberlist";		
+		return "redirect:/member/memberlist";		
 	}
 	//회원정보삭제기능
 	@RequestMapping("/memberdelete")
@@ -160,7 +182,7 @@ public class MemberController {
 		mickyServiceInter = new MemberDeleteService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 				
-		return "/member/redirect:memberlist";		
+		return "redirect:/member/memberlist";		
 	}
 	//마이페이지의 문의게시판리스트
 	@RequestMapping("/qnalist")
@@ -172,4 +194,45 @@ public class MemberController {
 		mickyServiceInter.execute(model);	
 		return "/member/qnalist";		
 	}
+	//마이페이지의 문의게시판글작성화면
+	@RequestMapping("/qnawriteform")
+	public String qnawriteform(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnawriteform()@@@");
+		//model.addAttribute("request", request);	
+		//mickyServiceInter = new QnaWriteFormService(sqlSession,session);
+		//mickyServiceInter.execute(model);	
+		return "/member/qnawriteform";		
+	}
+	//마이페이지의 문의게시판글작성기능
+	@RequestMapping("/qnawrite")
+	public String qnawrite(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnawrite()@@@");
+		model.addAttribute("request", request);	
+
+		mickyServiceInter = new QnaWriteService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "redirect:/member/qnalist";		
+	}
+	//마이페이지의 문의글 디테일
+	@RequestMapping("/qnadetail")
+	public String qnadetail(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnadetail()@@@");
+		model.addAttribute("request", request);	
+			
+			
+		mickyServiceInter = new QnaDetailService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/qnadetail";		
+	}
+	//마이페이지의 문의답변화면
+	@RequestMapping("/qnareplyform")
+	public String qnareplyform(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnareplyform()@@@");
+		model.addAttribute("request", request);	
+			
+			
+		mickyServiceInter = new QnaDetailService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/qnareplyform";		
+	}	
 }

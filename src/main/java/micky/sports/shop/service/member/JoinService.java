@@ -25,6 +25,7 @@ public class JoinService implements MickyServiceInter{
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
+		String checkid_YESorNO = request.getParameter("checkid_YESorNO");
 		String m_id = request.getParameter("m_id");
 		String m_pw = request.getParameter("m_pw");
 		String m_name = request.getParameter("m_name");
@@ -39,7 +40,7 @@ public class JoinService implements MickyServiceInter{
 		
 		Member dao = sqlSession.getMapper(Member.class);
 		
-		dao.join(m_id,m_pw,m_name,m_tel,m_name2,m_email,m_grade,m_age,m_gender,m_cash,m_filesrc);
+		dao.join(m_id,m_pw,m_name,m_tel,m_name2,m_email,m_grade,m_age,m_gender,m_cash,m_filesrc);			
 	}
 
 }

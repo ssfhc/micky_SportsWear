@@ -25,7 +25,7 @@ public class LoginService implements MickyServiceInter{
 	public void execute(Model model) {
 		System.out.println("LoginService@@@");
 		
-		int logincheck_result = -1; //
+		int logincheck_result = -1; 
 		String loginid = "";
 		
 		Map<String, Object> map = model.asMap();

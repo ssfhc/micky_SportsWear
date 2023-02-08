@@ -14,27 +14,27 @@
 function checkid(){
 	var overlapcheck_id = jf.m_id.value;
 	let valcheck_id = /^[a-z]+[a-z0-9]{5,19}$/g;
+	
 	if(overlapcheck_id.length==0 || overlapcheck_id==""){
 		alert("중복검사할아이디를입력하세요")
 		jf.m_id.focus();
-		return false;
 	}else if(!valcheck_id.test(overlapcheck_id)||overlapcheck_id.length<6){
 		alert("아이디정규표현식XXXX신호")
 		jf.m_id.focus();
-		return false;
 	}else {
 		//window.location.href="/micky_SportsWear/member/joinidcheck?overlapcheck_id=" + overlapcheck_id;
 		$.ajax({
-			url: '/micky_SportsWear/member/joinidcheck?overlapcheck_id=' + overlapcheck_id,
+			url: '/micky_SportsWear/member/joinidcheck?overlapcheck=' + overlapcheck_id,
 			type: 'GET',
 			success: function( result ) {
 				
 				if( result==0) {
 					//alert(result);
-					alert("사용가능한아이디입니다")
+					alert("사용가능한아이디입니다 : "+result)
+					$("input[name=checkid_YESorNO]").val('YES');
 				} else if( result==1 ) {
-					alert(result);
-					alert("이미있는아이디입니다")
+					//alert(result);
+					alert("이미있는아이디입니다 : "+result)
 				}
 			},
 			error: function() {
@@ -44,6 +44,34 @@ function checkid(){
 	}
 	
 }
+function checknickname(){
+	var overlapcheck_nickname = jf.m_name2.value;
+	
+	if(overlapcheck_nickname==0 || overlapcheck_nickname==""){
+		alert("중복검사할닉네임을입력하세요")
+		jf.m_name2.focus();
+		return false;
+	}else{
+		$.ajax({
+			url: '/micky_SportsWear/member/joinnicknamecheck?overlapcheck=' + overlapcheck_nickname,
+			type: 'GET',
+			success: function( result ) {
+				
+				if( result==0) {
+					//alert(result);
+					alert("사용가능한닉네임입니다 : "+result)
+					$("input[name=checkname2_YESorNO]").val('YES');
+				} else if( result==1 ) {
+					//alert(result);
+					alert("이미있는닉네임입니다 : "+result)
+				}
+			},
+			error: function() {
+				console.log( "joinForm의 ajax 에러" )
+			}
+		})
+	}
+}
 function checkinfo(){
 	var m_id = jf.m_id.value;
 	var m_pw = jf.m_pw.value;
@@ -51,6 +79,8 @@ function checkinfo(){
 	var m_tel = jf.m_tel.value;
 	var m_name2 = jf.m_name2.value;
 	var m_email = jf.m_email.value;
+	var checkid_YESorNO = jf.checkid_YESorNO.value;
+	var checkname2_YESorNO = jf.checkname2_YESorNO.value;
 	//var m_grade = jf.m_grade.value;
 	var m_age = jf.m_age.value;
 	var m_gender = jf.m_gender.value;
@@ -60,6 +90,9 @@ function checkinfo(){
 	let valcheck_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	if(m_id==0 || m_id==""){
 		alert("아이디를입력하세요")
+		return false;
+	}else if(checkid_YESorNO=="NO"){
+		alert("아이디중복확인하세요")
 		return false;
 	}else if(m_pw==0 ||m_pw==""){
 		alert("비밀번호를입력하세요")
@@ -80,6 +113,9 @@ function checkinfo(){
 		return false;
 	}else if(m_name2==0 || m_name2==""){
 		alert("닉네임을입력하세요")
+		return false;
+	}else if(checkname2_YESorNO=="NO"){
+		alert("닉네임중복확인하세요")
 		return false;
 	}else if(m_email==0 || m_email==""){
 		alert("이메일을입력하세요")
@@ -103,19 +139,21 @@ function checkinfo(){
 </script>
 <h3>joinform.jsp</h3>
 <h1>회원가입화면</h1>
-<%-- 중복확인 0/중복x , 1/중복o : ${overlapcheck_result } <br />  <br /> --%>
 <form action="join" name="jf" method="post" onsubmit="return checkinfo()">
-아이디 : <input type="text" id="id" name="m_id" value=""/><input type="button" value="중복확인" onclick="checkid()" /> <br />
-비밀번호 : <input type="text" name="m_pw" /> <br /> 
+<input type="hidden" name="checkid_YESorNO" value="NO" /><br />
+<input type="text" name="checkname2_YESorNO" value="NO" /><br />
+아이디 : <input type="text" id="id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " style="width:300px;"/><input type="button" value="중복확인" onclick="checkid()" /> <br />
+비밀번호 : <input type="text" name="m_pw" placeholder="8 ~ 16자 영문, 숫자 조합"/> <br /> 
 이름 : <input type="text" name="m_name" /> <br /> 
-전화번호 : <input type="text" id="m_tel" name="m_tel" maxlength="11" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br />
-닉네임 : <input type="text" name="m_name2" /><input type="button" value="중복확인" onclick="#" /> <br />
+전화번호 : <input type="text" id="m_tel" name="m_tel" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br />
+닉네임 : <input type="text" name="m_name2" value=""/><input type="button" value="중복확인" onclick="checknickname()"/> <br />
 이메일 : <input type="email" name="m_email" /> <br /> 
 등급 : <input type="text" name="m_grade" value="bronze" readonly/> <br /> 
 나이 : <input type="text" name="m_age" /> <br /> 
 성별 : <input type="radio" name="m_gender" value="male" />남<input type="radio" name="m_gender" value="female" />여 <br /> 
 캐시 : <input type="text" name="m_cash" value="500000" readonly/> <br /> 
 첨부파일 : <input type="text" name="m_filesrc" value="noimg" readonly/> <br />
+
 <input type="submit" value="가입" />
 <input type="button" value="취소" onclick="location.href='loginform'" />
 </form>

@@ -34,7 +34,8 @@ if(loginid.equals("admintest")){
 
 확인 : ${logincheck_result} 
 
-로그인한 아이디 : ${sessionScope.loginid }
+로그인한 아이디 : ${sessionScope.loginid } <br />
+로그인한 아이디 확인2 : ${loginid }
 
 
 </body>

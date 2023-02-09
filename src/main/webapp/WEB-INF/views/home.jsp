@@ -11,13 +11,13 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  The time on the server is  </P>
 
 <h1><a href="main">메인화면</a></h1>
 
 
 
-<a href="product/productLsit">productList</a>
+<a href="product/productList">productList</a>
 <a href="review/reviewBoard">review</a>
 <a href="Cart/before">Cart</a>
 <a href="admin_olist">admin_olist</a>

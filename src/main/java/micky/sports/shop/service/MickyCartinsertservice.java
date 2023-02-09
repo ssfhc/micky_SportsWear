@@ -32,7 +32,7 @@ public class MickyCartinsertservice implements MickyServiceInter{
 		
 //		ProductDto dto=dao.Detaillist(p_no);
 		
-		
+		//같은 상품을 장바구니에 추가했을때에 장바구니에 들어가지 않게 구현
 		dao.insertCart(p_no);
 		
 		

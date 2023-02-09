@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.CartDao;
 import micky.sports.shop.dto.CartDto;
-import micky.sports.shop.dto.ProductDto;
 
 
 public class MickyCartList implements MickyServiceInter{
@@ -35,12 +34,15 @@ public class MickyCartList implements MickyServiceInter{
 		ArrayList<CartDto> list=dao.Cartlist(p_no);
 		
 		System.out.println("Cartlist 서비스");
-		
+		System.out.println(p_no);
+		int sum=0;
 		for (CartDto cartDto : list) {
-			System.out.println
-			(cartDto.getP_no()+":"+cartDto.getProductDto().getP_price()+" 아이디  : "+cartDto.getM_id());
+			System.out.println("가격  : "+cartDto.getProductDto().getP_price());
+			
+			sum +=cartDto.getProductDto().getP_price()*cartDto.getC_cnt();
+			System.out.println("총합 : "+sum);
+			model.addAttribute("totalprice",sum);
 		}
-		
 		model.addAttribute("list",list);	
 	}
 	

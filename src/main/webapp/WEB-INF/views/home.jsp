@@ -17,10 +17,10 @@
 
 
 
-<a href="product/productLsit">productList</a>
+<a href="product/productList">productList</a>
 <a href="review/reviewBoard">review</a>
 <a href="Cart/before">Cart</a>
-<a href="admin/admin_olist">admin_olist</a>
+<a href="admin_olist">admin_olist</a>
 <a href="loginform">loginform</a>
 
 

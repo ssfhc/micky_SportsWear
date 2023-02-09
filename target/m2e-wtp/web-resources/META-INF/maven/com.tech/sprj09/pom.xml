@@ -118,7 +118,18 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- 20230207 -->
+		<!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.9.2</version>
+      </dependency> 
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 		<!-- <dependency> <groupId>com.oracle.database.jdbc</groupId> <artifactId>ojdbc6</artifactId> 
 			<version>11.2.0.4</version> </dependency> -->
@@ -177,6 +188,21 @@
 			<artifactId>cos</artifactId>
 			<version>05Nov2002</version>
 		</dependency>
+
+<!-- 20230207 -->
+<!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.2</version>
+		</dependency> 
+
+
 
 	<!-- https://mvnrepository.com/artifact/aspectj/aspectjrt -->
 <dependency>

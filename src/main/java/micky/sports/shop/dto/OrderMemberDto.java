@@ -27,7 +27,6 @@ public class OrderMemberDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 	//※ AdminDao의 OrderMemberDto dto = new OrderMemberDto와 순서가 동일해야 한다.
 	public OrderMemberDto(String om_cntnum, String om_num, String p_no,
 			 int u_cnt, String m_id, Date om_date, String om_pay, int p_price, 
@@ -46,5 +45,4 @@ public class OrderMemberDto {
 		this.om_cdate = om_cdate;//주문취소일자
 		this.c_reason = c_reason;//주문취소사유
 	}
-	
 }

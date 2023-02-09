@@ -22,6 +22,8 @@ public class ReviewDto {
 	private int r_indent; //인덴트
 	private String r_filesrc; //첨부파일
 	
+	private int r_score; //별점
+	
 	private MemberDto memberDto;
 	
 	public ReviewDto() {

@@ -3,22 +3,25 @@
 }
 
 /* =============== reviewBoard=============== */
-.review_table{
-	display: table;
-	width: 80%;
-	margin-left:auto; 
-	margin-right:auto;
+div{
+	height: auto;
+	display: block;
 }
-/* .review_total{
-	cursor: pointer;
-} */
+.tablerow{
+	display: table-row;
+}
+.tablecell{
+	display: table-cell;
+}
+.review_table{  display: table; width: 70%; margin-left:auto; margin-right:auto; }
+.review_total{	cursor: pointer; }
+.selectandsearch_box{	display: table; }
+.select_box{	text-align: left; }
+.search_box{	text-align: right; }
 .row{
 	display: table-row; /* tr */
 }
-.cell{
-	display: table-cell; /* td */
-	padding: 3px;
-	border-bottom: 1px solid #ddd;
+.cell{	display: table-cell; /* td */ padding: 3px; border-bottom: 1px solid #ddd;
 }
 .col1{
 	width: 80%;
@@ -31,12 +34,10 @@
 	width: 100px;
 	height: 100px;
 }
-div{
-	height: auto;
-}
 .user_content:active {
 
 }
+.atag_reviewwrite{	text-align: right;}
 .user_content{
 	width: 90%;
 }
@@ -49,7 +50,7 @@ div{
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .u_contentGray{
 	/* background-color: #eee; */
@@ -58,6 +59,62 @@ div{
 .atag{
 	display: hidden;
 	/* visibility: hidden; */
+}
+.paging>a{
+	text-align: center;
+	position: relative;
+	text-decoration: none;
+}
+.paging>a:hover{
+	text-decoration: none;
+}
+/* .reply_box{
+	display: hidden;
+} */
+
+/* =============== 별점 =============== */
+.star {
+   position: relative;
+   font-size: 2rem;
+   color: #ddd;
+ }
+ 
+.star input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.star span {
+  width: 0;
+  position: absolute; 
+  left: 0;
+  color: #ff7f00;
+  overflow: hidden;
+  pointer-events: none;
+}
+   
+
+
+
+
+/* =============== review-replyToggle=============== */
+.reply_label{
+	color: red;
+	border: 1px solid black;
+	padding: 4px;
+}
+input#replyToggle{
+	display: none;
+}
+div#reply_box{
+	display: none;
+}
+input#replyToggle:checked+div#reply_box{
+	display: block;
 }
 
 
@@ -88,6 +145,8 @@ div{
 	top: 50px;
 	position: absolute;
 }
+
+
 
 
 /* =============== reviewListview=============== */

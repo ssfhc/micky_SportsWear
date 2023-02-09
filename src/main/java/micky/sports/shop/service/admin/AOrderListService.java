@@ -27,21 +27,51 @@ public class AOrderListService implements MickyServiceInter{
 	public void execute(Model model) {
 		System.out.println("---AOrderListService");
 		
-		//model → map
+//		model → map
 		Map<String , Object> map=model.asMap();
 		HttpServletRequest request=
-				(HttpServletRequest)map.get("reqest");
+				(HttpServletRequest)map.get("request");
+//		page
 		SearchVO searchVO=
 				(SearchVO)map.get("searchVO");
 		
-		//DB select
+//		DB select
 		Admin dao=sqlSession.getMapper(Admin.class);
-		ArrayList<OrderMemberDto> olist=dao.olist();
+
+		
+//		page
+		String strPage=request.getParameter("page");
+		if (strPage==null) {
+			strPage="1";
+		}
+		//출력확인
+		System.out.println("page : "+strPage);
+		
+		int page=Integer.parseInt(strPage);
+		searchVO.setPage(page);
+		
+//		총 관리자 admin_olist 갯수
+		int total=dao.selectAdminTotCount();
+		searchVO.pageCalculate(total);
+		//출력확인
+		System.out.println(total);
+		System.out.println(page);
+		System.out.println(searchVO.getPageStart());
+		System.out.println(searchVO.getPageEnd());
+		System.out.println(searchVO.getTotPage());
+		System.out.println(searchVO.getRowStart());
+		System.out.println(searchVO.getRowEnd());
+		
+		
+		int rowStart=searchVO.getRowStart();
+		int rowEnd=searchVO.getRowEnd();
+		
+		ArrayList<OrderMemberDto> olist=dao.olist(rowStart,rowEnd);
 		model.addAttribute("olist",olist);
 		
-		
-		// 주문취소 목록 검색 기능-시작날짜~종료날짜+취소요청Y 기준
-		
+		model.addAttribute("totRowcnt",total);
+		model.addAttribute("searchVo",searchVO);
+	
 		
 		
 	}

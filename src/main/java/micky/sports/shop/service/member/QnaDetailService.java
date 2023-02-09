@@ -31,13 +31,13 @@ public class QnaDetailService implements MickyServiceInter{
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		int q_mno = Integer.parseInt(request.getParameter("q_mno"));
+		int q_mno = Integer.parseInt(request.getParameter("q_mno")); //qnalist에서 클릭한 문의글의 고유번호
 		
 		Member dao = sqlSession.getMapper(Member.class);
 		
 		
 		
-		Qna_MemberDto dto = dao.qnadetail(q_mno);
+		Qna_MemberDto dto = dao.qnadetail(q_mno); //
 		
 		model.addAttribute("qnadetail",dto);
 	}

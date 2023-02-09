@@ -136,24 +136,35 @@ function checkinfo(){
 	}
 	
 }
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	}
 </script>
 <h3>joinform.jsp</h3>
 <h1>회원가입화면</h1>
-<form action="join" name="jf" method="post" onsubmit="return checkinfo()">
-<input type="hidden" name="checkid_YESorNO" value="NO" /><br />
-<input type="text" name="checkname2_YESorNO" value="NO" /><br />
+<form action="join" name="jf" method="post"  onsubmit="return checkinfo()">
+<input type="hidden" name="checkid_YESorNO" value="NO" /><br /> <!-- 아이디중복체크유무 -->
+<input type="hidden" name="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
 아이디 : <input type="text" id="id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " style="width:300px;"/><input type="button" value="중복확인" onclick="checkid()" /> <br />
 비밀번호 : <input type="text" name="m_pw" placeholder="8 ~ 16자 영문, 숫자 조합"/> <br /> 
 이름 : <input type="text" name="m_name" /> <br /> 
 전화번호 : <input type="text" id="m_tel" name="m_tel" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br />
 닉네임 : <input type="text" name="m_name2" value=""/><input type="button" value="중복확인" onclick="checknickname()"/> <br />
 이메일 : <input type="email" name="m_email" /> <br /> 
-등급 : <input type="text" name="m_grade" value="bronze" readonly/> <br /> 
+등급 : hidden<input type="hidden" name="m_grade" value="bronze" readonly/> <br /> 
 나이 : <input type="text" name="m_age" /> <br /> 
 성별 : <input type="radio" name="m_gender" value="male" />남<input type="radio" name="m_gender" value="female" />여 <br /> 
-캐시 : <input type="text" name="m_cash" value="500000" readonly/> <br /> 
-첨부파일 : <input type="text" name="m_filesrc" value="noimg" readonly/> <br />
-
+캐시 : hidden<input type="hidden" name="m_cash" value="500000" readonly/> <br /> 
+첨부파일 : <input type="file" name="m_filesrc" accept="image/png, image/jepg" onchange="readURL(this)"/> <br />
+<img id="preview" width="150px" height="150px" /><br />
 <input type="submit" value="가입" />
 <input type="button" value="취소" onclick="location.href='loginform'" />
 </form>

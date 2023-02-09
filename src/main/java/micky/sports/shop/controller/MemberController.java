@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.member.InfoUpdateFormService;
 import micky.sports.shop.service.member.JoinIdCheckService;
 import micky.sports.shop.service.member.JoinNickNameCheckService;
 import micky.sports.shop.service.member.JoinService;
@@ -39,12 +40,12 @@ public class MemberController {
 	private HttpSession session;
 	
 	//메인화면
-		@RequestMapping("/main")
-		public String main(Model model) {
-			System.out.println("@@@MemberController/main()@@@");
+	@RequestMapping("/main")
+	public String main(Model model) {
+		System.out.println("@@@MemberController/main()@@@");
 			
-			return "/member/main";
-		}
+		return "/member/main";
+	}
 	//로그인화면
 	@RequestMapping("/loginform")
 	public String loginform(Model model) {
@@ -55,25 +56,25 @@ public class MemberController {
 	//로그인기능
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,Model model) {
-		System.out.println("@@@MemberController/login()@@@");
+		System.out.println("@@@MemberController/login()@@@"); //controller 신호확인
 			
-		model.addAttribute("request",request);
+		model.addAttribute("request",request); 
 		mickyServiceInter = new LoginService(sqlSession,session);
 		mickyServiceInter.execute(model);
 			
 		return "/member/main";
 	}
 	//로그아웃기능
-		@RequestMapping("/logout")
-		public String logout(HttpServletRequest request,Model model) {
-			System.out.println("@@@MemberController/logout()@@@");
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/logout()@@@");
 				
-			//model.addAttribute("request",request);
-			mickyServiceInter = new LogOutService(sqlSession,session);
-			mickyServiceInter.execute(model);
+		//model.addAttribute("request",request);
+		mickyServiceInter = new LogOutService(sqlSession,session);
+		mickyServiceInter.execute(model);
 				
-			return "/member/main";
-		}
+		return "/member/main";
+	}
 	//회원가입화면
 	@RequestMapping("/joinform")
 	public String joinform(Model model) {
@@ -188,8 +189,11 @@ public class MemberController {
 	@RequestMapping("/qnalist")
 	public String qnalist(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/qnalist()@@@");
+		
 		model.addAttribute("request", request);	
-		System.out.println("현재로그인중인아이디확인 : "+session.getAttribute("loginid"));
+		
+		//System.out.println("현재로그인중인아이디확인 : "+session.getAttribute("loginid"));
+		
 		mickyServiceInter = new QnaListService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 		return "/member/qnalist";		
@@ -234,5 +238,17 @@ public class MemberController {
 		mickyServiceInter = new QnaDetailService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 		return "/member/qnareplyform";		
+	}
+	//마이페이지의 문의답변화면
+	@RequestMapping("/infoupdateform")
+	public String infoupdateform(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/infoupdateform()@@@");
+		model.addAttribute("request", request);	
+			
+			
+		mickyServiceInter = new InfoUpdateFormService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/infoupdateform";		
 	}	
+	
 }

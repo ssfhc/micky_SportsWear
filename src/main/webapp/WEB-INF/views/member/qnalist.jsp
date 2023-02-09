@@ -30,7 +30,7 @@
 <c:forEach items="${qnalist }" var="dto">  
 	<tr>
 		<td>${dto.q_mno }</td>
-		<td><a href="qnadetail?q_mno=${dto.q_mno }">${dto.q_mtitle }</a></td>
+		<td><a href="qnadetail?q_mno=${dto.q_mno }">${dto.q_mtitle }</a></td> <!-- 문의제목 클릭하면 해당글의 고유번호값 MemberCotnroller / qnadetail()로 보내기 -->
 		<td>${dto.q_mcontent }</td>
 		<td>${dto.q_mreply }</td>
 		<td>${dto.q_mid }</td>

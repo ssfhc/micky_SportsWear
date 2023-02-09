@@ -62,7 +62,7 @@
 		<input type="submit" value="수정완료" /> &nbsp;&nbsp;
 		<a href="mypageform">마이페이지로</a> &nbsp;&nbsp;
 		<%-- <a href="memberdelete?m_id=${memberupdate_id.m_id }">회원삭제하기</a> &nbsp;&nbsp; --%>
-		</td>
+		</td> 
 	</tr>
 </table>
 </form>

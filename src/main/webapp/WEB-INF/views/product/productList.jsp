@@ -10,7 +10,7 @@
 <body>
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
-   |  <a href="">join</a>
+   |  <a href="../member/joinform">join</a>
 </c:if>
  <c:if test="${not empty sessionScope.loginid }">
     <a href="../member/logout">logout</a> 

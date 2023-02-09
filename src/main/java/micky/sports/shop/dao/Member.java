@@ -20,4 +20,5 @@ public interface Member {
 	public void qnawrite(String q_mtitle,String q_mcontent,String q_mid);
 	public Qna_MemberDto qnadetail(int q_mno);
 	public int joinnicknamecheck(String m_name2);
+	public MemberDto getimg(String m_id);
 }

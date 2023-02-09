@@ -51,4 +51,8 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	<select id="joinnicknamecheck" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER WHERE M_NAME2=#{param1}
 	</select>
+	
+	<select id="getimg" resultType="micky.sports.shop.dto.MemberDto">
+		SELECT M_FILESRC FROM MEMBER WHERE M_ID=#{param1}
+	</select>
 </mapper>

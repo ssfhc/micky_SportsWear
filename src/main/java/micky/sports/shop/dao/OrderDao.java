@@ -12,9 +12,13 @@ public interface OrderDao {
 	//주문페이지 정보보기
 	public ArrayList<ProductDto> orderSelect(String pno);
 
-	public ArrayList<OrderMemberDto>  mtOrderList(String mIdd);
+	//나의 주문내역에서 주문목록 확인
+	public ArrayList<OrderMemberDto> mtOrderList(String mIdd);
 	
 	//주문페이지에서 회원 정보확인
 	public MemberDto ordersMember(String loginId);
+	
+	//구매한 금액 회원 캐시 차감
+	public void delcash(String mId,int totPrices);
 	
 }

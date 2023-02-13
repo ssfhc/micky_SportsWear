@@ -16,7 +16,7 @@
     </select>
 
     
-    <!-- 상품결제완료시 회원캐시 차감 -->
+    <!-- 상품결제완료시 상품수량 차감 -->
     <update id="delpayment">
     	UPDATE PRODUCT SET P_CNT=P_CNT-#{param2} WHERE P_NO=#{param1}
     </update>

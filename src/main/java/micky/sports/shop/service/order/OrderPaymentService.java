@@ -32,6 +32,8 @@ public class OrderPaymentService implements MickyServiceInter {
 		String[] pNo=request.getParameterValues("p_no"); //상품번호
 		String[] cnt=request.getParameterValues("cnt"); //수량
 		
+		String totPrices=request.getParameter("totPrices"); // 구매총액
+		
 		OrderDao odao=sqlSession.getMapper(OrderDao.class);
 		ProductDao pdao=sqlSession.getMapper(ProductDao.class);
 		for (int i = 0; i < pNo.length; i++) {
@@ -40,8 +42,10 @@ public class OrderPaymentService implements MickyServiceInter {
 			odao.payment(loginId,pNo[i],Integer.parseInt(cnt[i]));
 			//구매한 수량 재고 삭제
 			pdao.delpayment(pNo[i],Integer.parseInt(cnt[i]));		
-		}		
-		model.addAttribute("mId",loginId);		
+		}
+		//구매한 금액 회원 캐시 차감 update
+		odao.delcash(loginId,Integer.parseInt(totPrices));
+		//model.addAttribute("mId",loginId);		
 	}
 
 }

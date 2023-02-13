@@ -26,6 +26,8 @@ public class ReviewDto {
 	
 	private MemberDto memberDto;
 	
+	private ProductDto productDto; //join OrderMember 테이블
+	
 	public ReviewDto() {
 		// TODO Auto-generated constructor stub
 	}

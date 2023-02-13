@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/nstyle.css" />
 </head>
 <body>
 <h3>memberupdateform.jsp</h3>
 <h1>회원정보수정화면</h1>
-<form action="memberupdate" method = "post">
+<form action="infoupdate" method = "post">
 <input type="hidden" name="m_id" value="${infoupdateform.m_id }" />
 <table>
 	<tr>

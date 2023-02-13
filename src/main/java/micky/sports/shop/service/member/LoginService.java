@@ -41,8 +41,8 @@ public class LoginService implements MickyServiceInter{
 		
 		if(logincheck_result==1) {
 			System.out.println("로그인완료");
-			MemberDto dto = dao.getimg(m_id);
-			model.addAttribute("dto",dto);
+//			MemberDto dto = dao.getimg(m_id);
+//			model.addAttribute("dto",dto);
 			session = request.getSession();
 			session.setAttribute("loginid", m_id);
 			System.out.println("세션등록아이디 확인 : "+session.getAttribute("loginid"));

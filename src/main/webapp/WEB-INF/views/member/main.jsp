@@ -19,6 +19,7 @@
 %>
 <hr />
 프로필사진 확인용 : 
+<%-- <img src="../resources/upload/${dto.m_filesrc}" style="border: 1px" width="100px" height="100px"/> --%>
 <img src="../resources/upload/${dto.m_filesrc}" style="border: 1px" width="100px" height="100px"/>
 <hr />
 <font color="blue"><%=session.getAttribute("loginid") %></font>

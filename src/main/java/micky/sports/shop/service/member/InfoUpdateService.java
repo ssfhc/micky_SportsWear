@@ -12,31 +12,34 @@ import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class InfoUpdateFormService implements MickyServiceInter{
+public class InfoUpdateService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	private HttpSession session;
 	
-	public InfoUpdateFormService(SqlSession sqlSession,HttpSession session) {
+	public InfoUpdateService(SqlSession sqlSession,HttpSession session) {
 		this.sqlSession = sqlSession;
 		this.session = session;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println("InfoUpdateFormService");
+		System.out.println("InfoUpdateService");
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String m_id = (String)session.getAttribute("loginid");
-		System.out.println("수정하고싶은 아이디 :"+m_id);
-		
 		Member dao = sqlSession.getMapper(Member.class);
-		
-		MemberDto dto = dao.memberupdateform(m_id);
-		
-		model.addAttribute("infoupdateform",dto);
+
+		String m_id = request.getParameter("m_id");
+		String m_pw = request.getParameter("m_pw");
+		String m_tel = request.getParameter("m_tel");
+		String m_name2 = request.getParameter("m_name2");
+		String m_email = request.getParameter("m_email");
+		String m_filesrc = request.getParameter("m_filesrc");
+
+		dao.infoupdate(m_id,m_pw,m_tel,m_name2,m_email,m_filesrc);
+
 	}
 
 }

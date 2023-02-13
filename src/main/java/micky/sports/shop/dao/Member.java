@@ -21,4 +21,5 @@ public interface Member {
 	public Qna_MemberDto qnadetail(int q_mno);
 	public int joinnicknamecheck(String m_name2);
 	public MemberDto getimg(String m_id);
+	public void infoupdate(String m_id,String m_pw,String m_tel,String m_name2,String m_email,String m_filesrc);
 }

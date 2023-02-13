@@ -12,31 +12,31 @@ import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class InfoUpdateFormService implements MickyServiceInter{
+public class MainService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	private HttpSession session;
 	
-	public InfoUpdateFormService(SqlSession sqlSession,HttpSession session) {
+	public MainService(SqlSession sqlSession,HttpSession session) {
 		this.sqlSession = sqlSession;
 		this.session = session;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println("InfoUpdateFormService");
+		System.out.println("MainService@@@@@");
 		
-		Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
-		String m_id = (String)session.getAttribute("loginid");
-		System.out.println("수정하고싶은 아이디 :"+m_id);
-		
+	
 		Member dao = sqlSession.getMapper(Member.class);
 		
-		MemberDto dto = dao.memberupdateform(m_id);
+		String m_id = (String)session.getAttribute("loginid");
+		if(m_id==null) {
+			m_id="";
+		}
+		System.out.println("로그인중인아이디 메인서비스 확인 : "+m_id);
+		MemberDto dto = dao.getimg(m_id);
 		
-		model.addAttribute("infoupdateform",dto);
+		model.addAttribute("dto",dto);
 	}
 
 }

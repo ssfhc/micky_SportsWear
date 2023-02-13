@@ -11,28 +11,31 @@
 </head>
 <body>
 <script>
-function checkid(){
-	var overlapcheck_id = jf.m_id.value;
-	let valcheck_id = /^[a-z]+[a-z0-9]{5,19}$/g;
+var code = ""; //이메일전송 인증번호 저장을 위한 코드
+
+
+function checkid(){ //아이디중복확인
+	var overlapcheck_id = jf.m_id.value; //input id의 value
+	let valcheck_id = /^[a-z]+[a-z0-9]{5,19}$/g; //아이디 정규식
 	
-	if(overlapcheck_id.length==0 || overlapcheck_id==""){
+	if(overlapcheck_id.length==0 || overlapcheck_id==""){ //input id를 타이핑하지않으면
 		alert("중복검사할아이디를입력하세요")
 		jf.m_id.focus();
-	}else if(!valcheck_id.test(overlapcheck_id)||overlapcheck_id.length<6){
+	}else if(!valcheck_id.test(overlapcheck_id)||overlapcheck_id.length<6){ //input id가 정규식에 벗어나면
 		alert("아이디정규표현식XXXX신호")
 		jf.m_id.focus();
-	}else {
+	}else { //제대로된 input id가 타이핑되면
 		//window.location.href="/micky_SportsWear/member/joinidcheck?overlapcheck_id=" + overlapcheck_id;
 		$.ajax({
-			url: '/micky_SportsWear/member/joinidcheck?overlapcheck=' + overlapcheck_id,
+			url: '/shop/member/joinidcheck?overlapcheck=' + overlapcheck_id, //input id를 controller의 joinidcheck()으로
 			type: 'GET',
-			success: function( result ) {
+			success: function( result ) { 
 				
-				if( result==0) {
+				if( result==0) { //아이디가 중복하지않을때
 					//alert(result);
 					alert("사용가능한아이디입니다 : "+result)
 					$("input[name=checkid_YESorNO]").val('YES');
-				} else if( result==1 ) {
+				} else if( result==1 ) { //아이디가 중복일때
 					//alert(result);
 					alert("이미있는아이디입니다 : "+result)
 				}
@@ -44,24 +47,24 @@ function checkid(){
 	}
 	
 }
-function checknickname(){
-	var overlapcheck_nickname = jf.m_name2.value;
+function checknickname(){ //닉네임중복확인
+	var overlapcheck_nickname = jf.m_name2.value; //input nickname 값
 	
-	if(overlapcheck_nickname==0 || overlapcheck_nickname==""){
+	if(overlapcheck_nickname==0 || overlapcheck_nickname==""){ //input nickname을 타이핑하지않았을때
 		alert("중복검사할닉네임을입력하세요")
 		jf.m_name2.focus();
 		return false;
 	}else{
 		$.ajax({
-			url: '/micky_SportsWear/member/joinnicknamecheck?overlapcheck=' + overlapcheck_nickname,
+			url: '/shop/member/joinnicknamecheck?overlapcheck=' + overlapcheck_nickname, //input nickname을 controller joinnicknamecheck()으로
 			type: 'GET',
 			success: function( result ) {
 				
-				if( result==0) {
+				if( result==0) { //닉네임이 중복하지않을때
 					//alert(result);
 					alert("사용가능한닉네임입니다 : "+result)
 					$("input[name=checkname2_YESorNO]").val('YES');
-				} else if( result==1 ) {
+				} else if( result==1 ) { //닉네임이 중복할때
 					//alert(result);
 					alert("이미있는닉네임입니다 : "+result)
 				}
@@ -72,7 +75,7 @@ function checknickname(){
 		})
 	}
 }
-function checkinfo(){
+function checkinfo(){ //가입하기form 적용 전에 필수 항목 값 확인
 	var m_id = jf.m_id.value;
 	var m_pw = jf.m_pw.value;
 	var m_name = jf.m_name.value;
@@ -81,13 +84,14 @@ function checkinfo(){
 	var m_email = jf.m_email.value;
 	var checkid_YESorNO = jf.checkid_YESorNO.value;
 	var checkname2_YESorNO = jf.checkname2_YESorNO.value;
+	var checkemail_YESorNO = jf.email_check_input_result.value;
 	//var m_grade = jf.m_grade.value;
 	var m_age = jf.m_age.value;
 	var m_gender = jf.m_gender.value;
 	//var m_cash = jf.m_cash.value;
 	let valcheck_pw = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
 	let valcheck_tel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
-	let valcheck_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	//let valcheck_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	if(m_id==0 || m_id==""){
 		alert("아이디를입력하세요")
 		return false;
@@ -120,11 +124,14 @@ function checkinfo(){
 	}else if(m_email==0 || m_email==""){
 		alert("이메일을입력하세요")
 		return false;
-	}else if(!valcheck_email.test(m_email)){
+	}else if(checkemail_YESorNO=="NO"){
+		alert("이메일인증하세요")
+		return false;
+	}/* else if(!valcheck_email.test(m_email)){
 		alert("메일정규표현식XXXX신호")
 		jf.m_email.focus();
 		return false;
-	}else if(m_age==0 || m_age==""){
+	} */else if(m_age==0 || m_age==""){
 		alert("나이를입력하세요")
 		return false;
 	}else if(m_gender==0 || m_gender==""){
@@ -146,19 +153,59 @@ function readURL(input) {
 	  } else {
 	    document.getElementById('preview').src = "";
 	  }
+ 	}
+function emailcheck(){ //이메일인증번호발송
+const eamil = $('#m_email').val()+$('#m_email2').val();
+console.log('완성된 이메일 : '+ eamil);
+const checkinput = $('.email_check_input')
+
+	$.ajax({
+		type : 'GET',
+		url : '/shop/member/emailcheck?email=' + eamil,
+		success : function(data){
+			console.log("data : "+data);
+			checkinput.attr('disabled',false);
+			code=data;
+			alert('ajax신호신호이메일신호')
+		}
+	})
+}
+function emailinputcheck(){ //이메일인증번호확인
+	var input_code = $(".email_check_input").val(); //입력한코드
+	alert("알러트신신호호")
+	if(input_code == code){
+		$("input[name=email_check_input_result]").val('YES');
+	}else{
+		$("input[name=email_check_input_result]").val('NO');
 	}
+}
+
 </script>
 <h3>joinform.jsp</h3>
 <h1>회원가입화면</h1>
-<form action="join" name="jf" method="post"  onsubmit="return checkinfo()">
+<form action="join" name="jf" method="post" enctype="multipart/form-data" onsubmit="return checkinfo()">
+
 <input type="hidden" name="checkid_YESorNO" value="NO" /><br /> <!-- 아이디중복체크유무 -->
 <input type="hidden" name="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
+<input type="hidden" name="checkemail_YESorNO" value="NO"/> <br /> <!-- 이메일인증유무 -->
+
 아이디 : <input type="text" id="id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " style="width:300px;"/><input type="button" value="중복확인" onclick="checkid()" /> <br />
 비밀번호 : <input type="text" name="m_pw" placeholder="8 ~ 16자 영문, 숫자 조합"/> <br /> 
 이름 : <input type="text" name="m_name" /> <br /> 
 전화번호 : <input type="text" id="m_tel" name="m_tel" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br />
 닉네임 : <input type="text" name="m_name2" value=""/><input type="button" value="중복확인" onclick="checknickname()"/> <br />
-이메일 : <input type="email" name="m_email" /> <br /> 
+이메일 : <input type="text" name="m_email" id="m_email" />
+		<select name="m_email2" id="m_email2">
+		<option>@naver.com</option>
+		<option>@daum.net</option>
+		<option>@gmail.com</option>
+		<option>@hanmail.com</option>
+		<option>@yahoo.co.kr</option>
+		</select> 
+		<input type="button" onclick="emailcheck()" value="인증번호전송"/>
+		<input class="email_check_input" placeholder="인증번호 6자리를 입력하세요" disabled="disabled" maxlength="6" />
+		<input type="button" value="확인" onclick="emailinputcheck()" />
+		<input type="text" name ="email_check_input_result" value="NO"  readonly/><br />
 등급 : hidden<input type="hidden" name="m_grade" value="bronze" readonly/> <br /> 
 나이 : <input type="text" name="m_age" /> <br /> 
 성별 : <input type="radio" name="m_gender" value="male" />남<input type="radio" name="m_gender" value="female" />여 <br /> 

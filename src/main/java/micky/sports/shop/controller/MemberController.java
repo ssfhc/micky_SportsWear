@@ -1,12 +1,16 @@
 package micky.sports.shop.controller;
 
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.member.InfoUpdateFormService;
+import micky.sports.shop.service.member.InfoUpdateService;
 import micky.sports.shop.service.member.JoinIdCheckService;
 import micky.sports.shop.service.member.JoinNickNameCheckService;
 import micky.sports.shop.service.member.JoinService;
 import micky.sports.shop.service.member.LogOutService;
 import micky.sports.shop.service.member.LoginService;
+import micky.sports.shop.service.member.MainService;
 import micky.sports.shop.service.member.MemberDeleteService;
 import micky.sports.shop.service.member.MemberListService;
 import micky.sports.shop.service.member.MemberUpdateFormService;
@@ -39,11 +45,17 @@ public class MemberController {
 	@Autowired
 	private HttpSession session;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	//메인화면
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(HttpServletRequest request, Model model) {
 		System.out.println("@@@MemberController/main()@@@");
-			
+		mickyServiceInter = new MainService(sqlSession,session);
+		mickyServiceInter.execute(model);
+		
+		
 		return "/member/main";
 	}
 	//로그인화면
@@ -62,7 +74,7 @@ public class MemberController {
 		mickyServiceInter = new LoginService(sqlSession,session);
 		mickyServiceInter.execute(model);
 			
-		return "/member/main";
+		return "redirect:/member/main";
 	}
 	//로그아웃기능
 	@RequestMapping("/logout")
@@ -123,7 +135,8 @@ public class MemberController {
 	@RequestMapping("/join")
 	public String join(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/join()@@@");
-			
+		//String m_id= request.getParameter("m_id");
+		//System.out.println("파람확인 joincontrol : "+m_id);	
 		model.addAttribute("request",request);
 		mickyServiceInter = new JoinService(sqlSession);
 		mickyServiceInter.execute(model);
@@ -239,7 +252,7 @@ public class MemberController {
 		mickyServiceInter.execute(model);	
 		return "/member/qnareplyform";		
 	}
-	//마이페이지의 문의답변화면
+	//마이페이지의 내정보수정화면
 	@RequestMapping("/infoupdateform")
 	public String infoupdateform(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/infoupdateform()@@@");
@@ -249,6 +262,58 @@ public class MemberController {
 		mickyServiceInter = new InfoUpdateFormService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 		return "/member/infoupdateform";		
+	}
+	//마이페이지의 내정보수정
+	@RequestMapping("/infoupdate")
+	public String infoupdate(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/infoupdate()@@@");
+		model.addAttribute("request", request);	
+			
+			
+		mickyServiceInter = new InfoUpdateService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/mypageform";		
+	}
+	//이메일인증
+	@RequestMapping(value="/emailcheck",method = RequestMethod.GET)
+	@ResponseBody
+	public String emailcheck(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/emailcheck()@@@");
+		
+		String email = request.getParameter("email");
+		
+		System.out.println("컨트롤러에 인증신청 이메일 확인 : "+email);
+		
+		Random random = new Random();
+		int check_num = random.nextInt(888888) + 111111;
+		System.out.println("인증번호발급확인 : "+check_num);
+		
+		// 이메일 보내기 
+        String setFrom = "ssfhc594@gmail.com";
+        String toMail = email;
+        String title = "회원가입 인증 이메일 입니다.";
+        String content = 
+                "홈페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + check_num + "입니다." + 
+                "<br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
+        try {
+            
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        String num = Integer.toString(check_num);
+        return num;
 	}	
-	
 }

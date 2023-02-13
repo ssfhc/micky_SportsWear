@@ -31,13 +31,13 @@ public class JoinService implements MickyServiceInter{
 		String attachPath="resources\\upload\\";
 	    String uploadPath=request.getSession().getServletContext().getRealPath("/");
 	    System.out.println("uploadpathhhhh:"+uploadPath);
-		
 	    String path = "C:\\2022spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\upload";
 	    MultipartRequest req = null;
 	    try {
 	    	req=
 	  	          new MultipartRequest(request, path, 1024*1024*20, "utf-8",
 	  	                new DefaultFileRenamePolicy());
+	    	System.out.println("req : "+req);
 		} catch (Exception e) {
 			// TODO: handle exception
 		} 
@@ -54,10 +54,11 @@ public class JoinService implements MickyServiceInter{
 //		int m_cash = Integer.parseInt(request.getParameter("m_cash"));
 //		String m_filesrc = request.getParameter("m_filesrc");
 	    
-	    //String checkid_YESorNO = req.getParameter("checkid_YESorNO");
+	    String checkid_YESorNO = req.getParameter("checkid_YESorNO");
 		String m_id = req.getParameter("m_id");
+		System.out.println(m_id);
 		String m_pw = req.getParameter("m_pw");
-		String m_name = req.getParameter("m_name");
+		String m_name = req.getParameter("m_name"); 
 		String m_tel = req.getParameter("m_tel");
 		String m_name2 = req.getParameter("m_name2");
 		String m_email = req.getParameter("m_email");

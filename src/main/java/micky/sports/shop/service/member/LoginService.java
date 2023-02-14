@@ -1,5 +1,6 @@
 package micky.sports.shop.service.member;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,22 +40,23 @@ public class LoginService implements MickyServiceInter{
 		
 		logincheck_result = dao.login(m_id, m_pw); //입력한id,password를 조건으로 회원정보에 select count(*) 후 결과(int)
 		
-		if(logincheck_result==1) {
-			System.out.println("로그인완료");
+		if(logincheck_result==1) { //로그인성공일때
 //			MemberDto dto = dao.getimg(m_id);
 //			model.addAttribute("dto",dto);
-			session = request.getSession();
-			session.setAttribute("loginid", m_id);
-			System.out.println("세션등록아이디 확인 : "+session.getAttribute("loginid"));
 			//model.addAttribute("loginid",loginform_inputid);
-		}else if(logincheck_result==0) {
+			System.out.println("로그인완료"); //확인용
+			session = request.getSession();
+			session.setAttribute("loginid", m_id); //세션에 아이디등록
+			System.out.println("세션등록아이디 확인 : "+session.getAttribute("loginid")); //확인용
+		}else if(logincheck_result==0) { //로그인실패일때
 			System.out.println("로그인실패");
-		}else {
+			
+		}else { //오류
 			System.out.println("오류");
 		}
 		//loginid = (String)session.getAttribute("loginid");
 		//model.addAttribute("loginid",loginid);
-		model.addAttribute("logincheck_result",logincheck_result);
+		model.addAttribute("logincheck_result",logincheck_result); //로그인확인결과
 	}
 
 }

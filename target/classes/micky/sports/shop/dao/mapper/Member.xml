@@ -58,6 +58,10 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	
 	<update id="infoupdate">
 		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
-		M_EMAIL=#{param5},M_FILESRC=#{param6} WHERE M_ID=#{param1}
+		M_EMAIL=#{param5} WHERE M_ID=#{param1}
 	</update>
+	
+	<select id="memberdropcheck" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1} AND M_PW=#{param2}
+	</select>
 </mapper>

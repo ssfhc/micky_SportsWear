@@ -54,14 +54,22 @@ public class JoinService implements MickyServiceInter{
 //		int m_cash = Integer.parseInt(request.getParameter("m_cash"));
 //		String m_filesrc = request.getParameter("m_filesrc");
 	    
-	    String checkid_YESorNO = req.getParameter("checkid_YESorNO");
+	    //String checkid_YESorNO = req.getParameter("checkid_YESorNO");
+	    
 		String m_id = req.getParameter("m_id");
-		System.out.println(m_id);
+		//System.out.println(m_id); //확인용
 		String m_pw = req.getParameter("m_pw");
 		String m_name = req.getParameter("m_name"); 
 		String m_tel = req.getParameter("m_tel");
 		String m_name2 = req.getParameter("m_name2");
-		String m_email = req.getParameter("m_email");
+		
+		
+		String m_emaill = req.getParameter("m_email"); //이메일 앞주소
+		String m_email2 = req.getParameter("m_email2"); //이메일 뒷주소
+		String m_email = m_emaill+m_email2;
+		System.out.println("이메일주소조합확인 : "+m_email);
+		
+		
 		String m_grade = req.getParameter("m_grade");
 		int m_age = Integer.parseInt(req.getParameter("m_age"));
 		String m_gender = req.getParameter("m_gender");

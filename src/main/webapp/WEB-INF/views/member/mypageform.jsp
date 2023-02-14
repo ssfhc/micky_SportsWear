@@ -14,5 +14,6 @@
 <input type="button" value="문의페이지" onclick="location.href='qnalist'" />
 <input type="button" value="메인페이지" onclick="location.href='main'" />
 <input type="button" value="내정보수정" onclick="location.href='infoupdateform'" />
+<input type="button" value="회원탈퇴" onclick="window.open('memberdropcheckform')" />
 </body>
 </html>

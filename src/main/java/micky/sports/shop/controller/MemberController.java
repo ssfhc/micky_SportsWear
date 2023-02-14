@@ -27,6 +27,7 @@ import micky.sports.shop.service.member.LogOutService;
 import micky.sports.shop.service.member.LoginService;
 import micky.sports.shop.service.member.MainService;
 import micky.sports.shop.service.member.MemberDeleteService;
+import micky.sports.shop.service.member.MemberDropCheckService;
 import micky.sports.shop.service.member.MemberListService;
 import micky.sports.shop.service.member.MemberUpdateFormService;
 import micky.sports.shop.service.member.MemberUpdateService;
@@ -54,8 +55,7 @@ public class MemberController {
 		System.out.println("@@@MemberController/main()@@@");
 		mickyServiceInter = new MainService(sqlSession,session);
 		mickyServiceInter.execute(model);
-		
-		
+				
 		return "/member/main";
 	}
 	//로그인화면
@@ -66,15 +66,21 @@ public class MemberController {
 		return "/member/loginform";
 	}
 	//로그인기능
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request,Model model) {
+	@RequestMapping(value="/login",method = RequestMethod.GET)
+	@ResponseBody
+//	@RequestMapping("/login")
+	public int login(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/login()@@@"); //controller 신호확인
 			
 		model.addAttribute("request",request); 
 		mickyServiceInter = new LoginService(sqlSession,session);
 		mickyServiceInter.execute(model);
-			
-		return "redirect:/member/main";
+		
+		Map<String, Object> map = model.asMap();
+		int logincheck_result = (Integer) map.get("logincheck_result"); //ajax return으로 data 줘야해서 model을 다시 풀음
+		
+		return logincheck_result;
+		//return "/member/main";
 	}
 	//로그아웃기능
 	@RequestMapping("/logout")
@@ -104,13 +110,13 @@ public class MemberController {
 		mickyServiceInter.execute(model);
 		
 		Map<String, Object> map = model.asMap();
-		int overlapcheck_result = (Integer) map.get("overlapcheck_result");
+		int overlapcheck_result = (Integer) map.get("overlapcheck_result"); //ajax return으로 data 줘야해서 model을 다시 풀음
 		
 //		String overlapcheck_result = request.getParameter("count");
 		
-		System.out.println("결과 : "+overlapcheck_result);
+		System.out.println("결과 : "+overlapcheck_result); //확인용
 		
-		return overlapcheck_result;
+		return overlapcheck_result; //return 한 값이 ajax success (data)로 간다
 	}
 	//닉네임중복검사기능
 	@RequestMapping(value="/joinnicknamecheck",method = RequestMethod.GET)
@@ -147,16 +153,14 @@ public class MemberController {
 	@RequestMapping("/mypageform")
 	public String mypageform(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/mypageform()@@@");
-				
-				
+								
 		return "/member/mypageform";
 	}
 	//관리자페이지화면
 	@RequestMapping("/adminpage")
 	public String adminpage(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/adminpage()@@@");
-			
-				
+							
 		return "/member/adminpage";
 	}
 	//회원목록화면
@@ -282,11 +286,11 @@ public class MemberController {
 		
 		String email = request.getParameter("email");
 		
-		System.out.println("컨트롤러에 인증신청 이메일 확인 : "+email);
+		System.out.println("컨트롤러에 인증신청 이메일 확인 : "+email); //확인용
 		
 		Random random = new Random();
 		int check_num = random.nextInt(888888) + 111111;
-		System.out.println("인증번호발급확인 : "+check_num);
+		System.out.println("인증번호발급확인 : "+check_num); //확인용
 		
 		// 이메일 보내기 
         String setFrom = "ssfhc594@gmail.com";
@@ -315,5 +319,32 @@ public class MemberController {
 
         String num = Integer.toString(check_num);
         return num;
-	}	
+	}
+	//회원탈퇴진입전비밀번호본인인증화면
+	@RequestMapping("/memberdropcheckform")
+	public String memberdropcheckform(HttpServletRequest request, Model model) {
+		System.out.println("@@@MemberController/memberdropcheckform()@@@");
+		//mickyServiceInter = new MainService(sqlSession,session);
+		//mickyServiceInter.execute(model);
+				
+		return "/member/memberdropcheckform";
+	}
+	//회원탈퇴진입전비밀번호본인인증
+	@RequestMapping(value="/memberdropcheck",method = RequestMethod.GET)
+	@ResponseBody
+	public int memberdropcheck(HttpServletRequest request, Model model) {
+		System.out.println("@@@MemberController/memberdropcheckform()@@@");
+		model.addAttribute("request",request); 
+		mickyServiceInter = new MemberDropCheckService(sqlSession,session);
+		mickyServiceInter.execute(model);
+		
+		Map<String, Object> map = model.asMap();
+		int memberdropcheck = (Integer) map.get("memberdropcheck");
+		
+//		String overlapcheck_result = request.getParameter("count");
+		
+		System.out.println("결과 : "+memberdropcheck);
+		
+		return memberdropcheck;
+	}
 }

@@ -11,11 +11,11 @@
 <body>
 <h3>main.jsp</h3>
 <h1>메인화면</h1>
-<%if(session.getAttribute("loginid")==null){ //로그인이 실패하면 loginform(button)
+<%if(session.getAttribute("loginid")==null){ //로그인이 실패하면
 %>
 <input type="button" value="로그인화면" onclick="location.href='loginform'" /> <br />
 <%
-}else { //로그인이 성공하면 logout(button),mypage(button)
+}else { //로그인이 성공하면 
 %>
 <hr />
 프로필사진 확인용 : 
@@ -27,7 +27,7 @@
 <input type="button" value="로그아웃" onclick="location.href='logout'" /> <br />
 <input type="button" value="마이페이지" onclick="location.href='mypageform'" />
 <% 
-if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리자페이지(button)
+if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리자페이지(button)보임
 %>
 <input type="button" value="관리자페이지" onclick="location.href='adminpage'"/>	
 <%

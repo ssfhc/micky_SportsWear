@@ -105,11 +105,22 @@ function emailinputcheck(){ //이메일인증번호확인
 		alert("인증번호XX")
 	}
 }
+function readURL(input) { //프로필사진 업로드 (아직잘모름)
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	}
 </script>
 <p style="font-family:'Nanum Gothic'; font-weight: bold;" >infoupdateform.jsp</p>
 <p>infoupdateform.jsp</p>
 <h1 style="font-family:'Nanum Gothic'">회원정보수정화면</h1>
-<form action="infoupdate" name="jf" method = "post" onsubmit = "return checkValue()">
+<form action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkValue()">
 <input type="hidden" name="m_id" value="${infoupdateform.m_id }" />
 <input type="hidden" name="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
 <input type="hidden" name="checkemail_YESorNO" value="NO"/> <br /> <!-- 이메일인증유무 -->
@@ -174,8 +185,8 @@ function emailinputcheck(){ //이메일인증번호확인
 	</tr>
 	<tr>
 		<td class = "left">프로필사진</td>
-		<%-- <td><input type="file" name="m_filesrc" value="${infoupdateform.m_filesrc }" /></td> --%>
-		<td>${infoupdateform.m_filesrc }</td>
+		<td><input type="file" name="m_filesrc" value="${infoupdateform.m_filesrc }" accept="image/png, image/jepg" onchange="readURL(this)"/></td>
+		<td><img id="preview" src="../resources/upload/${infoupdateform.m_filesrc }" width="150px" height="150px" /></td>
 	</tr>
 	<tr>
 		<td colspan = "2">

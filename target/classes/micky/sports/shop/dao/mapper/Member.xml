@@ -86,4 +86,8 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	<delete id="qnadelete" >
 		DELETE FROM QNA_MEMBER WHERE Q_MNO=#{param1}
 	</delete>
+	
+	<select id="emailoverlapcheck" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE M_EMAIL=#{param1}
+	</select>
 </mapper>

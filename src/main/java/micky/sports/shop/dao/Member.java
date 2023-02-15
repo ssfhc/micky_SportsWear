@@ -29,4 +29,5 @@ public interface Member {
 			String q_mreply,String q_mid,int q_mgroup,int q_mstep,int q_mindent);
 	public void qnareplyshape(int q_mgroup,int q_mstep);
 	public void qnadelete(String q_mno);
+	public int emailoverlapcheck(String m_email);
 }

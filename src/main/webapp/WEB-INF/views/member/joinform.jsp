@@ -158,15 +158,33 @@ console.log('완성된 이메일 : '+ eamil); //확인용 (f12콘솔창 확인�
 const checkinput = $('.email_check_input') //인증번호입력란 (기본값 비활성화)
 
 	$.ajax({
-		type : 'GET',
-		url : '/shop/member/emailcheck?email=' + eamil, //email주소를 controller emailcheck()으로
-		success : function(data){
-			console.log("data : "+data); //인증번호확인용 (f12콘솔창 확인가능)
-			checkinput.attr('disabled',false); //인증번호입력란 활성화
-			code=data; //인증번호를 code에 저장
-			alert('ajax신호신호이메일신호') //확인용
+		type:'GET',
+		url:'/shop/member/emailoverlapcheck?email=' +eamil,
+		success:function(result){
+			alert(result)
+			if(result==1){
+				alert("이미사용중인이메일입니다")
+			}else if(result==0){
+				alert("사용가능한이메일입니다")
+				
+				$.ajax({
+					type : 'GET',
+					url : '/shop/member/emailcheck?email=' + eamil, //email주소를 controller emailcheck()으로
+					success : function(data){
+						console.log("data : "+data); //인증번호확인용 (f12콘솔창 확인가능)
+						checkinput.attr('disabled',false); //인증번호입력란 활성화
+						code=data; //인증번호를 code에 저장
+						alert('ajax신호신호이메일신호') //확인용
+					}
+				})
+				
+			}else{
+				alert("오류")
+			}
 		}
 	})
+
+	
 }
 function emailinputcheck(){ //이메일인증번호확인
 	var input_code = $(".email_check_input").val(); //input 인증번호

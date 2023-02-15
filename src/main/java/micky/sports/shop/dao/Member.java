@@ -30,4 +30,6 @@ public interface Member {
 	public void qnareplyshape(int q_mgroup,int q_mstep);
 	public void qnadelete(String q_mno);
 	public int emailoverlapcheck(String m_email);
+	public void temporarypw(int check_num,String m_email);
+	public int findpw(String m_id,String m_email);
 }

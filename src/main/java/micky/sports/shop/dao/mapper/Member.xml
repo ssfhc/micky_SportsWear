@@ -90,4 +90,12 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	<select id="emailoverlapcheck" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER WHERE M_EMAIL=#{param1}
 	</select>
+	
+	<update id="temporarypw">
+		UPDATE MEMBER SET M_PW=#{param1} WHERE M_EMAIL=#{param2}
+	</update>
+	
+	<select id="findpw" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1} and M_EMAIL=#{param2}
+	</select>
 </mapper>

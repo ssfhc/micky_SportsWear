@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.member.AdminQnaListService;
 import micky.sports.shop.service.member.EmailOverlapCheckService;
+import micky.sports.shop.service.member.FindPwService;
 import micky.sports.shop.service.member.InfoUpdateFormService;
 import micky.sports.shop.service.member.InfoUpdateService;
 import micky.sports.shop.service.member.JoinIdCheckService;
@@ -39,6 +40,7 @@ import micky.sports.shop.service.member.QnaDetailService;
 import micky.sports.shop.service.member.QnaListService;
 import micky.sports.shop.service.member.QnaReplyService;
 import micky.sports.shop.service.member.QnaWriteService;
+import micky.sports.shop.service.member.TemporaryPwService;
 
 @Controller
 @RequestMapping("/member")
@@ -414,14 +416,82 @@ public class MemberController {
 		mickyServiceInter.execute(model);	
 		return "/member/qnalist";		
 	}
-	/*
-	 * //아이디찾기화면
-	 * 
-	 * @RequestMapping("/findidform") public String findidform(HttpServletRequest
-	 * request, Model model) {
-	 * System.out.println("@@@MemberController/findidform()@@@"); mickyServiceInter
-	 * = new MainService(sqlSession,session); mickyServiceInter.execute(model);
-	 * 
-	 * return "/member/findidform"; }
-	 */
+	
+	  //비밀번호찾기화면  
+	  @RequestMapping("/findpwform")
+	  public String findpwform(HttpServletRequest request, Model model) {
+		  System.out.println("@@@MemberController/findpwform()@@@");
+//		  mickyServiceInter = new MainService(sqlSession,session); 
+//		  mickyServiceInter.execute(model);
+	  
+		  return "/member/findpwform"; 
+	 }
+		//비밀번호찾기기능
+		@RequestMapping(value="/findpw",method = RequestMethod.GET)
+		@ResponseBody
+		public int findpw(HttpServletRequest request,Model model) {
+			System.out.println("@@@MemberController/findpw()@@@");
+			model.addAttribute("request", request);	
+			
+			
+			mickyServiceInter = new FindPwService(sqlSession,session);
+			mickyServiceInter.execute(model);
+			
+			Map<String, Object> map = model.asMap();
+			int overlapcheck_result = (Integer) map.get("overlapcheck_result"); //ajax return으로 data 줘야해서 model을 다시 풀음
+			
+			
+			System.out.println("결과 : "+overlapcheck_result); //확인용
+			
+			return overlapcheck_result; //return 한 값이 ajax success (data)로 간다
+		}
+	  //비밀번호찾기 임시비번전송
+	  @RequestMapping(value="/sendpwemail",method = RequestMethod.GET)
+	  @ResponseBody
+	  public String sendpwemail(HttpServletRequest request,Model model) {
+		  System.out.println("@@@MemberController/sendpwemail()@@@");
+		  model.addAttribute("request", request);	
+		
+		  String email = request.getParameter("email");
+		
+		  System.out.println("sendpwemail 이메일 확인 : "+email); //확인용
+		
+		
+		  Random random = new Random();
+		  int check_num = random.nextInt(888888) + 111111;
+		  model.addAttribute("check_num",check_num);
+		
+		  mickyServiceInter = new TemporaryPwService(sqlSession,session); 
+		  mickyServiceInter.execute(model);
+		  System.out.println("임시비밀번호확인 : "+check_num); //확인용
+		
+		  // 이메일 보내기 
+		  String setFrom = "ssfhc594@gmail.com";
+		  String toMail = email;
+		  String title = "임시비밀번호 발급 이메일 입니다.";
+		  String content = 
+				  		"홈페이지를 방문해주셔서 감사합니다." +
+						"<br><br>" + 
+						"임시비밀번호는 " + check_num + "입니다." + 
+						"<br>" + 
+						"해당 번호로 로그인 후 비밀번호 변경하여 주세요.";
+        
+		  try {
+            
+			  MimeMessage message = mailSender.createMimeMessage();
+			  MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			  helper.setFrom(setFrom);
+			  helper.setTo(toMail);
+			  helper.setSubject(title);
+			  helper.setText(content,true);
+			  mailSender.send(message);
+            
+		  }catch(Exception e) {
+			  e.printStackTrace();
+		  }
+
+		  String num = Integer.toString(check_num);
+		  return num;
+	  }
+
 }

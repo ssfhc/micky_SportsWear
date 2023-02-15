@@ -43,8 +43,7 @@ function check_id_pw(){
 <input type="button" value="로그인" onclick="check_id_pw()" /> <!-- 입력한 id,pw를 MemberContorller/login()으로 보내기 -->
 <input type="button" value="회원가입" onclick="location.href='joinform'" /> 
 <input type="button" value="메인화면" onclick="location.href='main'" /> <br />
-<input type="button" value="아이디찾기" />
-<input type="button" value="비밀번호찾기" />
+<input type="button" value="비밀번호찾기" onclick="location.href='findpwform'"/>
 
 </body>
 </html>

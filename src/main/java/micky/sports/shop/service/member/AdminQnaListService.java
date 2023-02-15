@@ -11,31 +11,30 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
+import micky.sports.shop.dto.Qna_MemberDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class MemberDeleteService implements MickyServiceInter{
+public class AdminQnaListService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	private HttpSession session;
 	
-	public MemberDeleteService(SqlSession sqlSession,HttpSession session) {
+	public AdminQnaListService(SqlSession sqlSession,HttpSession session) {
 		this.sqlSession = sqlSession;
 		this.session = session;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println("MemberDeleteService");
-		
+		System.out.println("AdminQnaListService");
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		Member dao = sqlSession.getMapper(Member.class);
+		Member dao = sqlSession.getMapper(Member.class);		
 		
-		String m_id = request.getParameter("m_id");
+		ArrayList<Qna_MemberDto> list = dao.getadminqnalist();
 		
-		//session.removeAttribute("m_id");
-		dao.memberdelete(m_id);
+		model.addAttribute("adminqnalist",list);
 		
 	}
 

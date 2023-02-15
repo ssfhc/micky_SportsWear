@@ -25,7 +25,7 @@ function checkValue(){
 			type:'GET',
 			url:'/shop/member/login?m_id=' + inputId + '&m_pw=' + inputPw,
 			success:function(data){
-				alert("로그인폼에이잭스확인 : "+data)
+				//alert("로그인폼에이잭스확인 : "+data)
 				if(data==0){
 					alert("아이디비밀번호를확인하세요")
 				}else if(data==1){

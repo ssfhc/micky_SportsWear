@@ -23,4 +23,9 @@ public interface Member {
 	public MemberDto getimg(String m_id);
 	public void infoupdate(String m_id,String m_pw,String m_tel,String m_name2,String m_email);
 	public int memberdropcheck(String m_id,String m_pw);
+	public ArrayList<Qna_MemberDto> getadminqnalist();
+	public void qnareplyupdate(String q_mno);
+	public void qnareply(String q_mtitle,String q_mcontent,
+			String q_mreply,String q_mid,int q_mgroup,int q_mstep,int q_mindent);
+	public void qnareplyshape(int q_mgroup,int q_mstep);
 }

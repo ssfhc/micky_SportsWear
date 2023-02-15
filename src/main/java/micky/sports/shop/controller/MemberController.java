@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.member.AdminQnaListService;
 import micky.sports.shop.service.member.InfoUpdateFormService;
 import micky.sports.shop.service.member.InfoUpdateService;
 import micky.sports.shop.service.member.JoinIdCheckService;
@@ -28,11 +29,13 @@ import micky.sports.shop.service.member.LoginService;
 import micky.sports.shop.service.member.MainService;
 import micky.sports.shop.service.member.MemberDeleteService;
 import micky.sports.shop.service.member.MemberDropCheckService;
+import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.MemberListService;
 import micky.sports.shop.service.member.MemberUpdateFormService;
 import micky.sports.shop.service.member.MemberUpdateService;
 import micky.sports.shop.service.member.QnaDetailService;
 import micky.sports.shop.service.member.QnaListService;
+import micky.sports.shop.service.member.QnaReplyService;
 import micky.sports.shop.service.member.QnaWriteService;
 
 @Controller
@@ -256,6 +259,17 @@ public class MemberController {
 		mickyServiceInter.execute(model);	
 		return "/member/qnareplyform";		
 	}
+	//마이페이지의 문의답변하기기능
+	@RequestMapping("/qnareply")
+	public String qnareply(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnareply()@@@");
+		model.addAttribute("request", request);	
+			
+			
+		mickyServiceInter = new QnaReplyService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "redirect:/member/adminqnalist";		
+	}
 	//마이페이지의 내정보수정화면
 	@RequestMapping("/infoupdateform")
 	public String infoupdateform(HttpServletRequest request,Model model) {
@@ -346,5 +360,25 @@ public class MemberController {
 		System.out.println("결과 : "+memberdropcheck);
 		
 		return memberdropcheck;
+	}
+	//회원탈퇴기능
+	@RequestMapping("/memberdrop")
+	public String memberdrop(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/memberdrop()@@@");
+		model.addAttribute("request", request);
+		mickyServiceInter = new MemberDropService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+				
+		return "redirect:/member/main";		
+	}
+	//마이페이지의 문의게시판리스트
+	@RequestMapping("/adminqnalist")
+	public String adminqnalist(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/adminqnalist()@@@");		
+		model.addAttribute("request", request);	
+			
+		mickyServiceInter = new AdminQnaListService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/adminqnalist";		
 	}
 }

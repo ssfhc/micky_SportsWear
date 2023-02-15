@@ -19,17 +19,16 @@
 %>
 <hr />
 프로필사진 확인용 : 
-<%-- <img src="../resources/upload/${dto.m_filesrc}" style="border: 1px" width="100px" height="100px"/> --%>
-<img src="../resources/upload/${dto.m_filesrc}" style="border: 1px" width="100px" height="100px"/>
+<img src="../resources/upload/${dto.m_filesrc}" style="border: 1px" width="150px" height="150px"/>
 <hr />
 <font color="blue"><%=session.getAttribute("loginid") %></font>
 님 반가워요
 <input type="button" value="로그아웃" onclick="location.href='logout'" /> <br />
-<input type="button" value="마이페이지" onclick="location.href='mypageform'" />
+<input type="button" value="마이페이지" onclick="location.href='mypageform'" /><br />
 <% 
-if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리자페이지(button)보임
+if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리자페이지button이 보임
 %>
-<input type="button" value="관리자페이지" onclick="location.href='adminpage'"/>	
+<input type="button" value="관리자페이지" onclick="location.href='adminpage'"/>	<br />
 <%
 }
 %>
@@ -38,8 +37,7 @@ if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리�
 %>
 
 <!-- 값 확인용 -->
-확인 : ${logincheck_result} 
-로그인한 아이디 : <%=session.getAttribute("loginid") %>
+로그인중인 아이디 : <%=session.getAttribute("loginid") %>
 
 
 <hr />

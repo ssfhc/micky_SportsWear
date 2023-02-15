@@ -28,22 +28,18 @@ public class LoginService implements MickyServiceInter{
 		System.out.println("LoginService@@@");
 		
 		int logincheck_result = -1; //로그인 확인결과
-		//String loginid = ""; 
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String m_id = request.getParameter("m_id"); //loginform에서 입력받은 id값
-		String m_pw = request.getParameter("m_pw"); //loginform에서 입력받은 password값
+		String m_id = request.getParameter("loginform_input_id"); //loginform에서 입력받은 id값
+		String m_pw = request.getParameter("loginform_input_pw"); //loginform에서 입력받은 password값
 		
 		Member dao = sqlSession.getMapper(Member.class);
 		
 		logincheck_result = dao.login(m_id, m_pw); //입력한id,password를 조건으로 회원정보에 select count(*) 후 결과(int)
 		
 		if(logincheck_result==1) { //로그인성공일때
-//			MemberDto dto = dao.getimg(m_id);
-//			model.addAttribute("dto",dto);
-			//model.addAttribute("loginid",loginform_inputid);
 			System.out.println("로그인완료"); //확인용
 			session = request.getSession();
 			session.setAttribute("loginid", m_id); //세션에 아이디등록
@@ -54,8 +50,6 @@ public class LoginService implements MickyServiceInter{
 		}else { //오류
 			System.out.println("오류");
 		}
-		//loginid = (String)session.getAttribute("loginid");
-		//model.addAttribute("loginid",loginid);
 		model.addAttribute("logincheck_result",logincheck_result); //로그인확인결과
 	}
 

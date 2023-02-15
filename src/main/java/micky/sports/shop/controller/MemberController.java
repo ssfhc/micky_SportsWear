@@ -33,6 +33,7 @@ import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.MemberListService;
 import micky.sports.shop.service.member.MemberUpdateFormService;
 import micky.sports.shop.service.member.MemberUpdateService;
+import micky.sports.shop.service.member.QnaDeleteService;
 import micky.sports.shop.service.member.QnaDetailService;
 import micky.sports.shop.service.member.QnaListService;
 import micky.sports.shop.service.member.QnaReplyService;
@@ -380,5 +381,16 @@ public class MemberController {
 		mickyServiceInter = new AdminQnaListService(sqlSession,session);
 		mickyServiceInter.execute(model);	
 		return "/member/adminqnalist";		
+	}
+	//마이페이지의 문의게시판 문의글삭제기능
+	@RequestMapping(value="/qnadelete",method = RequestMethod.GET)
+	@ResponseBody
+	public String qnadelete(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/qnadelete()@@@");		
+		model.addAttribute("request", request);	
+			
+		mickyServiceInter = new QnaDeleteService(sqlSession,session);
+		mickyServiceInter.execute(model);	
+		return "/member/qnalist";		
 	}
 }

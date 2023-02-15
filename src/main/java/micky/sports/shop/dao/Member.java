@@ -28,4 +28,5 @@ public interface Member {
 	public void qnareply(String q_mtitle,String q_mcontent,
 			String q_mreply,String q_mid,int q_mgroup,int q_mstep,int q_mindent);
 	public void qnareplyshape(int q_mgroup,int q_mstep);
+	public void qnadelete(String q_mno);
 }

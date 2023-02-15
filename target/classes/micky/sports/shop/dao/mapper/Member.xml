@@ -41,7 +41,7 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	
 	<insert id="qnawrite">
 		INSERT INTO QNA_MEMBER(Q_MNO,Q_MTITLE,Q_MCONTENT,Q_MREPLY,Q_MID,Q_MYNN,Q_MDATE,Q_MGROUP,Q_MSTEP,Q_MINDENT)
-		VALUES (QNA_MEMBER_Q_MNO.NEXTVAL,#{param1},#{param2},'답변내용',#{param3},'N',SYSDATE,QNA_MEMBER_Q_MNO.CURRVAL,0,0)
+		VALUES (QNA_MEMBER_Q_MNO.NEXTVAL,#{param1},#{param2},'',#{param3},'N',SYSDATE,QNA_MEMBER_Q_MNO.CURRVAL,0,0)
 	</insert>
 	
 	<select id="qnadetail" resultType="micky.sports.shop.dto.Qna_MemberDto">
@@ -82,4 +82,8 @@ VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{
 	VALUES (QNA_MEMBER_Q_MNO.NEXTVAL,#{param1},#{param2},#{param3},#{param4},'A',SYSDATE,#{param5},
 	#{param6},#{param7})
 	</insert>
+	
+	<delete id="qnadelete" >
+		DELETE FROM QNA_MEMBER WHERE Q_MNO=#{param1}
+	</delete>
 </mapper>

@@ -35,7 +35,7 @@ function changeoption(ths) {
 <h3>cart</h3>
 장바구니 상품 ${fn:length(list) } 개 <br />
 ${list.size() } <br />
-<a href="#">전체삭제</a> 
+<a href="alldeleteCart">전체삭제</a> 
 <form action="order" name="cart">
 <div class="Cart_list">
 <table border="1" width="800">

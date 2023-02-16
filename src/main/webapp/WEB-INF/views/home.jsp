@@ -10,7 +10,7 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
+<h1 >
 	Hello world!  
 </h1>
 
@@ -25,6 +25,7 @@
 <a href="Cart/before">Cart</a>
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
+<a href="admin_product">admin_product</a>
 
 </body>
 </html>

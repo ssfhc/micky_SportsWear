@@ -90,7 +90,7 @@ public class AdminController {
 		 mickyServiceInter=new ACancleModifyService(sqlSession);
 		 mickyServiceInter.execute(model);	
 		 
-		 return "redirect:admin/admin_olist"; 
+		 return "redirect:admin_olist"; 
 	} 
 		 
 		

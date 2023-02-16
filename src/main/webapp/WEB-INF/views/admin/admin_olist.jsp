@@ -7,21 +7,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+<!-- css 링크 -->
+<link rel="stylesheet" href="resources/css/admin_oliststyle.css" />
+ <style>
+ .page{
+	 text-decoration: none;
+	 color: black;
+ }
+ .page:hover{
+ 	color: gray;
+    font-weight: bold;
+ }
+ .om_cntnum{
+	 color: black;
+	 text-decoration: none;
+ }
+ .om_cntnum:hover{
+ 	color: gray;
+ 	font-weight: bold;
 
+ }
+
+ </style>
+
+<!-- header section -->
+<%@include file="admin_header.jsp" %>
+
+</head>
 
 <body>
 
+<%-- <aside>
+<%@include file="admin_sidebar.jsp" %>
+</aside> --%>
+
 <div class="jumbotron text-center">
-	<h1>관리자 admin_olist</h1>
-	<p>주문관리 현황 리스트</p>
+	<h1 class="line-h1" align="center" 
+>
+	주문관리 현황 리스트</h1>
 </div>
 <br /><br />
 
 
 <!-- 주문취소 목록 검색 기능 : 시작날짜~종료날짜+취소요청Y 기준 -->
 <form action="search_olist" method="post">
-	<div>
+	<div class="container1" align="center">
 		<label>
 			검색시작일 : 
 			<input type="date" name="som_cdate" required pattern="\d{4}-\d{2}-\d{2}" value="som_cdate" />
@@ -32,49 +62,31 @@
 		</label>&nbsp;&nbsp;
 	        <label>주문취소요청여부</label>
 	    	<input type="text" name="om_cancle" value="${resk }" placeholder="검색어를 입력해주세요"/> 
-		    <input type="submit" value="조회"/>
-		
-<%-- 	 	<c:choose>
-			<c:when test="${om_cancle }">
-				<input type="checkbox" name="searchType" value="om_cancle1" checked/>
-			</c:when>
-			<c:otherwise>
-				<input type="checkbox" name="searchType" value="om_cancle1" />Y
-			</c:otherwise>
-		</c:choose> 
-		<c:choose>
-			<c:when test="${om_cancle }">
-				<input type="checkbox" name="searchType" value="om_cancle2" checked/>
-			</c:when>
-			<c:otherwise>
-				<input type="checkbox" name="searchType" value="om_cancle2" />N
-			</c:otherwise>
-		</c:choose>  --%>
-		
+		    <input type="submit" value="조회"/>		
 	</div>
 </form>
 <br />
 
 
-<div class="container">
-	<table width="1200" border="1">
-		<tr>
-			<td>상품주문번호</td>
-			<td>주문번호</td>
-			<td>상품번호</td>
-			<td>주문수량</td>			
-			<td>아이디</td>
-			<td>주문일자</td>
-			<td>결제형태</td>
-			<td>총액</td>
-			<td>처리상태</td>
-			<td>주문취소요청여부</td>
-			<td>주문취소일자</td>
+<div class="container2" align="center">
+	<table border="1" >
+		<tr style="vertical-align: middle;" >
+			<th class="th1" width="10%">상품주문번호</th>
+			<th class="th1" width="13%">주문번호</th>
+			<th class="th1" width="8%">상품번호</th>
+			<th class="th1" width="6%">주문수량</th>			
+			<th class="th1" width="6%">아이디</th>
+			<th class="th1" width="10%">주문일자</th>
+			<th class="th1" width="8%">결제형태</th>
+			<th class="th1" width="10%">총액</th>
+			<th class="th1" width="10%">처리상태</th>
+			<th class="th1" width="6%">주문취소요청여부</th>
+			<th class="th1" width="10%">주문취소일자</th>
 		</tr>
 		
 		<c:forEach items="${olist }" var="dto">
-		<tr>
-<!-- 상품주문번호 -->       <td><a href="admin_contentview?om_cntnum=${dto.om_cntnum}">
+		<tr style="text-align: center;">
+<!-- 상품주문번호 -->       <td><a href="admin_contentview?om_cntnum=${dto.om_cntnum}" class="om_cntnum">
 									${dto.om_cntnum }</a></td> 
 <!-- 주문번호 -->		    <td>${dto.om_num }</td>
 <!-- 상품번호 -->			<td>${dto.p_no }</td>
@@ -82,7 +94,7 @@
 <!-- 아이디 -->			<td>${dto.m_id }</td>
 <!-- 주문일자 -->			<td><fmt:formatDate value="${dto.om_date }" pattern="yyyy-MM-dd"/></td>
 <!-- 결제형태 -->			<td>${dto.om_pay }</td>
-<!-- 총액 -->			    <td>${dto.p_price }</td>
+<!-- 총액 -->			    <td><fmt:formatNumber type="currency" value="${dto.p_price }" /></td>
 <!-- 처리상태 -->			<td>${dto.om_state }</td>
 <!-- 주문취소요청여부 -->		<td>${dto.om_cancle }</td>
 <!-- 주문취소일자 -->		<td><fmt:formatDate value="${dto.om_cdate }" pattern="yyyy-MM-dd"/></td>
@@ -94,27 +106,33 @@
 
 <br /><br />
 <!-- 페이지 처리 -->
+	<div class="p" align="center">
 	<c:if test="${searchVo.page > 1 }">
-		<a href="admin_olist?page=1">[처음]</a>
-		<a href="admin_olist?page=${searchVo.page-1 }">[이전]</a>
+		<a href="admin_olist?page=1" class="page">[처음]</a>
+		<a href="admin_olist?page=${searchVo.page-1 }" class="page">[이전]</a>
 	</c:if>
 	
 	<c:forEach begin="${searchVo.pageStart }" end="${searchVo.pageEnd }" var="i">
 		<c:choose>
 			<c:when test="${i eq searchVo.page }">
-				<span style="color: red; font-weight:bold">${i }&nbsp;</span>
+				<span style="color: gray; font-weight:bold">${i }&nbsp;</span>
 			</c:when>
 			<c:otherwise>
-				<a href="admin_olist?page=${i }" style="text-decoration: none;">${i }&nbsp;</a>
+				<a href="admin_olist?page=${i }" class="page">${i }&nbsp;</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	
 	<c:if test="${searchVo.page < searchVo.totPage }">
-		<a href="admin_olist?page=${searchVo.page+1 }">[다음]</a>
-		<a href="admin_olist?page=${searchVo.totPage }">[마지막]</a>
+		<a href="admin_olist?page=${searchVo.page+1 }" class="page">[다음]</a>
+		<a href="admin_olist?page=${searchVo.totPage }" class="page">[마지막]</a>
 	</c:if>
+	</div>
+	<br /><br /><br /><br />
 
-
+<!-- footer section -->
+<footer>
+<%@ include file="admin_footer.jsp"%>
+</footer>
 </body>
 </html>

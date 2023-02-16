@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/admin_contentviewstyle.css" />
 </head>
 
 <body>
 <div class="jumbotron text-center">
-	<h1>관리자 주문내역 상세</h1>
-	<h3>관리자 주문/결제 수정</h3>
+	<h1 class="content_h1" align="center">관리자 주문내역 상세</h1>
+	<h3 class="content_h3" align="center">관리자 주문/결제 수정</h3>
 </div>
 
 <script>
@@ -25,51 +26,52 @@ alert(selectValue);
 
 <form action="modify" method="post">
 <input type="hidden" name="om_cntnum" value="${acontent_view.om_cntnum }" />
-  <table width="1200" border="1">
-		 <tr>
-		 	<td colspan="4">주문상세</td>
+  <table border="1">
+		 <tr bgcolor="#CCCCCC">
+		 	<th colspan="4">주문상세</th>
 		 	
 		 	
 		 	
 		 </tr>
-		 <tr>
-		 	<td>주문일자</td>
-		 	<td>ID</td>
-		 	<td colspan="2">주문번호</td>
+		 <tr bgcolor="#e8e8e8">
+		 	<th>주문일자</th>
+		 	<th>ID</th>
+		 	<th colspan="2">주문번호</th>
 		 </tr>
 		 <tr>
 		 	<td><fmt:formatDate value="${acontent_view.om_date }" pattern="yyyy-MM-dd"/></td>
 		 	<td>${acontent_view.m_id }</td>
 		 	<td colspan="2">${acontent_view.om_num }</td>
 		 </tr>	
-		 <tr>
-		 	<td colspan="4">제품정보</td>
+		 <tr bgcolor="#CCCCCC">
+		 	<th colspan="4">제품정보</th>
 		 	
 		 	
 		 	
 		 </tr>
-		 <tr>
-		    <td>상품주문번호</td>
-		    <td>상품번호</td>
-		    <td>총액</td>
-		    <td>처리상태</td>
+		 <tr bgcolor="#e8e8e8">
+		    <th>상품주문번호</th>
+		    <th>상품번호</th>
+		    <th>총액</th>
+		    <th>처리상태</th>
 		 </tr>	 
 		 <tr>
 		     <td>${acontent_view.om_cntnum }</td>
 		     <td>${acontent_view.p_no }</td>
-		     <td>${acontent_view.p_price }</td>
+		     <td><fmt:formatNumber type="currency" value="${acontent_view.p_price }" /></td>
 		     <td>
 		     <label>결제완료</label>
 		     <select id="om_state" name="om_state" onchange="alert(this.value)">
 		       <option value="" selected>-- 결제완료 --</option>
-		       <option id="1" value="${acontent_update.om_state }">주문취소</option>	              
+		      <%--  <option id="1" value="${acontent_update.om_state }">주문취소</option>	 --%>              
+		       <option id="1" value="주문취소">주문취소</option>	              
 		     </select>
 		    </td>
 		 </tr>
-		 <tr>
-		 	 <td>주문취소일자</td> 
-		 	<td>주문취소사유</td>
-		 	<td colspan="2">주문취소승인</td>
+		 <tr bgcolor="#e8e8e8">
+		 	 <th>주문취소일자</th> 
+		 	<th>주문취소사유</th>
+		 	<th colspan="2">주문취소승인</th>
 		 </tr>
 		 <tr>
 		    <td><fmt:formatDate value="${acontent_view.om_cdate }" pattern="yyyy-MM-dd"/></td>
@@ -77,7 +79,12 @@ alert(selectValue);
 		 	<td colspan="2"><input type="submit" id="admin_cancle" value="주문취소"/></td>
 		 </tr>
 	</table>
-	<a href="admin_olist">목록</a>
+	<br />
+	
+	<div class="a">
+	<a href="admin_olist" class="returnolist">목록</a>
+	</div>
+	
 </form>
 
 </body>

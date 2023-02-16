@@ -22,11 +22,7 @@
 <a href="Cart/before">Cart</a>
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
-<<<<<<< HEAD
-
-=======
 <a href="admin_product">admin_product</a>
-<a href="#">확인좀요</a>
->>>>>>> 9f21d4b9e08d66ed7d8cf1ea1cfc42884dbf83bd
+
 </body>
 </html>

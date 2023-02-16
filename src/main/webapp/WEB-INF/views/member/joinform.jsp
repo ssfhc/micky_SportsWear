@@ -214,7 +214,7 @@ function emailinputcheck(){ //이메일인증번호확인
 <td>
 		<input type="text" name="m_tel" id="m_tel"/> - 
 		<input type="text" name="m_tel" id="m_tel"/> - 
-		<input type="text" name="m_tel" id="m_tel"/>
+		<input type="text" name="m_tel " id="m_tel"/>
 </td>
 <br />
 닉네임 : <input type="text" name="m_name2" value=""/><input type="button" value="중복확인" onclick="checknickname()"/> <br />

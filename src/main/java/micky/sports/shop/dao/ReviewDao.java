@@ -23,5 +23,5 @@ public interface ReviewDao {
 	public ReviewDto getReview(String r_no);
 	
 	public int totalCount();
-	public int replyTotalCount(String r_no);
+//	public int replyTotalCount(String r_no);
 }

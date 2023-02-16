@@ -139,6 +139,7 @@
 	
 <hr />	
 </div>
+</div>
 <div class="clear" ></div>
 
 <div class="review_table">
@@ -218,7 +219,7 @@
 						</style>
 						<div id="reply_menu">
 							<div>
-								<a class="${list.r_no }" href="#" onclick="return false">댓글(${replyTotalCount })</a>
+								<a class="${list.r_no }" href="#" onclick="return false">댓글()</a>
 								<div class="snd_menu sub_menu">
 									<div>${list.r_retitle }</div>
 									<div>${list.r_recontent }</div>

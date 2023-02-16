@@ -27,9 +27,7 @@ public class ReviewDto {
 	
 	private MemberDto memberDto; //join 사용
 	private ProductDto productDto; //join 사용
-	
-	private ProductDto productDto; //join OrderMember 테이블
-	
+		
 	public ReviewDto() {
 		// TODO Auto-generated constructor stub
 	}

@@ -14,7 +14,6 @@
 <script>
 	$(document).ready(function(){
 		$(".u_content").click(function(){
-			/* $(this).addClass("u_content"); */
 			$(this).toggleClass("u_content").toggleClass("u_contentGray");
 		});
 	});
@@ -35,7 +34,7 @@
 			alert('로그인이 필요합니다.');
 			$(location).attr('href','../member/loginform');
 		}else{
-			$(".styleClassReviewWriteview").bPopup();
+			$(location).attr('href','reviewWriteview')
 		}
 	}
 	function fn_02(checked_id){
@@ -72,47 +71,7 @@
 </c:if>
 
 <br />
-<%-- 로그인한 아이디 : <%=session.getAttribute("loginid") %>
-<br />
-<%String id=(String)session.getAttribute("loginid"); %>
-<%=id %> --%>
-<!-- <a href="reviewMylistview" >마이페이지</a> -->
-<%-- 상품명 : <%=pname %>
-상품이미지 : <%=pfilesrc %>
-<br />
-<%String pname2=(String)session.getAttribute("pname"); %>
-상품명2 : <%=pname2 %>
-<br />
-<c:forEach items="${productDetail_data }" var="p">
-</c:forEach>
-p : <c:out value="${p }"/>
-<%String pnameGetReviewBoard=request.getParameter("pname"); %>
-pnameGetReviewBoard : <%=pnameGetReviewBoard %> --%>
 
-
-<%-- <%String pname=request.getParameter("pname"); %>
-<%=pname %> --%>
-<%-- <%pageContext.getAttribute("name","${param.pname }"); %>
-<%=asd %> --%>
-<%-- a: <c:out value="${param.pname }" />
-<%String hell=request.getParameter("hell"); %>
-<%=hell %> --%>
-<%-- <c:out value="name" />
-<c:set var="name" value="${applicationScope.pm.p_name}" scope="session"></c:set> --%>
-<%-- <c:out value="${param.pname }"></c:out>
-
-<input type="hidden" name="pname" value="${plist.p_name }" /> --%>
-
-pname : ${pname } <br />
-pfilesrc : ${pfilesrc } <br />
-
-
-<%String pname=request.getParameter("pname"); %>
-
-<%-- <c:forEach items="${getproductlist }" var="getData">
-	${getData.p_name }
-</c:forEach>
-<br /> --%>
 
 <style>
   .js-load {
@@ -154,60 +113,9 @@ pfilesrc : ${pfilesrc } <br />
 			</div>
 			<div>
 				<input type="button" value="리뷰작성" onclick="fn_01('${sessionScope.loginid }');" />
-				
-<!-- ======================== 작성하기 폼 ========================= -->
-<div id="styleID_ReviewWriteview" class="styleClassReviewWriteview">
-	<div id="title_content">
-		<form action="reviewWrite" method="post" enctype="multipart/form-data">
-		<h3 class="popup_review_title">상품리뷰쓰기</h3>
-		<div>
-			<strong>리뷰 리워드 혜택 제공</strong> <br />
-			텍스트 리뷰 : 500M | 사진 첨부 리뷰 : 1,000M 적립
-		</div>
-			<table>
-				<tr id="data">
-					<td class="star">
-						★★★★★
-						<span class="star2">★★★★★</span>
-						<input type="range" onclick="redeptlist(this);" oninput="drawStar(this)" value="1" step="1" min="0" max="5"/>
-					</td>
-				</tr>
-				<tr>
-					<!-- <td class="left">작성자</td> -->
-					<td colspan="3">
-						<input id="userid" type="hidden" name="m_id" value="${sessionScope.loginid }" />
-					</td>
-				</tr>
-				<tr>
-					<td class="left">제목</td>
-					<td colspan="2"><input type="text" name="r_title" /></td>
-				</tr>
-				<tr>
-					<td class="left">내용</td>
-					<td colspan="2">
-						<textarea name="r_content" rows="10"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td class="left">파일첨부</td>
-					<td colspan="2">
-						<input type="file" name="r_filesrc" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<input id="starInput" type="hidden" name="r_score" value="" size="10" />
-						<input type="submit" value="작성하기" />
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</div>
-			</div>
-<div class="clear" ></div>
-<!-- ======================== 작성하기 폼 ========================= -->				
+							
 			<br />
+			
 			<div class="avg_star">
 				<div class="tablerow">
 					<div class="tablecell">

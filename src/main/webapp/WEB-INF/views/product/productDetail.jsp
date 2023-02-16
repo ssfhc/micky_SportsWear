@@ -12,7 +12,7 @@
 <body>
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
-   |  <a href="">join</a>
+   |  <a href="../member/joinform">join</a>
 
 </c:if>
  <c:if test="${not empty sessionScope.loginid }">
@@ -142,6 +142,16 @@ $('#order_form').click(function(){
 </script>
 
 장바구니
+
+<br />
+<br />
+<a href="../review/reviewBoard">reviewBoard</a>
+<br />
+<c:set var="pname" value="${param.pname }" scope="application"/> <br />
+<c:set var="pfilesrc" value="${param.pfilesrc }" scope="application"/> <br />
+<br />
+<br />
+<jsp:include page="/WEB-INF/views/review/reviewBoard.jsp" />
 
 </body>
 </html>

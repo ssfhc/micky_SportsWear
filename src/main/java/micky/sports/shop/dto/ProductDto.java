@@ -19,7 +19,6 @@ public class ProductDto {
 	private Date p_date; //제품 등록일
 	private String p_category; //제품 등록일
 	
-	private OrderMemberDto orderMemberDto; //join
 
 	public ProductDto() {
 		// TODO Auto-generated constructor stub

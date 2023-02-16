@@ -32,16 +32,47 @@ public class OrderPaymentService implements MickyServiceInter {
 		String[] pNo=request.getParameterValues("p_no"); //상품번호
 		String[] cnt=request.getParameterValues("cnt"); //수량
 		
+		String totPrices=request.getParameter("totPrices"); // 구매총액
+		
 		OrderDao odao=sqlSession.getMapper(OrderDao.class);
 		ProductDao pdao=sqlSession.getMapper(ProductDao.class);
+		
+		String orderResult="주문성공";
+		
+		//수량이나 캐시가 없으면 결제가 진행되지 않도록하기
+		int memberCach=odao.ordersMember(loginId).getM_cash();
+		if(memberCach<Integer.parseInt(totPrices)) {
+			//캐시부족...
+			orderResult="0";
+		}			
 		for (int i = 0; i < pNo.length; i++) {
-			System.out.println("**********"+cnt[i]);
-			//구매이력 추가
-			odao.payment(loginId,pNo[i],Integer.parseInt(cnt[i]));
-			//구매한 수량 재고 삭제
-			pdao.delpayment(pNo[i],Integer.parseInt(cnt[i]));		
-		}		
-		model.addAttribute("mId",loginId);		
+			int checkCnt= pdao.checkPrdCnt(pNo[i]).getP_cnt();
+			if (checkCnt<Integer.parseInt(cnt[i])) {
+				//재고부족...
+				orderResult="1";
+				break;
+			}
+		}
+		if (orderResult=="주문성공") {
+			for (int i = 0; i < pNo.length; i++) {
+				System.out.println("**********"+cnt[i]);
+				//구매이력 추가
+				odao.payment(loginId,pNo[i],Integer.parseInt(cnt[i]));
+				//구매한 수량 재고 삭제
+				pdao.delpayment(pNo[i],Integer.parseInt(cnt[i]));		
+			}
+			//구매한 금액 회원 캐시 차감 update
+			odao.delcash(loginId,Integer.parseInt(totPrices));
+		}
+
+		//가장최근 주문번호확인
+		String checkOmnum= odao.checkOmnum(loginId);
+
+		//주문결과창
+		model.addAttribute("checkOmnum",checkOmnum);
+		model.addAttribute("orderResult",orderResult);
+		//model.addAttribute("mId",loginId);		
+
 	}
 
 }

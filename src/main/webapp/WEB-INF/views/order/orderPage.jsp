@@ -33,7 +33,7 @@ ${sessionScope.loginid } 님, 로그인상태입니다 ദ്ദി*ˊᗜˋ*)
 </c:forEach>
 총 결제 금액
 <c:out value="${totPrices}" />
-<input type="hidden" class="totPrices" value="${totPrices}" /> <br />
+<input type="hidden" class="totPrices" name="totPrices" value="${totPrices}" /> <br />
 <input type="submit" value="결제하기" class="btn_payment"/>
 
 <!-- 결제 금액이 부족한 경우 -->

@@ -25,22 +25,26 @@
     	<result column="om_cancle" property="om_cancle" />
     	<result column="om_cdate" property="om_cdate" />
     	<result column="c_reason" property="c_reason" />
+		<collection property="productDto" resultMap="ProductDto"></collection>
     </resultMap>
     <resultMap type="micky.sports.shop.dto.ProductDto" id="ProductDto">
-    	<result column="P_NO" property="p_no"/>
-    	<result column="P_NAME" property="p_name"/>
-    	<result column="P_PRICE" property="p_price"/>
-    	<result column="P_CNT" property="p_cnt"/>
-    	<result column="P_COLOR" property="p_color"/>
-    	<result column="P_SIZE" property="p_size"/>
-    	<result column="P_FILESRC" property="p_filesrc"/>
-		<collection property="orderMemberDto" resultMap="OrderMemberDto"></collection>
+    	<result column="p_no" property="p_no"/>
+    	<result column="p_name" property="p_name"/>
+    	<result column="p_price" property="p_price"/>
+    	<result column="p_cnt" property="p_cnt"/>
+    	<result column="p_color" property="p_color"/>
+    	<result column="p_size" property="p_size"/>
+    	<result column="p_filesrc" property="p_filesrc"/>
+    	<result column="p_date" property="p_date"/>    	
     </resultMap>
-    <select id="mtOrderList" parameterType="micky.sports.shop.dto.ProductDto" resultMap="ProductDto">
-		SELECT P_NO,OM_NUM,M_ID,P_COLOR,P_SIZE,U_CNT,P_PRICE,OM_STATE,P_NAME
-		FROM (SELECT OM.P_NO,OM.OM_NUM,OM.M_ID,OM.U_CNT,OM.P_PRICE,OM.OM_STATE,P.P_COLOR,P.P_SIZE,P.P_NAME
-		FROM ORDER_MEMBER OM INNER JOIN PRODUCT P ON OM.P_NO=P.P_NO)
-		WHERE M_ID=#{param1}
+    <select id="mtOrderList" parameterType="micky.sports.shop.dto.OrderMemberDto" resultMap="OrderMemberDto">
+    	SELECT OM_CNTNUM,OM_NUM,P_NO,U_CNT,M_ID,OM_DATE,OM_PAY,P_PRICE,OM_STATE,OM_CANCLE,OM_CDATE,C_REASON,P_NAME,P_COLOR,P_SIZE,P_FILESRC
+		FROM (SELECT ROWNUM NUM, PAGEOM.* 
+		FROM (SELECT OM_CNTNUM,OM_NUM,P_NO,U_CNT,M_ID,OM_DATE,OM_PAY,P_PRICE,OM_STATE,OM_CANCLE,OM_CDATE,C_REASON,P_NAME,P_COLOR,P_SIZE,P_FILESRC
+		FROM (SELECT OM.OM_CNTNUM,OM.OM_NUM,OM.P_NO,OM.U_CNT,OM.M_ID,OM.OM_DATE,OM.OM_PAY,OM.P_PRICE,OM.OM_STATE,OM.OM_CANCLE,OM.OM_CDATE,OM.C_REASON,
+		P.P_NAME,P.P_COLOR,P.P_SIZE,P.P_FILESRC
+		FROM ORDER_MEMBER OM INNER JOIN PRODUCT P ON OM.P_NO=P.P_NO) WHERE M_ID=#{param1} ORDER BY OM_DATE DESC) PAGEOM)
+		WHERE NUM BETWEEN #{param2} AND #{param3}
     </select>
     
 	<!-- 주문페이지에서 회원정보확인하기 -->
@@ -48,5 +52,34 @@
 		SELECT M_ID,M_PW,M_NAME,M_TEL,M_NAME2,M_EMAIL,M_GRADE,M_AGE,M_GENDER,M_CASH,M_FILESRC
 		FROM MEMBER WHERE M_ID=#{param1}
     </select>
+    
+    <!-- 주문시 회원캐시 차감 -->
+	<update id="delcash">
+		UPDATE MEMBER SET M_CASH=M_CASH-#{param2} WHERE M_ID=#{param1}
+	</update>
+	
+	
+	<!-- 주문성공시 주문번호 -->
+    <select id="checkOmnum" resultType="String" >
+		SELECT MAX(OM_NUM) FROM ORDER_MEMBER WHERE M_ID=#{param1}
+    </select>
+	
+	<!-- 나의주문내역보기 페이징 -->
+	<select id="selectBoardTotCount" resultType="Integer">
+		SELECT COUNT(*) FROM ORDER_MEMBER WHERE M_ID=#{param1}
+	</select>
+	
+	<!-- 나의주문내역에서 취소요청 클릭시 화면전환 -->
+	<select id="myOrderCancelOffer" parameterType="micky.sports.shop.dto.OrderMemberDto" resultMap="OrderMemberDto">
+   		SELECT OM_CNTNUM,OM_DATE,P_NO,OM_NUM,M_ID,P_COLOR,P_SIZE,U_CNT,P_PRICE,OM_STATE,P_NAME,P_FILESRC
+		FROM (SELECT OM.OM_CNTNUM,OM.OM_DATE,OM.P_NO,OM.OM_NUM,OM.M_ID,OM.U_CNT,OM.P_PRICE,OM.OM_STATE,P.P_COLOR,P.P_SIZE,P.P_NAME,P.P_FILESRC
+		FROM ORDER_MEMBER OM INNER JOIN PRODUCT P ON OM.P_NO=P.P_NO)
+		WHERE OM_CNTNUM=#{param1}
+    </select>
+
+	<!-- 취소사유 적은후 취소요청하기  -->
+	<update id="myOCancelOffersubmit">
+		UPDATE ORDER_MEMBER SET OM_CANCLE='Y', C_REASON=#{param2}, OM_CDATE=SYSDATE WHERE OM_CNTNUM=#{param1}
+	</update>
 
 </mapper>

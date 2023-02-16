@@ -31,13 +31,13 @@ public class JoinService implements MickyServiceInter{
 		String attachPath="resources\\upload\\";
 	    String uploadPath=request.getSession().getServletContext().getRealPath("/");
 	    System.out.println("uploadpathhhhh:"+uploadPath);
-		
 	    String path = "C:\\2022spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\upload";
 	    MultipartRequest req = null;
 	    try {
 	    	req=
 	  	          new MultipartRequest(request, path, 1024*1024*20, "utf-8",
 	  	                new DefaultFileRenamePolicy());
+	    	System.out.println("req : "+req);
 		} catch (Exception e) {
 			// TODO: handle exception
 		} 
@@ -55,12 +55,21 @@ public class JoinService implements MickyServiceInter{
 //		String m_filesrc = request.getParameter("m_filesrc");
 	    
 	    //String checkid_YESorNO = req.getParameter("checkid_YESorNO");
+	    
 		String m_id = req.getParameter("m_id");
+		//System.out.println(m_id); //확인용
 		String m_pw = req.getParameter("m_pw");
-		String m_name = req.getParameter("m_name");
+		String m_name = req.getParameter("m_name"); 
 		String m_tel = req.getParameter("m_tel");
 		String m_name2 = req.getParameter("m_name2");
-		String m_email = req.getParameter("m_email");
+		
+		
+		String m_emaill = req.getParameter("m_email"); //이메일 앞주소
+		String m_email2 = req.getParameter("m_email2"); //이메일 뒷주소
+		String m_email = m_emaill+m_email2;
+		System.out.println("이메일주소조합확인 : "+m_email);
+		
+		
 		String m_grade = req.getParameter("m_grade");
 		int m_age = Integer.parseInt(req.getParameter("m_age"));
 		String m_gender = req.getParameter("m_gender");

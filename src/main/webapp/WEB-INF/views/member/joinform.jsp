@@ -89,7 +89,7 @@ function checkinfo(){ //가입하기form 적용 전에 필수 항목 값 확인
 	var m_gender = jf.m_gender.value; //input gender값
 	//var m_cash = jf.m_cash.value;
 	let valcheck_pw = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/; //pw 정규식
-	let valcheck_tel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/; //tel 정규식
+	//let valcheck_tel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/; //tel 정규식
 	//let valcheck_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	if(m_id==0 || m_id==""){
 		alert("아이디를입력하세요")
@@ -110,11 +110,11 @@ function checkinfo(){ //가입하기form 적용 전에 필수 항목 값 확인
 	}else if(m_tel==0 || m_tel==""){
 		alert("전화번호를입력하세요")
 		return false;
-	}else if(!valcheck_tel.test(m_tel)){
+	}/* else if(!valcheck_tel.test(m_tel)){
 		alert("전번정규표현식XXXX신호")
 		jf.m_tel.focus();
 		return false;
-	}else if(m_name2==0 || m_name2==""){
+	} */else if(m_name2==0 || m_name2==""){
 		alert("닉네임을입력하세요")
 		return false;
 	}else if(checkname2_YESorNO=="NO"){
@@ -209,7 +209,14 @@ function emailinputcheck(){ //이메일인증번호확인
 아이디 : <input type="text" id="id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " style="width:300px;"/><input type="button" value="중복확인" onclick="checkid()" /> <br />
 비밀번호 : <input type="text" name="m_pw" placeholder="8 ~ 16자 영문, 숫자 조합"/> <br /> 
 이름 : <input type="text" name="m_name" /> <br /> 
-전화번호 : <input type="text" id="m_tel" name="m_tel" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br />
+<!-- 전화번호 : <input type="text" id="m_tel" name="m_tel" placeholder="휴대폰번호를 입력해주세요" style="ime-mode:disabled"> <br /> -->
+전화번호:
+<td>
+		<input type="text" name="m_tel" id="m_tel"/> - 
+		<input type="text" name="m_tel" id="m_tel"/> - 
+		<input type="text" name="m_tel" id="m_tel"/>
+</td>
+<br />
 닉네임 : <input type="text" name="m_name2" value=""/><input type="button" value="중복확인" onclick="checknickname()"/> <br />
 이메일 : <input type="text" name="m_email" id="m_email" />
 		<select name="m_email2" id="m_email2">

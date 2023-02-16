@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.member.AdminQnaListService;
 import micky.sports.shop.service.member.EmailOverlapCheckService;
+import micky.sports.shop.service.member.FindIdService;
 import micky.sports.shop.service.member.FindPwService;
 import micky.sports.shop.service.member.InfoUpdateFormService;
 import micky.sports.shop.service.member.InfoUpdateService;
@@ -493,5 +494,34 @@ public class MemberController {
 		  String num = Integer.toString(check_num);
 		  return num;
 	  }
-
+	  //아이디찾기화면  
+	  @RequestMapping("/findidform")
+	  public String findidform(HttpServletRequest request, Model model) {
+		  System.out.println("@@@MemberController/findidform()@@@");
+//		  mickyServiceInter = new MainService(sqlSession,session); 
+//		  mickyServiceInter.execute(model);
+	  
+		  return "/member/findidform"; 
+	 }
+		//아이디찾기기능
+		@RequestMapping(value="/findid",method = RequestMethod.GET)
+		@ResponseBody
+		public String findid(HttpServletRequest request,Model model) {
+			System.out.println("@@@MemberController/findid()@@@");
+			model.addAttribute("request", request);	
+			
+			
+			mickyServiceInter = new FindIdService(sqlSession,session);
+			mickyServiceInter.execute(model);
+			
+			Map<String, Object> map = model.asMap();
+			String overlapcheck_result = (String) map.get("overlapcheck_result"); //ajax return으로 data 줘야해서 model을 다시 풀음
+			if(overlapcheck_result==null) {
+				overlapcheck_result="";				
+			}
+			
+			System.out.println("결과 : "+overlapcheck_result); //확인용
+			
+			return overlapcheck_result; //return 한 값이 ajax success (data)로 간다
+		}
 }

@@ -7,8 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
 </head>
 <body>
+<script>
+
+function logout(){
+	$.ajax({
+		type:'GET',
+		url:'/shop/member/logout',
+		success:function(result){
+			alert("로그아웃했습니다")
+			location.reload();
+			window.location.href="/shop/member/main"
+		}
+	})
+}
+</script>
 <h3>main.jsp</h3>
 <h1>메인화면</h1>
 <%if(session.getAttribute("loginid")==null){ //로그인이 실패하면
@@ -23,7 +38,7 @@
 <hr />
 <font color="blue"><%=session.getAttribute("loginid") %></font>
 님 반가워요
-<input type="button" value="로그아웃" onclick="location.href='logout'" /> <br />
+<input type="button" value="로그아웃" onclick="logout()" /> <br />
 <input type="button" value="마이페이지" onclick="location.href='mypageform'" /><br />
 <% 
 if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리자페이지button이 보임

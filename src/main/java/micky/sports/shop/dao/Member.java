@@ -32,4 +32,5 @@ public interface Member {
 	public int emailoverlapcheck(String m_email);
 	public void temporarypw(int check_num,String m_email);
 	public int findpw(String m_id,String m_email);
+	public String findid(String m_name,String m_email);
 }

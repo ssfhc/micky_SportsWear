@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import micky.sports.shop.service.MickyCartAllDelete;
 import micky.sports.shop.service.MickyCartDelete;
 import micky.sports.shop.service.MickyCartList;
 import micky.sports.shop.service.MickyCartSelectoption;
@@ -96,6 +97,18 @@ public class CartController {
 		
 		return "redirect:/Cart/Cartlist?p_no="+p_no;
 	}
+	//장바구니 상품삭제
+		@RequestMapping("/alldeleteCart")
+		public String alldeleteCart(HttpServletRequest request,Model model) {
+			//장바구니 화면 구성 
+			String p_no=request.getParameter("p_no");
+			model.addAttribute("request",request);
+			
+			mickyServiceInter=new MickyCartAllDelete(sqlSession);
+			mickyServiceInter.execute(model);
+			
+			return "redirect:/Cart/Cartlist?p_no="+p_no;
+		}
 	//장바구니 상품 갯수증가
 	@RequestMapping("/plusCartcount")
 	public String plusCartcount(HttpServletRequest request,Model model) {

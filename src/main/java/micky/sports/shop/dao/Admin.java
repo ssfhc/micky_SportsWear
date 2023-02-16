@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import micky.sports.shop.dto.OrderMemberDto;
+import micky.sports.shop.dto.ProductDto;
 
 
 public interface Admin {
@@ -15,6 +16,7 @@ public interface Admin {
 	public OrderMemberDto acontentview(String om_cntnum);//관리자 주문내역 상세(주문취소)
 	
 	public void amodify(String om_cntnum,String om_state);//결제완료 → 주문취소 변경
+	
 }
 
 

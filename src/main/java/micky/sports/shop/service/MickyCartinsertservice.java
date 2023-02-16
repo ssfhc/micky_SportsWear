@@ -1,6 +1,5 @@
 package micky.sports.shop.service;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.CartDao;
-import micky.sports.shop.dto.CartDto;
-import micky.sports.shop.dto.ProductDto;
 
 
 public class MickyCartinsertservice implements MickyServiceInter{
@@ -34,7 +31,6 @@ public class MickyCartinsertservice implements MickyServiceInter{
 		
 		//같은 상품을 장바구니에 추가했을때에 장바구니에 들어가지 않게 구현
 		dao.insertCart(p_no);
-		
 		
 //		model.addAttribute("list",list);	
 	}

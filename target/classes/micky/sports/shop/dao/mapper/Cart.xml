@@ -71,6 +71,10 @@
 	<delete id="Deletelist">
 		DELETE CART WHERE C_NO=#{param1}
 	</delete>
+	<!-- 해당 아이디의 장바구니 전체 삭제 -->
+	<delete id="AllDeletelist">
+		DELETE CART WHERE M_ID=#{param1}
+	</delete>
 	<!-- 구매상품 수량증가 -->
 	<update id="plusCartcount">
 		UPDATE

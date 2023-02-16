@@ -16,87 +16,267 @@
 		$(".u_content").click(function(){
 			/* $(this).addClass("u_content"); */
 			$(this).toggleClass("u_content").toggleClass("u_contentGray");
-			
 		});
-		
-		/* 답글버튼 눌렀을 때 작동하도록 */
-		$(".atag_reply").click(function () {
-			/* alert("하이") */
-			/* $(this).hide(".reply_box"); */
-		})
 	});
+	
+	/* 별점 */		
+	function redeptlist(target) {
+		alert("target : "+target.value);
+		$('#starInput[name=r_score]').attr('value',target.value);	
+	}
+	
+	function getvalue(target) {
+		alert(target.value);
+	} 
+
+	/* 리뷰작성 로그인 확인 */
+	function fn_01(checked_id){
+		if(fn_02(checked_id)==false){
+			alert('로그인이 필요합니다.');
+			$(location).attr('href','../member/loginform');
+		}else{
+			$(".styleClassReviewWriteview").bPopup();
+		}
+	}
+	function fn_02(checked_id){
+		if(checked_id=='' || checked_id==null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	/* admin-답글 */
+	$(document).ready(function(){
+		  $('#reply_menu > div > a').off().on("click",function(){
+		    $(this).next($('.snd_menu')).slideToggle();
+		  });
+		});
 	
 </script>
 </head>
 
 <body>
+
 <h3>Reviewboard</h3>
-<!-- 오류 -->
-<%-- <a href="reviewMylistview?account=${review_mylist.m_id }" >마이페이지</a> --%>
-<!-- <a href="reviewListview">TEMP님</a> -->
-<!-- 임시로 지정 -->
-<a href="reviewMylistview" >마이페이지</a>
+<a href="../member/main">메인</a> <br />
+<c:if test="${empty sessionScope.loginid }">
+	<a href="../member/loginform">login</a> 
+	<a href="">join</a>
+</c:if>
+<c:if test="${not empty sessionScope.loginid }">
+	<a href="../member/logout">logout</a> 
+	<a href="reviewMylistview?account=${sessionScope.loginid }">${sessionScope.loginid }님</a>
 	
+<br />
+</c:if>
+
+<br />
+<%-- 로그인한 아이디 : <%=session.getAttribute("loginid") %>
+<br />
+<%String id=(String)session.getAttribute("loginid"); %>
+<%=id %> --%>
+<!-- <a href="reviewMylistview" >마이페이지</a> -->
+<%-- 상품명 : <%=pname %>
+상품이미지 : <%=pfilesrc %>
+<br />
+<%String pname2=(String)session.getAttribute("pname"); %>
+상품명2 : <%=pname2 %>
+<br />
+<c:forEach items="${productDetail_data }" var="p">
+</c:forEach>
+p : <c:out value="${p }"/>
+<%String pnameGetReviewBoard=request.getParameter("pname"); %>
+pnameGetReviewBoard : <%=pnameGetReviewBoard %> --%>
+
+
+<%-- <%String pname=request.getParameter("pname"); %>
+<%=pname %> --%>
+<%-- <%pageContext.getAttribute("name","${param.pname }"); %>
+<%=asd %> --%>
+<%-- a: <c:out value="${param.pname }" />
+<%String hell=request.getParameter("hell"); %>
+<%=hell %> --%>
+<%-- <c:out value="name" />
+<c:set var="name" value="${applicationScope.pm.p_name}" scope="session"></c:set> --%>
+<%-- <c:out value="${param.pname }"></c:out>
+
+<input type="hidden" name="pname" value="${plist.p_name }" /> --%>
+
+pname : ${pname } <br />
+pfilesrc : ${pfilesrc } <br />
+
+
+<%String pname=request.getParameter("pname"); %>
+
+<%-- <c:forEach items="${getproductlist }" var="getData">
+	${getData.p_name }
+</c:forEach>
+<br /> --%>
+
+<style>
+  .js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+.btn-wrap, .lists, .main {
+    display: block;
+}
+.main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.lists {
+    margin-bottom: 4rem;
+}
+.lists__item {
+    padding: 20px;
+    /* background: #EEE; */
+}
+.lists__item:nth-child(2n) {
+    /* background: #59b1eb;
+    color: #fff; */
+}
+.btn-wrap {
+    text-align: center;
+}
+  </style>
+
 <div class="review_table">
 		<div class="selectandsearch_box">
 			<div class="select_box">
 				<h3>리뷰</h3>
 			</div>
-			<div><a class="atag_reviewwrite" href="reviewWriteview">리뷰작성</a></div>
+			<div>
+				<input type="button" value="리뷰작성" onclick="fn_01('${sessionScope.loginid }');" />
+				
+<!-- ======================== 작성하기 폼 ========================= -->
+<div id="styleID_ReviewWriteview" class="styleClassReviewWriteview">
+	<div id="title_content">
+		<form action="reviewWrite" method="post" enctype="multipart/form-data">
+		<h3 class="popup_review_title">상품리뷰쓰기</h3>
+		<div>
+			<strong>리뷰 리워드 혜택 제공</strong> <br />
+			텍스트 리뷰 : 500M | 사진 첨부 리뷰 : 1,000M 적립
+		</div>
+			<table>
+				<tr id="data">
+					<td class="star">
+						★★★★★
+						<span class="star2">★★★★★</span>
+						<input type="range" onclick="redeptlist(this);" oninput="drawStar(this)" value="1" step="1" min="0" max="5"/>
+					</td>
+				</tr>
+				<tr>
+					<!-- <td class="left">작성자</td> -->
+					<td colspan="3">
+						<input id="userid" type="hidden" name="m_id" value="${sessionScope.loginid }" />
+					</td>
+				</tr>
+				<tr>
+					<td class="left">제목</td>
+					<td colspan="2"><input type="text" name="r_title" /></td>
+				</tr>
+				<tr>
+					<td class="left">내용</td>
+					<td colspan="2">
+						<textarea name="r_content" rows="10"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="left">파일첨부</td>
+					<td colspan="2">
+						<input type="file" name="r_filesrc" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<input id="starInput" type="hidden" name="r_score" value="" size="10" />
+						<input type="submit" value="작성하기" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+			</div>
+<div class="clear" ></div>
+<!-- ======================== 작성하기 폼 ========================= -->				
 			<br />
 			<div class="avg_star">
 				<div class="tablerow">
 					<div class="tablecell">
-					<span class="user_date">
-						<span class="star">
-							★★★★★
-							<span id="star2" style="width:${avgScore*20}%">★★★★★</span>
+						<span class="user_date">
+							<span class="reviewBoard_star">
+								★★★★★
+								<span id="star2" style="width:${avgScore*20}%">★★★★★</span>
+							</span>
 						</span>
-					</span>
 					</div>
 					<div class="tablerow">
-						<b>&nbsp;&nbsp;&nbsp;&nbsp;총점</b>
+						<b>&nbsp;&nbsp;&nbsp;&nbsp;${avgStar }  총점</b>
 					</div>
 				</div>
 				<div>
-					<b>${totRowcnt }개의 REVIEWS</b>
+					<b>${totalCount }개의 REVIEWS</b>
 				</div>
 			</div>
 			<br />
 		</div>
 	
-	<hr />	
+<hr />	
 </div>
 <div class="clear" ></div>
+
 <div class="review_table">
-		<form action="reviewBoard" method="post">
-	<div class="row">
-		<div class="cell col1">
-		<!-- 검색기능 추가 -->
-			<select name="selectType" >
-				<option ${param.selectType=="r_recently"?"selected":"" } value="r_recently">최신순</option>
-				<option ${param.selectType=="r_score"?"selected":"" } value="r_score">별점순</option>
-			</select>
-		</div>
-		<div class="cell col2">
-			<div class="search_box">
-				<input type="text" name="searchKeyword" placeholder="리뷰 키워드 검색" size="10" value="${resk }"/>
-				<input type="submit" value="검색" />
+
+		<!-- select, option, 검색 -->
+		<form action="reviewBoard" method="get">
+			<input type="hidden" name="pname" value="${pname }" />
+			<input type="hidden" name="pfilesrc" value="${pfilesrc }" />
+			<div class="row">
+				<div class="cell col1">
+				<!-- 검색기능 추가 -->
+					<select name="selectType" >
+						<option ${param.selectType=="r_recently"?"selected":"" } value="r_group">최신순</option>
+						<option ${param.selectType=="r_score"?"selected":"" } value="r_score">별점순</option>
+					</select>
+				</div>
+				
+				<!-- 키워드 검색 -->
+				<div class="cell col2">
+					<div class="search_box">
+						<input type="text" name="searchKeyword" placeholder="리뷰 키워드 검색" size="10" value="${resk }"/>
+						<input type="submit" value="검색" />
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 		</form>
 		
 <c:set var="totalStar" value="0" />
 <c:set var="avgStar" value="0" />
+
+<div id="contents">
+	<div id="js-load" class="main">
+		<ul class="lists">
 <c:forEach items="${review_list }" var="list">
+			<li class="lists__item js-load">
 	<div class="row">
 		<div class="cell col1">
 			<div class="review_total">
 				<div class="review_box">
 					<div class="review_label">
 						<input type="hidden" value="${list.r_no }" />
-						<p>${list.memberDto.m_id }</p>
+						<span>${list.r_no }</span>
+						<p>
+							${list.memberDto.m_id }
+						</p>
+						<p>${list.productDto.p_name }</p>
 						<p>${list.r_title }</p>
 						<div class="tablerow">
 							<div class="tablecell">
@@ -109,23 +289,51 @@
 							</span>
 							</div>
 							<div class="tablerow">
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;${list.m_id }</span>
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;${list.memberDto.m_id }</span>
 							</div>
 						</div>
 						
 						<div class="product_option">
-							<strong>구매옵션</strong>&nbsp;<span>색상</span>&nbsp;<span>사이즈</span>
+							<strong>구매옵션</strong>&nbsp;<span>${list.productDto.p_color }</span>&nbsp;<span>${list.productDto.p_size }</span>
 						</div>
 						<div class="user_content" onclick="user_content()"> <!-- commend -->
 							<p class="u_content">${list.r_content }</p> 
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 답변창 만들기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-						<div class="reply_box">
-							<p>답변창</p>
+						<style> /* css로 옮기면 적용되지 않음 */
+							ul { padding: 0; }
+							li {
+							  list-style: none;
+							  line-height: 34px;
+							}
+							.sub_menu { display: none; }
+						</style>
+						<div id="reply_menu">
+							<div>
+								<a class="${list.r_no }" href="#" onclick="return false">댓글(${replyTotalCount })</a>
+								<div class="snd_menu sub_menu">
+									<div>${list.r_retitle }</div>
+									<div>${list.r_recontent }</div>
+								</div>
+							</div>
 						</div>
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-						
-						
+<c:if test="${sessionScope.loginid eq 'admintest' }">
+						        <div id="reply_menu">
+						          <div><a class="${list.r_no }" href="#" onclick="return false">댓글달기</a>
+						            <div class="snd_menu sub_menu">
+						            	<form action="reviewPopupreply">
+						            	
+						            		<div><input type="hidden" name="r_id" value="${sessionScope.loginid }" />관리자</div>
+						            		<div><input type="text" name="r_retitle" size="25" value="믹키 스포츠웨어 온라인 스토어" /></div>
+							            	<div><textarea name="r_recontent" cols="100%" rows="3" placeholder="댓글을 입력하세요"></textarea></div>
+							            	<input type="submit" value="답글" />
+						            	</form>
+						            </div>
+						          </div>
+								</div>
+</c:if>
+						<div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -141,54 +349,60 @@
 			</div>
 			<div>
 				<!-- 수정/삭제 -->
-				<a class="atag" href="reviewPopupcontentview?r_no=${list.r_no }">수정</a>
-				<a class="atag" href="reviewDelete?r_no=${list.r_no }">삭제</a>
-				
-				
+<c:if test="${sessionScope.loginid eq list.memberDto.m_id }">
+				<a id="practice" href="reviewPopupcontentview?r_no=${list.r_no }">수정</a>
+				<a href="reviewDelete?r_no=${list.r_no }">삭제</a>
+
+</c:if>
 				<!-- function 사용한 답글창 열기 -->
 				<%-- <a class="atag" href="reviewPopupReplycontentview?r_no=${list.r_no }">답글</a> --%>
-				<a class="atag" id="atag_reply" href="#">답글</a>
-
+<c:if test="${sessionScope.loginid eq 'admintest' }">
+				<a href="reviewDelete?r_no=${list.r_no }">삭제</a>
+				<a class="" onclick="return false;" href="#">답글폼</a>
+				
+</c:if>
 			</div>
 		</div>
 	</div>
+
 	
+			</li>
 </c:forEach>
+		</ul>
+	<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a></div>
+</div>
+</div>
 totalStar : <c:out value="${totalStar }"/>
-avgStar : <c:out value="${avgStar+(totalStar/list_r_score.length) }"/>
+
+avgStar : <c:out value="${avgStar+(totalStar div totalCount) }"/>
 <br />
 
-<!-- 페이징 처리 -->
-총 게시글 : ${totRowcnt }건 <br />
-현재페이지/전체페이지 : ${searchVO.page }/${searchVO.totPage } <br />
-<hr />
-<form action="reviewBoard" method="post">
-	<div class="paging">
-		<c:if test="${searchVO.page>1 }">
-			<a href="reviewBoard?page=1">&lt;&lt;</a>
-			<a href="reviewBoard?page=${searchVO.page-1 }">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</a>
-		</c:if>
-		
-		<c:forEach begin="${searchVO.pageStart }" end="${searchVO.pageEnd }" var="i">
-			<c:choose>
-				<c:when test="${i eq searchVO.page }">
-					<span style="color:red; font-weight: bold;">${i }&nbsp;&nbsp;</span>
-				</c:when>
-				<c:otherwise>
-					<a href="reviewBoard?page=${i }&rb_recently=${r_recently}&rb_score=${r_score}&searchKeyword=${resk}" style="text-decoration: none">${i }&nbsp;&nbsp;</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${searchVO.page<searchVO.totPage }">
-			<a href="reviewBoard?page=${searchVO.page+1 }">></a>
-			<a href="reviewBoard?page=${searchVO.totPage }">&nbsp;&nbsp;&nbsp;&nbsp;>></a>
-		</c:if>
-	</div>
-</form>
 	</div>
 <br />
 <br />
 <br />
 <br />
+
 </body>
+<script>
+  $(window).on('load', function () {
+    load('#js-load', '10');
+    $("#js-btn-wrap .button").on("click", function () {
+        load('#js-load', '10', '#js-btn-wrap');
+    })
+});
+ 
+function load(id, cnt, btn) {
+    var girls_list = id + " .js-load:not(.active)";
+    var girls_length = $(girls_list).length;
+    var girls_total_cnt;
+    if (cnt < girls_length) {
+        girls_total_cnt = cnt;
+    } else {
+        girls_total_cnt = girls_length;
+        $('.button').hide()
+    }
+    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+}
+</script>
 </html>

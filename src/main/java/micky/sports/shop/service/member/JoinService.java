@@ -41,6 +41,7 @@ public class JoinService implements MickyServiceInter{
 		} catch (Exception e) {
 			// TODO: handle exception
 		} 
+	   
 //		String checkid_YESorNO = request.getParameter("checkid_YESorNO");
 //		String m_id = request.getParameter("m_id");
 //		String m_pw = request.getParameter("m_pw");

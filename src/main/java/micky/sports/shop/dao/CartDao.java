@@ -26,6 +26,8 @@ public interface CartDao {
 
 	public int CartOptionModify(String p_color, String p_size, String c_cnt, String c_no);
 
+	public void AllDeletelist(String c_no);
+
 	
 
 	

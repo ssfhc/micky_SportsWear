@@ -10,29 +10,25 @@ import org.springframework.ui.Model;
 import micky.sports.shop.dao.CartDao;
 
 
-public class MickyCartinsertservice implements MickyServiceInter{
+public class MickyCartAllDelete implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	
-	public MickyCartinsertservice(SqlSession sqlsession) {
+	public MickyCartAllDelete(SqlSession sqlsession) {
 		this.sqlSession=sqlsession;
 	}
 
 	@Override
 	public void execute(Model model) {
-		
+				
 		Map<String, Object> map= model.asMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		String p_no=request.getParameter("p_no");
-		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");		
 		CartDao dao=sqlSession.getMapper(CartDao.class);
 		
-//		ProductDto dto=dao.Detaillist(p_no);
+		String c_no=request.getParameter("c_no");
 		
-		//같은 상품을 장바구니에 추가했을때에 장바구니에 들어가지 않게 구현
-		dao.insertCart(p_no);
-		
-//		model.addAttribute("list",list);	
+//		해당 아이디의 장바구니 전체 삭제 아이디 뽑아오면 넣기
+//		dao.AllDeletelist(c_no);
 	}
 	
 }

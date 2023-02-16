@@ -25,7 +25,6 @@
 		<td>${list.p_name }</td>
 		<td>
 			${list.p_price }
-<%-- 			<a href="contentview?p_no=${bto.p_no }">${bto.btitle }</a> --%>
 		</td>
 		<td>${list.p_cnt }</td>
 		<td>${list.p_color }</td>
@@ -35,9 +34,9 @@
 	
 	<tr>
 		<td colspan="5">
-		<a href="insertCart?p_no=${list.p_no }">장바구니넣기</a>
-		<a href="Cartlist?p_no=${list.p_no }">장바구니</a>
-		<a href="Cartlist2?p_no=${list.p_no }">장바구니2</a>
+				<a href="insertCart?p_no=${list.p_no }">장바구니넣기</a>
+				<a href="Cartlist?p_no=${list.p_no }">장바구니</a>
+				
 		</td>
 	</tr>
 </table>

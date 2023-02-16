@@ -30,7 +30,16 @@
 <c:forEach items="${qnalist }" var="dto">  
 	<tr>
 		<td>${dto.q_mno }</td>
-		<td><a href="qnadetail?q_mno=${dto.q_mno }">${dto.q_mtitle }</a></td> <!-- 문의제목 클릭하면 해당글의 고유번호값 MemberCotnroller / qnadetail()로 보내기 -->
+		<td>
+			<c:set value="${dto.q_mindent }" var="endindent" />
+			<c:forEach begin="1" end="${dto.q_mindent }" var="cnt">
+				&nbsp;
+				<c:if test="${cnt eq endindent }">
+					<img src="../resources/img/icon_reply.gif" />[re]
+				</c:if>
+			</c:forEach>
+		<a href="qnadetail?q_mno=${dto.q_mno }">${dto.q_mtitle }</a>
+		</td> <!-- 문의제목 클릭하면 해당글의 고유번호값 MemberCotnroller / qnadetail()로 보내기 -->
 		<td>${dto.q_mcontent }</td>
 		<td>${dto.q_mreply }</td>
 		<td>${dto.q_mid }</td>

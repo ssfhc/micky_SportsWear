@@ -68,8 +68,8 @@
 <form action="../order/orderPage" method="post" class="order_form">
 	<!-- 선택시 목록쌓이는 곳 -->
 	<div class="choicelist">
-		<!-- name="choice_cnt"
- 			 name="choice_pno" value="pno" -->
+		<!-- name="u_cnt"
+ 			 name="p_no" value="pno" -->
 	</div>
 	<input type="submit" id="order_form" value="바로구매" />
 </form>
@@ -106,8 +106,8 @@
 	 	var html='<div name="choice" id="choice_'+pno+'">'+pcolor+'&nbsp;'+psize+'&nbsp;&nbsp;'
 	 	+'<span>수량</span>'
 	 	+'<input type="hidden" class="cnttot" name="재고수량" value="'+totcnt+'" />'
-	    +'<input type="text" class="cnt_'+pno+'" name="choice_cnt" value="1" size="1" readonly="readonly" style="text-align: center;" />'
-	 	+'<input type="hidden" name="choice_pno" id="choice_pno" value="'+pno+'" />'
+	    +'<input type="text" class="cnt_'+pno+'" name="u_cnt" value="1" size="1" readonly="readonly" style="text-align: center;" />'
+	 	+'<input type="hidden" name="p_no" id="choice_pno" value="'+pno+'" />'
 	    +'<button type="button" onclick="Count(\'minus\',\''+pno+'\','+totcnt+');">-</button>'
 	 	+'<button type="button" onclick="Count(\'plus\',\''+pno+'\','+totcnt+');">+</button>'
 	 	+'&nbsp;&nbsp;&nbsp; <button type="button" onclick="deletechoice(\''+pno+'\');">x</button>'

@@ -31,8 +31,8 @@ public class OrderPageService implements MickyServiceInter {
 		String loginId = (String)httpsession.getAttribute("loginid");
 		System.out.println("*********~~~~~~~~~~~~~~~~~"+loginId);
 
-		String[] no=request.getParameterValues("choice_pno"); 
-		String[] cnt=request.getParameterValues("choice_cnt"); 
+		String[] no=request.getParameterValues("p_no"); 
+		String[] cnt=request.getParameterValues("u_cnt"); 
 		OrderDao odao = sqlSession.getMapper(OrderDao.class);
 		
 		ArrayList<ProductDto> orderPSelect =new ArrayList<ProductDto>();

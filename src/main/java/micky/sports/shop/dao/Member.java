@@ -47,6 +47,7 @@ public interface Member {
 	
 	//마이페이지(회원)내정보수정
 	public void infoupdate(String m_id,String m_pw,String m_tel,String m_name2,String m_email,String m_filesrc);
+	public void infoupdat2(String m_id,String m_pw,String m_tel,String m_name2,String m_email);
 	
 	//마이페이지(회원)회원탈퇴 진입시 본인확인
 	public int memberdropcheck(String m_id,String m_pw);

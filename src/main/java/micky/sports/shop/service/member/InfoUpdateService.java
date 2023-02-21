@@ -74,13 +74,16 @@ public class InfoUpdateService implements MickyServiceInter{
 		String m_filesrc = req.getFilesystemName("m_filesrc");
 		System.out.println("확인좀하자@@@@@@@@@@@@@@@@@"+m_filesrc);
 		
-		
-		if(m_filesrc==null) // 파일첨부안하면 null이라 오류떠서 null상황 배제를 위해 조건을 달아준다
-			m_filesrc="";
-		
 		Member dao = sqlSession.getMapper(Member.class);
 		
-		dao.infoupdate(m_id,m_pw,m_tel,m_name2,m_email,m_filesrc);
+		if(m_filesrc==null) { // 파일첨부안하면 null이라 오류떠서 null상황 배제를 위해 조건을 달아준다
+			m_filesrc="";
+			dao.infoupdat2(m_id,m_pw,m_tel,m_name2,m_email);
+		}else{
+			dao.infoupdate(m_id,m_pw,m_tel,m_name2,m_email,m_filesrc);
+		}
+		
+		//dao.infoupdate(m_id,m_pw,m_tel,m_name2,m_email,m_filesrc);
 
 	}
 

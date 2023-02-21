@@ -106,6 +106,10 @@
 		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
 		M_EMAIL=#{param5},M_FILESRC=#{param6} WHERE M_ID=#{param1}
 	</update>
+	<update id="infoupdat2">
+		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
+		M_EMAIL=#{param5} WHERE M_ID=#{param1}
+	</update>
 	
 	<!-- 마이페이지(회원)회원탈퇴 진입시 본인확인 -->
 	<select id="memberdropcheck" resultType="Integer">

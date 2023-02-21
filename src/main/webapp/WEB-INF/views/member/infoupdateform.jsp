@@ -206,7 +206,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 <br />
 현금 : ${infoupdateform.m_cash }
 <br />
-프로필사진<input type="file" name="m_filesrc" value="${infoupdateform.m_filesrc }" accept="image/png, image/jepg" onchange="readURL(this)"/>
+프로필사진<input type="file" name="m_filesrc" value="3333" accept="image/png, image/jepg" onchange="readURL(this)"/>
 		<img id="preview" src="../resources/upload/${infoupdateform.m_filesrc }" width="150px" height="150px" />
 <br />
 		<input type="submit" value="수정완료" /> &nbsp;&nbsp;

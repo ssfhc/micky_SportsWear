@@ -33,5 +33,9 @@ public interface OrderDao {
 	//취소사유 적은후 취소요청하기 
 	public void myOCancelOffersubmit(String calcleOfferomcntnum,String myOrderCancelReason);
 
+	//구매확정
+	public void myOrderConfirm(String omnum);
+	//반품요청
+	public void myDelivCancelOffer(String omnum);
 	
 }

@@ -16,11 +16,13 @@ function checkValue(){
 		alert("비밀번호입력하세요")
 	}else{
 		$.ajax({
-			url:'../member/membercheck?m_pw=' + inputPw,
+			url:'../member/memberdropcheck?m_pw=' + inputPw,
 			type:'GET',
 			success:function(result){
 				if( result==0) { 
 					alert("본인인증실패")
+					$('#m_pw').val('');
+					document.getElementById("m_pw").focus();
 				} else if( result==1 ) {
 					alert("본인인증완료")
 					self.close();

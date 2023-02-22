@@ -78,7 +78,10 @@ function checkinfo(){ //가입하기form 적용 전에 필수 항목 값 확인
 	var m_id = jf.m_id.value; //input id값
 	var m_pw = jf.m_pw.value; //input pw값
 	var m_name = jf.m_name.value; //input name값
-	const m_tel = $('#m_tel1').val()+$('#m_tel2').val()+$('#m_tel3').val(); //input tel값
+	var m_tel1 = jf.m_tel1.value;
+	var m_tel2 = jf.m_tel2.value;
+	var m_tel3 = jf.m_tel3.value;
+	//const m_tel = $('#m_tel1').val()+$('#m_tel2').val()+$('#m_tel3').val(); //input tel값
 	var m_name2 = jf.m_name2.value; //input nickname값
 	var m_email = jf.m_email.value; //input email값
 	var checkid_YESorNO = jf.checkid_YESorNO.value; //id중복확인진행 유무(기본값은 NO)
@@ -113,7 +116,13 @@ function checkinfo(){ //가입하기form 적용 전에 필수 항목 값 확인
 	}else if(m_name==0 || m_name==""){
 		alert("이름을입력하세요")
 		return false;
-	}else if(m_tel==0 || m_tel==""){
+	}else if(m_tel1==0 || m_tel1==""){
+		alert("전화번호를입력하세요")
+		return false;
+	}else if(m_tel2==0 || m_tel2==""){
+		alert("전화번호를입력하세요")
+		return false;
+	}else if(m_tel3==0 || m_tel3==""){
 		alert("전화번호를입력하세요")
 		return false;
 	}/* else if(!valcheck_tel.test(m_tel)){

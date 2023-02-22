@@ -9,10 +9,12 @@ public interface Member {
 	
 	//회원가입
 	public void join(String m_id,String m_pw,String m_name,String m_tel,String m_name2,String m_email,
-			String m_grade,int m_age,String m_gender,int m_cash,String m_filesrc);
+			String m_grade,int m_age,String m_gender,int m_cash,String m_filesrc,String key,String encryStr);
+	
+	public MemberDto getsharsa(String m_id);
 	
 	//로그인
-	public int login(String loginform_inputid,String loginform_inputpw);
+	public int login(String loginform_inputid);
 	
 	//아이디중복검사
 	public int joinidcheck(String m_id);
@@ -25,7 +27,7 @@ public interface Member {
 	
 	//회원정보수정
 	public void memberupdate(String m_id, String m_pw, String m_name, String m_tel, String m_name2, String m_email, String m_grade,
-			int m_age, String m_gender, int m_cash, String m_filesrc);
+			int m_age, String m_gender, int m_cash, String m_filesrc, String sha, String rsa);
 	
 	//회원정보삭제
 	public void memberdelete(String m_id);
@@ -46,11 +48,15 @@ public interface Member {
 	public MemberDto getimg(String m_id);
 	
 	//마이페이지(회원)내정보수정
-	public void infoupdate(String m_id,String m_pw,String m_tel,String m_name2,String m_email,String m_filesrc);
-	public void infoupdat2(String m_id,String m_pw,String m_tel,String m_name2,String m_email);
+	public void infoupdate(String m_id,String m_pw,String m_tel,String m_name2,String m_email,String m_filesrc,String sha,String rsa);
+	public void infoupdat2(String m_id,String m_pw,String m_tel,String m_name2,String m_email,String sha,String rsa);
+//	public void infoupdat3(String m_id,String m_pw,String m_name2,String m_email,String sha,String rsa);
+//	public void infoupdat4(String m_id,String m_pw,String m_tel,String m_email,String sha,String rsa);
+//	public void infoupdat5(String m_id,String m_tel,String m_name2,String m_email,String sha,String rsa);
+//	public void infoupdat6(String m_id,String m_pw,String m_tel,String m_name2,String sha,String rsa);
 	
 	//마이페이지(회원)회원탈퇴 진입시 본인확인
-	public int memberdropcheck(String m_id,String m_pw);
+	//public int memberdropcheck(String m_id);
 	
 	//관리자페이지 모든회원의 문의리스트
 	public ArrayList<Qna_MemberDto> getadminqnalist(int start,int end,String searchKeyword,String selNum);
@@ -72,7 +78,7 @@ public interface Member {
 	public int emailoverlapcheck(String m_email);
 	
 	//비밀번호찾기로 임시비밀번호 발송되면 회원정보에서 비밀번호를 임시비밀번호로 업데이트
-	public void temporarypw(int check_num,String m_email);
+	public void temporarypw(String check_num,String m_email,String sha,String rsa);
 	
 	//비밀번호찾기
 	public int findpw(String m_id,String m_email);

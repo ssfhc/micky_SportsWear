@@ -21,6 +21,8 @@ function checkValue(){
 			success:function(result){
 				if( result==0) { 
 					alert("본인인증실패")
+					$('#m_pw').val('');
+					document.getElementById("m_pw").focus();
 				} else if( result==1 ) {
 					alert("본인인증완료")
 					self.close();

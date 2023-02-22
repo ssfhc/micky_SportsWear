@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import micky.sports.shop.crypt.CryptoUtil;
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.member.EmailOverlapCheckService;
 import micky.sports.shop.service.member.FindIdService;
@@ -101,12 +102,14 @@ public class MemberController {
 	//로그인기능
 	@RequestMapping(value="/login",method = RequestMethod.GET)
 	@ResponseBody
-	public int login(HttpServletRequest request,Model model) {
+	public int login(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/login()@@@"); //controller 신호확인
 			
-		model.addAttribute("request",request); 
+		model.addAttribute("request",request);
+		model.addAttribute("crypt",crypt);
 		mickyServiceInter = new LoginService(sqlSession,session);
 		mickyServiceInter.execute(model);
+		
 		
 		Map<String, Object> map = model.asMap();
 		int logincheck_result = (Integer) map.get("logincheck_result"); //ajax return으로 data 줘야해서 model을 다시 풀음
@@ -180,11 +183,12 @@ public class MemberController {
 	
 	//회원가입기능
 	@RequestMapping("/join")
-	public String join(HttpServletRequest request,Model model) {
+	public String join(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/join()@@@");
 		//String m_id= request.getParameter("m_id");
 		//System.out.println("파람확인 joincontrol : "+m_id);	
 		model.addAttribute("request",request);
+		model.addAttribute("crypt",crypt);
 		mickyServiceInter = new JoinService(sqlSession);
 		mickyServiceInter.execute(model);
 			
@@ -349,10 +353,10 @@ public class MemberController {
 	
 	//마이페이지의 내정보수정
 	@RequestMapping("/infoupdate")
-	public String infoupdate(HttpServletRequest request,Model model) {
+	public String infoupdate(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/infoupdate()@@@");
 		model.addAttribute("request", request);	
-			
+		model.addAttribute("crypt",crypt);
 			
 		mickyServiceInter = new InfoUpdateService(sqlSession,session);
 		mickyServiceInter.execute(model);	
@@ -440,9 +444,10 @@ public class MemberController {
 	//회원탈퇴진입전비밀번호본인인증
 	@RequestMapping(value="/memberdropcheck",method = RequestMethod.GET)
 	@ResponseBody
-	public int memberdropcheck(HttpServletRequest request, Model model) {
+	public int memberdropcheck(HttpServletRequest request, Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/memberdropcheckform()@@@");
 		model.addAttribute("request",request); 
+		model.addAttribute("crypt",crypt);
 		mickyServiceInter = new MemberDropCheckService(sqlSession,session);
 		mickyServiceInter.execute(model);
 		
@@ -505,7 +510,7 @@ public class MemberController {
 	 }
 	  
 	  
-		//비밀번호찾기기능
+		//비밀번호찾기인증
 		@RequestMapping(value="/findpw",method = RequestMethod.GET)
 		@ResponseBody
 		public int findpw(HttpServletRequest request,Model model) {
@@ -529,17 +534,17 @@ public class MemberController {
 	  //비밀번호찾기 임시비번전송
 	  @RequestMapping(value="/sendpwemail",method = RequestMethod.GET)
 	  @ResponseBody
-	  public String sendpwemail(HttpServletRequest request,Model model) {
+	  public String sendpwemail(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		  System.out.println("@@@MemberController/sendpwemail()@@@");
 		  model.addAttribute("request", request);	
-		
+		  model.addAttribute("crypt",crypt);
 		  String email = request.getParameter("email");
 		
 		  System.out.println("sendpwemail 이메일 확인 : "+email); //확인용
 		
 		
 		  Random random = new Random();
-		  int check_num = random.nextInt(888888) + 111111;
+		  String check_num = ""+random.nextInt(888888) + 111111;
 		  model.addAttribute("check_num",check_num);
 		
 		  mickyServiceInter = new TemporaryPwService(sqlSession,session); 
@@ -571,7 +576,7 @@ public class MemberController {
 			  e.printStackTrace();
 		  }
 
-		  String num = Integer.toString(check_num);
+		  String num = check_num;
 		  return num;
 	  }
 	  
@@ -621,22 +626,22 @@ public class MemberController {
 		}
 		
 		
-		//내정보수정진입전비밀번호본인인증
-		@RequestMapping(value="/membercheck",method = RequestMethod.GET)
-		@ResponseBody
-		public int membercheck(HttpServletRequest request, Model model) {
-			System.out.println("@@@MemberController/membercheck()@@@");
-			model.addAttribute("request",request); 
-			mickyServiceInter = new MemberDropCheckService(sqlSession,session);
-			mickyServiceInter.execute(model);
-			
-			Map<String, Object> map = model.asMap();
-			int membercheck = (Integer) map.get("memberdropcheck");
-			
-//			String overlapcheck_result = request.getParameter("count");
-			
-			System.out.println("결과 : "+membercheck);
-			
-			return membercheck;
-		}
+//		//내정보수정진입전비밀번호본인인증
+//		@RequestMapping(value="/membercheck",method = RequestMethod.GET)
+//		@ResponseBody
+//		public int membercheck(HttpServletRequest request, Model model) {
+//			System.out.println("@@@MemberController/membercheck()@@@");
+//			model.addAttribute("request",request); 
+//			mickyServiceInter = new MemberDropCheckService(sqlSession,session);
+//			mickyServiceInter.execute(model);
+//			
+//			Map<String, Object> map = model.asMap();
+//			int membercheck = (Integer) map.get("memberdropcheck");
+//			
+////			String overlapcheck_result = request.getParameter("count");
+//			
+//			System.out.println("결과 : "+membercheck);
+//			
+//			return membercheck;
+//		}
 }

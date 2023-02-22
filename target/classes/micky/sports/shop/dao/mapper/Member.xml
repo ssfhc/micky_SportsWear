@@ -5,13 +5,17 @@
 <mapper namespace="micky.sports.shop.dao.Member">
 	<!-- 회원가입 -->
 	<insert id="join">
-		INSERT INTO MEMBER(M_ID,M_PW,M_NAME,M_TEL,M_NAME2,M_EMAIL,M_GRADE,M_AGE,M_GENDER,M_CASH,M_FILESRC)
-		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},#{param11})
+		INSERT INTO MEMBER(M_ID,M_PW,M_NAME,M_TEL,M_NAME2,M_EMAIL,M_GRADE,M_AGE,M_GENDER,M_CASH,M_FILESRC,SHA,RSA)
+		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},#{param11},#{param12},#{param13})
 	</insert>
+	
+	<select id="getsharsa" resultType="micky.sports.shop.dto.MemberDto">
+		SELECT * FROM MEMBER WHERE M_ID=#{param1}
+	</select>
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="Integer">
-		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1} AND M_PW=#{param2}
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1}
 	</select>
 	
 	<!-- 아이디중복검사 -->
@@ -62,7 +66,7 @@
 	<update id="memberupdate">
 		UPDATE MEMBER SET M_PW=#{param2},M_NAME=#{param3},M_TEL=#{param4},M_NAME2=#{param5},
 		M_EMAIL=#{param6},M_GRADE=#{param7},M_AGE=#{param8},M_GENDER=#{param9},M_CASH=#{param10},
-		M_FILESRC=#{param11} WHERE M_ID=#{param1}
+		M_FILESRC=#{param11},SHA=#{param12},RSA=#{param13} WHERE M_ID=#{param1}
 	</update>
 	
 	<!-- 회원정보삭제 -->
@@ -104,16 +108,32 @@
 	<!-- 마이페이지(회원)내정보수정 -->
 	<update id="infoupdate">
 		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
-		M_EMAIL=#{param5},M_FILESRC=#{param6} WHERE M_ID=#{param1}
+		M_EMAIL=#{param5},M_FILESRC=#{param6},SHA=#{param7},RSA=#{param8} WHERE M_ID=#{param1}
 	</update>
 	<update id="infoupdat2">
 		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
-		M_EMAIL=#{param5} WHERE M_ID=#{param1}
+		M_EMAIL=#{param5},SHA=#{param6},RSA=#{param7} WHERE M_ID=#{param1}
 	</update>
+	<!-- <update id="infoupdat3">
+		UPDATE MEMBER SET M_PW=#{param2},M_NAME2=#{param3},
+		M_EMAIL=#{param4},SHA=#{param5},RSA=#{param6} WHERE M_ID=#{param1}
+	</update>
+	<update id="infoupdat4">
+		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},
+		M_EMAIL=#{param4},SHA=#{param5},RSA=#{param6} WHERE M_ID=#{param1}
+	</update>
+	<update id="infoupdat5">
+		UPDATE MEMBER SET M_TEL=#{param2},M_NAME2=#{param3},
+		M_EMAIL=#{param4},SHA=#{param5},RSA=#{param6} WHERE M_ID=#{param1}
+	</update>
+	<update id="infoupdat6">
+		UPDATE MEMBER SET M_PW=#{param2},M_TEL=#{param3},M_NAME2=#{param4},
+		SHA=#{param5},RSA=#{param6} WHERE M_ID=#{param1}
+	</update> -->
 	
 	<!-- 마이페이지(회원)회원탈퇴 진입시 본인확인 -->
 	<select id="memberdropcheck" resultType="Integer">
-		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1} AND M_PW=#{param2}
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{param1}
 	</select>
 	
 	<!-- 관리자페이지 모든회원의 문의리스트 -->
@@ -175,7 +195,7 @@
 	
 	<!-- 비밀번호찾기로 임시비밀번호 발송되면 회원정보에서 비밀번호를 임시비밀번호로 업데이트 -->
 	<update id="temporarypw">
-		UPDATE MEMBER SET M_PW=#{param1} WHERE M_EMAIL=#{param2}
+		UPDATE MEMBER SET M_PW=#{param1},SHA=#{param3},RSA=#{param4} WHERE M_EMAIL=#{param2}
 	</update>
 	
 	<!-- 비밀번호찾기 -->

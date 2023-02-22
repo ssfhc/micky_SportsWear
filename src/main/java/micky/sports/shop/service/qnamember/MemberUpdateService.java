@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
+import micky.sports.shop.crypt.CryptoUtil;
 import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
 import micky.sports.shop.service.MickyServiceInter;
@@ -43,7 +44,24 @@ public class MemberUpdateService implements MickyServiceInter{
 		int m_cash = Integer.parseInt(request.getParameter("m_cash"));
 		String m_filesrc = request.getParameter("m_filesrc");
 
-		dao.memberupdate(m_id,m_pw,m_name,m_tel,m_name2,m_email,m_grade,m_age,m_gender,m_cash,m_filesrc);
+		String key="";
+		try {
+			key=CryptoUtil.sha512(m_pw);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.println("sha512방식 암호화 : "+key);
+		
+		String key2=key;
+		String encryStr = "";
+		try {
+			encryStr = CryptoUtil.encryptAES256(m_pw, key2);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.println("양방향암호화 : "+encryStr);
+		
+		dao.memberupdate(m_id,m_pw,m_name,m_tel,m_name2,m_email,m_grade,m_age,m_gender,m_cash,m_filesrc,key,encryStr);
 
 	}
 

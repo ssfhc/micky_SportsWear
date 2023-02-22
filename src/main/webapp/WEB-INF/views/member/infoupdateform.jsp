@@ -3,6 +3,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Babylonica&family=Nanum+Gothic:wght@400;800&family=Noto+Sans+KR:wght@100&family=Titillium+Web&display=swap" rel="stylesheet">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,23 +15,64 @@
 </head>
 <body style="font-family: 'Noto Sans Korean'">
 <script>
+window.onload = function(){
+	var defaultemail = jf.defaultemail.value;
+	if(defaultemail=="@daum.net"){
+		$("#m_email2 option:eq(0)").prop("selected",true);
+	}else if(defaultemail=="@naver.com"){
+		$("#m_email2 option:eq(1)").prop("selected",true);
+	}else if(defaultemail=="@gmail.com"){
+		$("#m_email2 option:eq(2)").prop("selected",true);
+	}else if(defaultemail=="@hanmail.com"){
+		$("#m_email2 option:eq(3)").prop("selected",true);
+	}else if(defaultemail=="@yahoo.co.kr"){
+		$("#m_email2 option:eq(4)").prop("selected",true);
+	}
+	
+	
+}
+
+
+
 function checkValue(){
+	//var defaultemail = jf.defaultemail.value;
+	//alert(defaultemail)
+
+	
+	
+	
+	
 	inputPw = document.getElementById("m_pw").value; //input password값
-	inputTel = document.getElementById("m_tel").value;
+	inputTel1 = document.getElementById("m_tel1").value;
+	inputTel2 = document.getElementById("m_tel2").value;
+	inputTel3 = document.getElementById("m_tel3").value;
 	inputNickName = document.getElementById("m_name2").value;
 	inputEmail = document.getElementById("m_email").value;
+	//inputEmail2 = documnet.getElementById("m_email2").value;
+	
 	
 	let valcheck_pw = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/; //pw 정규식
 	//let valcheck_tel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/; //tel 정규식
 	
 	var checkname2_YESorNO = jf.checkname2_YESorNO.value; //nickname중복확인진행 유무(기본값은 NO)
 	var checkemail_YESorNO = jf.email_check_input_result.value; //email인증진행 유무(기본값은 NO)
+	var checkpassword_YESorNO = jf.checkpassword_YESorNO.value; //비밀번호확인 진행 유무
+	
+	
+	
+	
+	
+	
 	
 	if(!inputPw){
-		alert("비밀번호입력하세요")
+		alert("비번입력하세요")
 		return false;
-	}else if(!inputTel){
-		alert("전화번호입력하세요")
+	}else if(checkpassword_YESorNO=="NO"){
+		alert("비밀번호확인진행하세요")
+		jf.m_pw.focus();
+		return false;
+	}else if(!inputTel1 || !inputTel2 || !inputTel3){
+		alert("전번입력하세요")
 		return false;
 	}else if(!inputNickName){
 		alert("닉네임입력하세요")
@@ -162,37 +206,51 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 })
 </script>
 <p style="font-family:'Nanum Gothic'; font-weight: bold;" >infoupdateform.jsp</p>
+
 <p>infoupdateform.jsp</p>
 <h1 style="font-family:'Nanum Gothic'">회원정보수정화면</h1>
 <form action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkValue()">
 <input type="hidden" name="m_id" value="${infoupdateform.m_id }" />
-<input type="hidden" name="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
-<input type="hidden" name="checkemail_YESorNO" value="NO"/> <br /> <!-- 이메일인증유무 -->
+<input type="hidden" name="checkname2_YESorNO" value="NO" readonly/><br /> <!-- 닉네임중복체크유무 -->
+<input type="hidden" name="checkpassword_YESorNO" value="NO" readonly />
+
+
+
+<input type="hidden" class="defaultemail" name="defaultemail" id="defaultemail" value="${m_email2 }" /> <!-- 이메일 뒷주소 -->
 아이디 : ${infoupdateform.m_id }
 <br />
-비밀번호 : <input type="password" name="m_pw" id="m_pw" value="${infoupdateform.m_pw }" />
-비밀번호 확인 : <input type="password" id="check_mpw" name="check_mpw" /> <input type="button" value="확인" onclick="checkpassword()" />
+비밀번호 : ${infoupdateform.m_pw }
+<br />
+<input type="password" name="m_pw" id="m_pw" value="${infoupdateform.m_pw }" />
+비밀번호 확인 : <input type="password" id="check_mpw" name="check_mpw" value="${infoupdateform.m_pw }"/> <input type="button" value="확인" onclick="checkpassword()" />
 비밀번호표시<input type="checkbox" name="showpassword" /> 
 <br /> 
 이름 : ${infoupdateform.m_name } 
 <br />
 전화번호 : ${infoupdateform.m_tel } 
+<input type="hidden" name="default_tel" id="default_tel" value="${infoupdateform.m_tel } " />
 <br />
-<input type="text" name="m_tel1" id="m_tel1" pattern="\d*" maxlength='3'/> - 
-<input type="text" name="m_tel2" id="m_tel2" pattern="\d*" maxlength='4'/> - 
-<input type="text" name="m_tel3" id="m_tel3" pattern="\d*" maxlength='4'/>
+<c:set var="tel" value="${infoupdateform.m_tel }"/>
+<input type="text" name="m_tel1" id="m_tel1" value="${fn:substring(tel,0,3) }" pattern="\d*" maxlength='3'/> - 
+<input type="text" name="m_tel2" id="m_tel2" value="${fn:substring(tel,4,8) }" pattern="\d*" maxlength='4'/> - 
+<input type="text" name="m_tel3" id="m_tel3" value="${fn:substring(tel,9,13) }" pattern="\d*" maxlength='4'/>
+
 <br />
-닉네임 : <input type="text" name="m_name2" id="m_name2" value="${infoupdateform.m_name2 }" /><input type="button" value="중복확인" onclick="checknickname()" />
+닉네임 : ${infoupdateform.m_name2 }
+<br />
+<input type="text" name="m_name2" id="m_name2" value="${infoupdateform.m_name2 }"/><input type="button" value="중복확인" onclick="checknickname()" />
 <br />
 이메일 : ${infoupdateform.m_email }
+<input type="hidden" name="default_email" id="default_email" value="${infoupdateform.m_email } " />
 <br />
-		<input type="text" name="m_email" id="m_email" />
+		<c:set var="email" value="${infoupdateform.m_email }" />
+		<input type="text" name="m_email" id="m_email" value="${fn:substring(email,0,email.indexOf("@"))}"/>
 		<select name="m_email2" id="m_email2">
-		<option>@naver.com</option>
-		<option>@daum.net</option>
-		<option>@gmail.com</option>
-		<option>@hanmail.com</option>
-		<option>@yahoo.co.kr</option>
+		<option name="daum" value="@daum.net">@daum.net</option>
+		<option name="naver"  value="@naver.com">@naver.com</option>
+		<option name="gmail"  value="@gmail.com">@gmail.com</option>
+		<option name="hanmail"  value="@hanmail.com">@hanmail.com</option>
+		<option name="yahoo"  value="@yahoo.co.kr">@yahoo.co.kr</option>
 		</select> 
 		<input type="button" value="인증번호전송" onclick="emailcheck()"/>
 		<input class="email_check_input" placeholder="인증번호 6자리를 입력하세요" disabled="disabled" maxlength="6" />

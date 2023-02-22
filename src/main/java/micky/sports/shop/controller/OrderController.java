@@ -16,6 +16,7 @@ import micky.sports.shop.service.order.MyOCancelOfferService;
 import micky.sports.shop.service.order.MyOrderCancelService;
 import micky.sports.shop.service.order.MyOrderConfirmService;
 import micky.sports.shop.service.order.MyOrderListService;
+import micky.sports.shop.service.order.OrderDeliveryService;
 import micky.sports.shop.service.order.OrderPageService;
 import micky.sports.shop.service.order.OrderPaymentService;
 import micky.sports.shop.vopage.SearchVO;
@@ -42,13 +43,17 @@ public class OrderController {
 		return "/order/orderPage";
 	}
 	
-	// 주문 기능 payment
+	// 주문 기능 payment +배송지입력
 	@RequestMapping("/payment")
 	public String payment(HttpServletRequest request, Model model) {
 		System.out.println("========payment=======");
 		
 		model.addAttribute("request",request);
 		mickyServiceInter=new OrderPaymentService(sqlSession,httpsession);
+		mickyServiceInter.execute(model);
+		
+		System.out.println("========delivery=======");
+		mickyServiceInter=new OrderDeliveryService(sqlSession,httpsession);
 		mickyServiceInter.execute(model);
 		
 		return "redirect:myOrderList";

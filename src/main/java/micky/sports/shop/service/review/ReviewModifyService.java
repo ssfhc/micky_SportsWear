@@ -14,31 +14,31 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class ReviewWriteService implements MickyServiceInter{
+public class ReviewModifyService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
-	private HttpSession httpsession;
+	private HttpSession httpSession;
 	
-	public ReviewWriteService(SqlSession sqlSession,HttpSession httpsession) {
+	public ReviewModifyService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
-		this.httpsession = httpsession;
+		this.httpSession = httpsession;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println(">>>>ReviewWriteService");
+		System.out.println(">>>ReviewModifyService");
+		
 		
 //		model에서 request를 풀어내는 방법
 		Map<String, Object> map=model.asMap(); //model을 Map으로 변환
 		HttpServletRequest request=
 				(HttpServletRequest) map.get("request");
 		
-
-		httpsession = request.getSession();
-		String loginId = (String)httpsession.getAttribute("loginid");
+		httpSession = request.getSession();
+		String loginId = (String)httpSession.getAttribute("loginid");
 		
 		
-//		reviewupload code=================
+//		modifyupload code=================
 		String attachPath="resources\\reviewupload\\";
 		String uploadPath=request.getSession().getServletContext().getRealPath("/");
 		
@@ -54,18 +54,13 @@ public class ReviewWriteService implements MickyServiceInter{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String om_cntnum=req.getParameter("om_cntnum");
-		String p_no=req.getParameter("p_no");
-		String om_state=req.getParameter("om_state");
-		System.out.println("om_cntnum : "+om_cntnum);
-		System.out.println("p_no : "+p_no);
-		System.out.println("om_state : "+om_state);
-		
+
+		String r_no=req.getParameter("r_no");
 		String r_title=req.getParameter("r_title");
 		String r_content=req.getParameter("r_content");
-		String r_filesrc=req.getFilesystemName("r_filesrc");
 		String r_score=req.getParameter("r_score");
+		String r_filesrc=req.getFilesystemName("r_filesrc");
+		
 		
 		if (r_filesrc==null) {
 			r_filesrc="";
@@ -75,8 +70,8 @@ public class ReviewWriteService implements MickyServiceInter{
 		session.removeAttribute("r_score");
 		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
-		
-		rdao.write(loginId,r_title,r_content,r_filesrc,r_score,p_no,om_cntnum);
+		rdao.modify(r_no,r_title,r_content,r_score,r_filesrc);
+				
 	}
 
 }

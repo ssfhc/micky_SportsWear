@@ -13,18 +13,18 @@ div{
 .tablecell{
 	display: table-cell;
 }
+/* .div_selectType, .div_searchbox{
+	float: left;
+} */
 .review_table{  display: table; width: 70%; margin-left:auto; margin-right:auto; }
 .review_total{	cursor: pointer; }
-.selectandsearch_box{	display: table; }
-.select_box{	text-align: left; }
-.search_box{	text-align: right; }
+
 .row{
 	display: table-row; /* tr */
 }
-.cell{	display: table-cell; /* td */ padding: 3px; border-bottom: 1px solid #ddd;
-}
+.cell{	display: table-cell; /* td */ padding: 5px; }
 .col1{
-	width: 80%;
+	width: 100%;
 	vertical-align: top;
 }
 .col2{
@@ -71,9 +71,6 @@ div{
 .atag{
 	visibility: hidden;
 }
-
-/* =============== admin-답글 =============== */
-
 
 /* =============== 별점 =============== */
 .star {
@@ -169,20 +166,53 @@ input#replyToggle:checked+div#reply_box{
 #title_content{
 	padding: 10px;
 	top: 50px;
-	position: absolute;
+	/* position: absolute; */
 }
 
 
 
-/* =============== reviewListview=============== */
+/* =============== reviewMylistview=============== */
+.mileage_box{
+	width: 80%;
+	border-top: 3px solid black;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	padding: 40px 25px;
+}
+.mileage_span{
+	display: inline-block;
+	float: right;
+}
+
+.class_review_orderlist{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	padding: 10px;
+	margin: 20px;
+}
+.small_gray{
+	font-size: small;
+	color: #808080;
+	font-weight: bolder;
+}
+
 .reviewListview_total{
 	display: table;
 	width: 80%;
+	margin: 15px;
+}
+.reviewListview_label{
+	margin: 20px;
 }
 .col11{
 	width: 30%;
 	vertical-align: top;
 }
 .col22{
-	width: 70%;
+	width: 50%;
+}
+.col33{
+	width: 20%;
 }

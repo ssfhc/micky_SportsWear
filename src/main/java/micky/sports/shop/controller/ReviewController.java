@@ -1,6 +1,7 @@
 package micky.sports.shop.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.review.ReviewDeleteService;
+import micky.sports.shop.service.review.ReviewModifyService;
+import micky.sports.shop.service.review.ReviewModifyviewService;
 import micky.sports.shop.service.review.ReviewMylistviewService;
-import micky.sports.shop.service.review.ReviewPopupcontentmodifyService;
-import micky.sports.shop.service.review.ReviewPopupcontentviewService;
 import micky.sports.shop.service.review.ReviewReplyService;
+import micky.sports.shop.service.review.ReviewReplydeleteService;
 import micky.sports.shop.service.review.ReviewReplyviewService;
 import micky.sports.shop.service.review.ReviewService;
 import micky.sports.shop.service.review.ReviewWriteService;
+import micky.sports.shop.service.review.ReviewWriteviewService;
 
 @Controller
 @RequestMapping("/review")
@@ -25,18 +28,18 @@ public class ReviewController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	private HttpSession httpSession;
 	
 	
-//	임시 메인페이지
+//	메인 페이지
 //	@RequestMapping(method = RequestMethod.POST, value = "/reviewBoard")
 	@RequestMapping("/reviewBoard")
 	public String reviewBoard(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewBoard====");
 		
-		
-		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewService(sqlSession);
+		mickyServiceInter=new ReviewService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "review/reviewBoard";
@@ -48,102 +51,130 @@ public class ReviewController {
 		System.out.println("=====reviewMylistview====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewMylistviewService(sqlSession);
+		mickyServiceInter=new ReviewMylistviewService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "review/reviewMylistview";
 	}
 	
-//	작성 폼(Popup)
+//	작성 폼
 	@RequestMapping("/reviewWriteview")
-	public String reviewWriteview(Model model) {
+	public String reviewWriteview(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewWriteview====");
 		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewWriteviewService(sqlSession,httpSession);
+		mickyServiceInter.execute(model);
+
 		return "review/reviewWriteview";
 	}
 	
-//	작성
+//	리뷰 작성
 	@RequestMapping("/reviewWrite")
 	public String reviewWrite(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewWrite====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewWriteService(sqlSession);
+		mickyServiceInter=new ReviewWriteService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "redirect:reviewBoard";
 	}
 	
-//	삭제
+//	reviewMylistview에서 리뷰 삭제
+	@RequestMapping("/reviewMylistDelete")
+	public String reviewMylistDelete(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewDelete====");
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewDeleteService(sqlSession,httpSession);
+		mickyServiceInter.execute(model);
+		
+		return "redirect:reviewMylistview";
+	}
+	
+//	ProductDetail에서 리뷰 삭제
 	@RequestMapping("/reviewDelete")
 	public String reviewDelete(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewDelete====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewDeleteService(sqlSession);
+		mickyServiceInter=new ReviewDeleteService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "redirect:reviewBoard";
 	}
 	
-//	Popup 수정폼
-	@RequestMapping("/reviewPopupcontentview")
+//	수정하기 폼
+	@RequestMapping("/reviewModifyview")
 	public String reviewPopupcontentview(HttpServletRequest request, Model model) {
-		System.out.println("=====reviewPopupview====");
+		System.out.println("=====reviewModifyview====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewPopupcontentviewService(sqlSession);
+		mickyServiceInter=new ReviewModifyviewService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
-		return "review/reviewPopupcontentview";
+		return "review/reviewModifyview";
 	}
-	
-//	Popup 수정하기
-//	@RequestMapping("/reviewPopupcontentupdate")
-//	public String reviewPopupcontentupdate(HttpServletRequest request, Model model) {
-//		System.out.println("=====reviewPopupcontentupdate====");
-//		
-//		model.addAttribute("request", request);
-//		mickyServiceInter=new ReviewPopupcontentupdateService(sqlSession);
-//		mickyServiceInter.execute(model);
-//		
-//		return "review/reviewPopupcontentupdate";
-//	}
-	
-//	Popup 수정하기
-	@RequestMapping("/reviewPopupcontentmodify")
+		
+//	수정하기
+	@RequestMapping("/reviewModify")
 	public String reviewPopupcontentmodify(HttpServletRequest request, Model model) {
-		System.out.println("=====reviewPopupcontentmodify====");
+		System.out.println("=====reviewModify====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewPopupcontentmodifyService(sqlSession);
+		mickyServiceInter=new ReviewModifyService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "redirect:reviewBoard";
 	}
 	
-//	답글달기 폼
+//	관리자 답글달기 폼
 	@RequestMapping("/reviewPopupReplycontentview")
 	public String reviewReplyview(HttpServletRequest request, Model model) {
 		System.out.println("=====reviewReplyview====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewReplyviewService(sqlSession);
+		mickyServiceInter=new ReviewReplyviewService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "review/reviewPopupReplycontentview";
 	}
 	
-//	답글달기
-	@RequestMapping("/reviewPopupreply")
+//	관리자 답글달기, 수정하기
+	@RequestMapping("/reviewReply")
 	public String reviewPopupreply(HttpServletRequest request, Model model) {
-		System.out.println("=====reviewPopupreply====");
+		System.out.println("=====reviewReply====");
 		
 		model.addAttribute("request", request);
-		mickyServiceInter=new ReviewReplyService(sqlSession);
+		mickyServiceInter=new ReviewReplyService(sqlSession,httpSession);
 		mickyServiceInter.execute(model);
 		
 		return "redirect:reviewBoard";
+	}
+	
+//	관리자 답글 삭제
+	@RequestMapping("/reviewReplydelete")
+	public String reviewReplydelete(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewReplydelete====");
+		
+		model.addAttribute("request", request);
+		mickyServiceInter=new ReviewReplydeleteService(sqlSession,httpSession);
+		mickyServiceInter.execute(model);
+		
+		return "redirect:reviewBoard";
+	}
+
+//	리뷰 관리자 페이지
+	@RequestMapping("/reviewAdminpage")
+	public String reviewAdminpage(HttpServletRequest request, Model model) {
+		System.out.println("=====reviewAdminpage====");
+		
+//		model.addAttribute("request", request);
+//		mickyServiceInter=new ReviewReplydeleteService(sqlSession,httpSession);
+//		mickyServiceInter.execute(model);
+		
+		return "review/reviewAdminpage";
 	}
 	
 }

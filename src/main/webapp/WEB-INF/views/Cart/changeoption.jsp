@@ -2,8 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="../resources/css/reviewstyle.css" />
+<script src="../resources/js/scriptjsp.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
 <script>
@@ -19,19 +22,25 @@ function fnCalCount(type, ths){
         if(tCount >0) $input.val(Number(tCount)-1);    
          }
 }
-function daupdate() {
+function dbupdate() {
 	var p_no=forms.p_no.value;
 	var p_color=forms.p_color.value;
 	var p_size=forms.p_size.value;
 	var c_cnt=forms.c_cnt.value;
 	var c_no=forms.c_no.value;
+	var p_category=forms.p_category.value;
+	var p_name=forms.p_name.value;
 	$.ajax({
-		url:'modifycartoption?p_no='+p_no+'&p_color='+p_color+'&p_size='+p_size+'&c_cnt='+c_cnt+'&c_no='+c_no,
+		url:'modifycartoption?p_no='+p_no+'&p_color='+p_color+'&p_size='+p_size+'&c_cnt='+c_cnt+'&c_no='+c_no+'&p_category='+p_category+'&p_name='+p_name,
 		async:true,
 		type:'GET',
 		data: {
 		},
 		success: function( result ) {
+// 				중복일떄
+				if (result == 1 ) {
+					alert("중복된 상품이 있습니다.")
+				}
 	        	opener.document.location.reload();
 	        	window.close();
 	     },
@@ -57,6 +66,15 @@ function test() {
 	var dd=document.getElementById("test").value
 	alert(dd);
 }
+//별점
+function redeptlist(target) {
+    alert("target : "+target.value);
+    $('#starInput[name=r_score]').attr('value',target.value);   
+ }
+ 
+ function getvalue(target) {
+    alert(target.value);
+ } 
 </script>
 
 <head>
@@ -65,6 +83,7 @@ function test() {
 </head>
 <body>
 <h3>옵션 변경</h3>
+
 <hr />
 <form name="forms">
 <div><img src="../resources/img/productimg/${list.productDto.p_filesrc }.jpg" alt="img" width="100px" height="100px"/></div>
@@ -74,7 +93,25 @@ function test() {
 	
 	${list.productDto.p_price } <span>원</span> <br />     
 	<hr />
-	리뷰 ★★★★★<br />
+	<div>
+         <div class="avg_star">
+            <div class="tablerow">
+               <div class="tablecell">
+                  <span class="user_date">
+                     <span class="reviewBoard_star">
+                        ★★★★★
+                        <span id="star2" style="width:8${avgStarscore*20}%">★★★★★</span>
+                     </span>
+                  </span>
+               </div>
+               <div class="tablerow">
+                  <%-- <b>&nbsp;&nbsp;&nbsp; ${avgStarscore } 총점</b> --%>
+               </div>
+            </div>
+            <div><b>${totalCount }2개의 REVIEWS</b></div>
+         </div>
+      <br />
+      </div>
 	<hr />
 	<!-- 상품의색상의 이미지를 클릭하면 그 상품으로 변환  -->
 	${list.productDto.p_color } <br />
@@ -99,7 +136,9 @@ function test() {
 	<input type="text" name="p_color" value="${list.productDto.p_color }">
 	<input type="text" id="result" name="p_size" value="${list.productDto.p_size }">
 	<input type="text" name="c_no" value="${list.c_no }">
-	<input type="button" value="선택완료" onclick="daupdate();" />	
+	<input type="text" name="p_category" value="${list.productDto.p_category }">
+	<input type="text" name="p_name" value="${list.productDto.p_name }">
+	<input type="button" value="선택완료" onclick="dbupdate();" />	
 <!-- 만약 변견된 값만 부모 view에 보내주면 -->	
 </form>
 

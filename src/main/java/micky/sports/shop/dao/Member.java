@@ -105,4 +105,6 @@ public interface Member {
 	public int getTotalMember();
 	public int getMaleMember();
 	public int getFemaleMember();
+	
+
 }

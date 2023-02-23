@@ -269,4 +269,6 @@
 	<select id="getFemaleMember" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER WHERE M_GENDER='female'
 	</select>
+	
+
 </mapper>

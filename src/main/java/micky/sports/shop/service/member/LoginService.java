@@ -60,11 +60,10 @@ public class LoginService implements MickyServiceInter {
 			}else {
 				String sha = dto.getSha();
 				String rsa = dto.getRsa();
-				System.out.println("확인용 : "+sha+rsa);
+				System.out.println("확인용 : "+sha+rsa);			
 				
 				String decryptStr = "";
-				
-			
+							
 				System.out.println("============================ ");
 					try {
 						decryptStr=CryptoUtil.decryptAES256(rsa,sha );

@@ -6,120 +6,130 @@
 <head>
 <meta charset="UTF-8">
 <title>Micky Sports Wear</title>
- <style>
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<!-- 반응형 setting -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
 header{
-	background: #2c2a29;
-	position: fixed;
-	top: 0;
- 	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+background-color: #CCCCCC;
+height: 200px;
+position: fixed; width: 100%
 }
-  header .head-wrap{
-	border: solid 0px black;
-	height: 120px;
-	width: 1100px;
-} 
- header .head-wrap .head-wrap-inner{
-	height: 120px;
-	width: 1100px;
-	position: relative; 
-	border: solid 0px black;
-} 
-header .head-wrap .head-wrap-inner .head-logo{
-	position: absolute;
-	top: 20px;
-	width: 75px;
-	height: 75px;
+.top_ul{
+list-style-type: none;
+font-family: 'Noto Sans KR', sans-serif;
+float: right; 			/* top메뉴 우측정렬 */
+margin: 30px 30px 5px 0px;  /* [위] [오른쪽] [아래] [왼쪽] */
+border: 1px solid black;
 }
- header .head-wrap .head-wrap-innter .head-menu-top-nav{
-	position: absolute;
-	left: 552px;
-	top: 21px;
-} 
-header .head-wrap.head-wrap-innter .head-menu-top-nav ul{
-	list-style: none;
+.top_ul li {
+	display: inline; 	/* ※float Χ */
+	font-size: 15px;
+	border-left: 1px solid black;
+	padding: 0px 10px 0px 10px; 
+	margin: 10px 0px 5px 0px; /* [위] [오른쪽] [아래] [왼쪽] */
 }
- header .head-wrap.head-wrap-innter .head-menu-top-nav ul li{
-	float: left;
-	color: white;
-	font-size: 13px;
-	text-align: center;
-	height: 20px;
-	border: solid 0px black;
-} 
-header .head-wrap .head-wrap-innter .head-menu-top-nav ul li a{
+.top_ul li:first-child{
+ border-left: none; 	/* home 영역 좌측 테두리만 제거 */
+}
+.top_ul li a{
 	text-decoration: none;
-	color: white;
+	color: black;
 }
-header .head-wrap .head-wrap-innter .head-menu-top-nav ul li a:hover{
+.top_ul li a:hover{
 	text-decoration: underline;
-	color: #bcbcbc;
+	color: black; font-weight: bold;
 }
- header .head-wrap .head-wrap-innter .head-menu-top-nav ul .top-nav1{
-	width: 76px;
+.main_ul{
+	list-style-type: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	float: right;
+	margin: 0px 100px 5px 0px; /* [위] [오른쪽] [아래] [왼쪽] */
+	border: 1px black solid;
 }
-header .head-wrap .head-wrap-innter .head-menu-top-nav ul .top-nav2{
-	width: 106px;
+.main_ul li{
+	display: inline;
+	font-size: 20px;
+	padding: 0px 60px 0px 60px; 
 }
-header .head-wrap .head-wrap-innter .head-menu-top-nav ul .top-nav3{
-	width: 181px;
-}  
- header .head-wrap-sub{
-	display: flex;
-	justify-content: flex-end;
-}  
- header .head-wrap-sub ul{
-	list-style: none;
-	width: 737px;
-	display: flex;
-	justify-content: space-between;
-	border: solid 0px black;
-} 
- header .head-wrap-sub ul li a{
+.main_ul li a{
 	text-decoration: none;
-	display: block;
-	border: solid 0px black;
-	text-transform: uppercase;
-	font-size: 13px;
-	padding-top: 10px;
-	height: 66px;
-} 
-header .head-wrap-sub ul li a:hover{
+	color: black;
+}
+.main_ul li:hover{
 	text-decoration: underline;
-	color: #bcbcbc;
+	background-color: white;
+	color: black; font-weight: bold;
 }
 
+
+/* h1+logo */
+.header-wrap1{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	padding: 10px 90px 10px 80px;  /* [위] [오른쪽] [아래] [왼쪽] */
+	border: 1px solid black;
+}
+
+.header-h1{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 50px;
+	text-align: center;	
+	border: 1px solid black;
+	margin-right: 500px;
+	padding: 1px 0px 0px 5px;
+	
+}
+
+.head-logo{
+	border: 1px solid black;
+	margin-bottom: 10px;
+}
+
+/* icon */
+.home{
+width: 20px;
+height: 15px;
+
+}
+.logout{
+width: 20px;
+height: 15px;
+
+}
+.my{
+width: 20px;
+height: 18px;
+
+}
 </style>
+
 </head>
+
 <body>
 <header>
-    <div class="head-wrap">
-    <div class="head-wrap-inner">
-      <img class="head-logo" src="resources/img/admin/mickylogo_icon.png">
-	<nav class="head-menu-top-nav">
-   		<ul>
-	   		<li class="top-nav1"><a href="#">home</a></li>
-	   		<li class="top-nav3"><a href="#">logout</a></li>
-	   		<li class="top-nav2"><a href="#">My admin page</a></li>
+   		<ul class="top_ul">
+	   		<li class="top_li1"><a href="#"><img class="home" src="resources/img/admin/admin_home_icon.png">home</a></li>
+	   		<li class="top_li2"><a href="#"><img class="logout" src="resources/img/admin/admin_logout_icon.png">logout</a></li>
+	   		<li class="top_li3"><a href="#"><img class="my" src="resources/img/admin/admin_mypage_icon.png">My admin page</a></li>
    		</ul>
- 	</nav>
-    </div>
-    
-    <div class="head-wrap-sub">
-    <nav class="head-menu-main-nav">
-    	<ul>
-	      <li class="main-nav1"><a href="#">회원관리</a></li>
-	      <li class="main-nav2"><a href="#">상품관리</a></li>
-	      <li class="main-nav3"><a href="#">주문관리</a></li>
-	      <li class="main-nav4"><a href="#">chart</a></li>
-    	</ul>
-    </nav>
-    </div>
-    
-  </div>
+   		
+		<div class="header-wrap1">
+		<h1 class="header-h1">Admin Home</h1>	
+		<img class="head-logo" 
+ 		src="resources/img/admin/mickylogo_icon.png">
+ 		</div>
+ 			
+    	<ul class="main_ul">
+	      <li class="main_li1"><a href="#">회원관리</a></li>
+	      <li class="main_li2"><a href="#">상품관리</a></li>
+	      <li class="main_li3"><a href="#">주문관리</a></li>
+	      <li class="main_li4"><a href="#">chart</a></li>
+    	</ul>	
 </header>
 
 </body>

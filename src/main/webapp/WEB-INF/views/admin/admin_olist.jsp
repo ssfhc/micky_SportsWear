@@ -27,7 +27,6 @@
  	font-weight: bold;
 
  }
-
  </style>
 
 <!-- header section -->
@@ -41,11 +40,10 @@
 <%@include file="admin_sidebar.jsp" %>
 </aside> --%>
 
-<div class="jumbotron text-center">
-	<h1 class="line-h1" align="center" 
->
-	주문관리 현황 리스트</h1>
-</div>
+<!-- <div class="jumbotron text-center">
+	<h1 class="line-h1" align="center">주문관리 현황 리스트</h1>
+</div> -->
+<h1 class="line-h1" align="center">주문관리 현황 리스트</h1>
 <br /><br />
 
 
@@ -70,22 +68,24 @@
 
 <div class="container2" align="center">
 	<table border="1" >
-		<tr style="vertical-align: middle;" >
-			<th class="th1" width="10%">상품주문번호</th>
-			<th class="th1" width="13%">주문번호</th>
-			<th class="th1" width="8%">상품번호</th>
+		<tr style="vertical-align: middle; height: 80px;" >
+			<th class="th1" width="9%">상품주문번호</th>
+			<th class="th1" width="10%">주문번호</th>
+			<th class="th1" width="5%">상품번호</th>
 			<th class="th1" width="6%">주문수량</th>			
 			<th class="th1" width="6%">아이디</th>
-			<th class="th1" width="10%">주문일자</th>
-			<th class="th1" width="8%">결제형태</th>
-			<th class="th1" width="10%">총액</th>
-			<th class="th1" width="10%">처리상태</th>
-			<th class="th1" width="6%">주문취소요청여부</th>
-			<th class="th1" width="10%">주문취소일자</th>
+			<th class="th1" width="8%">주문일자</th>
+			<th class="th1" width="5%">결제형태</th>
+			<th class="th1" width="8%">총액</th>
+			<th class="th1" width="6%">처리상태</th>
+			<th class="th1" width="8%">주문취소요청여부</th>
+			<th class="th1" width="8%">주문취소일자</th>
+<!-- 			<th class="th1" width="8%">배송일자</th> -->
+			<th class="th1" width="7%">반품요청여부</th>
 		</tr>
 		
 		<c:forEach items="${olist }" var="dto">
-		<tr style="text-align: center;">
+		<tr style="text-align: center;" height=" 50px;">
 <!-- 상품주문번호 -->       <td><a href="admin_contentview?om_cntnum=${dto.om_cntnum}" class="om_cntnum">
 									${dto.om_cntnum }</a></td> 
 <!-- 주문번호 -->		    <td>${dto.om_num }</td>
@@ -98,6 +98,8 @@
 <!-- 처리상태 -->			<td>${dto.om_state }</td>
 <!-- 주문취소요청여부 -->		<td>${dto.om_cancle }</td>
 <!-- 주문취소일자 -->		<td><fmt:formatDate value="${dto.om_cdate }" pattern="yyyy-MM-dd"/></td>
+<%-- <!-- 배송일자 -->			<td><fmt:formatDate value="#" pattern="yyyy-MM-dd"/></td> --%>
+<!-- 반품요청여부 -->		<td>${dto.om_delcancle }</td>
 		</tr>
 		</c:forEach>	
 	</table>

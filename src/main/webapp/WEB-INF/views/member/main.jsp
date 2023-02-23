@@ -69,6 +69,6 @@ if(loginid.equals("admintest")||loginid.equals("admintest2")){ //로그인아이
 
 
 <hr />
-<a href="../product/productList">productlist</a>  <br />
+<a href="../product/productChart">productChart</a> <br />
 </body>
 </html>

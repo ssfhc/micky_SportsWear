@@ -100,4 +100,9 @@ public interface Member {
 	public int selectadminqnalistTotCount2(String searchKeyword);
 	public int selectadminqnalistTotCount3(String searchKeyword);
 	public int selectadminqnalistTotCount4(String searchKeyword);
+	
+	//차트
+	public int getTotalMember();
+	public int getMaleMember();
+	public int getFemaleMember();
 }

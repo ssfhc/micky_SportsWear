@@ -30,6 +30,7 @@ import micky.sports.shop.service.member.JoinService;
 import micky.sports.shop.service.member.LogOutService;
 import micky.sports.shop.service.member.LoginService;
 import micky.sports.shop.service.member.MainService;
+import micky.sports.shop.service.member.MemberChartService;
 import micky.sports.shop.service.member.MemberDropCheckService;
 import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.TemporaryPwService;
@@ -624,6 +625,7 @@ public class MemberController {
 					
 			return "/member/membercheckform";
 		}
+		
 		
 		
 //		//내정보수정진입전비밀번호본인인증

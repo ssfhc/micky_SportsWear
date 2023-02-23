@@ -31,10 +31,9 @@ function qna_delete(){
 	}else if(q_mynn=='N'){
 		alert("삭제가능")
 		$.ajax({
-			url:'/shop/qnamember/qnadelete?q_mno='+q_mno,
+			url:'../qnamember/qnadelete?q_mno='+q_mno,
 			type:'GET',
 			success:function(result){
-				alert("결과확인 : "+result)
 				alert("삭제성공")
 				window.location.href="../qnamember/qnalist"
 			}
@@ -71,13 +70,15 @@ function qna_delete(){
 	</tr>
 	<tr>
 		<td colspan = "2">
-		<%if(!loginid.equals("admintest")){ %>
-		<input type="button" value="문의글목록" onclick="location.href='qnalist'" /> &nbsp;&nbsp;
 		<%
-		}else{
+		if(loginid.equals("admintest") || loginid.equals("admintest2")){
 		%>
 		<input type="submit" value="답변폼으로" /> &nbsp;&nbsp;
 		<a href="adminqnalist">관리자게시판의 문의글목록</a> &nbsp;&nbsp;
+		<%
+		}else {
+		%>
+		<input type="button" value="문의글목록" onclick="location.href='qnalist'" /> &nbsp;&nbsp;
 		<%
 		}
 		%>

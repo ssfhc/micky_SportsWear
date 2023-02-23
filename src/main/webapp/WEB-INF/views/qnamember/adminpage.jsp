@@ -25,5 +25,6 @@ $(document).ready(function(){
 <input type="button" value="회원목록" onclick="location.href='memberlist'" />
 <input type="button" value="회원주문목록" onclick="location.href='../admin_olist'" />
 <input type="button" value="큐앤에이게시판" onclick="location.href='adminqnalist'" />
+<input type="button" value="회원차트" onclick="location.href='memberchart'" />
 </body>
 </html>

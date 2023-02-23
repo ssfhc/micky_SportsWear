@@ -29,6 +29,7 @@ import micky.sports.shop.service.member.JoinService;
 import micky.sports.shop.service.member.LogOutService;
 import micky.sports.shop.service.member.LoginService;
 import micky.sports.shop.service.member.MainService;
+import micky.sports.shop.service.member.MemberChartService;
 import micky.sports.shop.service.member.MemberDropCheckService;
 import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.TemporaryPwService;
@@ -474,7 +475,7 @@ public class QnaMemberController {
 	
 	
 	//마이페이지의 문의게시판 문의글삭제기능
-	  
+	@RequestMapping("/qnadelete")
 	public String qnadelete(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/qnadelete()@@@");		
 		model.addAttribute("request", request);	
@@ -484,7 +485,18 @@ public class QnaMemberController {
 		return "/qnamember/qnalist";		
 	}
 	
-	
+	@RequestMapping("/memberchart")
+
+	public String memberchart(HttpServletRequest request,Model model) {
+		System.out.println("@@@MemberController/memberchart()@@@");
+		model.addAttribute("request", request);	
+		mickyServiceInter = new MemberChartService(sqlSession,session);
+		mickyServiceInter.execute(model);
+		
+		
+		
+		return "/qnamember/chartchart"; //return 한 값이 ajax success (data)로 간다
+	}			
 	/*
 	 * //비밀번호찾기화면
 	 * 

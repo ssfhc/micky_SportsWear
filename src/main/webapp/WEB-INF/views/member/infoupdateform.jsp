@@ -38,10 +38,6 @@ function checkValue(){
 	//var defaultemail = jf.defaultemail.value;
 	//alert(defaultemail)
 
-	
-	
-	
-	
 	inputPw = document.getElementById("m_pw").value; //input password값
 	inputTel1 = document.getElementById("m_tel1").value;
 	inputTel2 = document.getElementById("m_tel2").value;
@@ -49,21 +45,14 @@ function checkValue(){
 	inputNickName = document.getElementById("m_name2").value;
 	inputEmail = document.getElementById("m_email").value;
 	//inputEmail2 = documnet.getElementById("m_email2").value;
-	
-	
+
 	let valcheck_pw = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/; //pw 정규식
 	//let valcheck_tel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/; //tel 정규식
 	
 	var checkname2_YESorNO = jf.checkname2_YESorNO.value; //nickname중복확인진행 유무(기본값은 NO)
 	var checkemail_YESorNO = jf.email_check_input_result.value; //email인증진행 유무(기본값은 NO)
 	var checkpassword_YESorNO = jf.checkpassword_YESorNO.value; //비밀번호확인 진행 유무
-	
-	
-	
-	
-	
-	
-	
+
 	if(!inputPw){
 		alert("비번입력하세요")
 		return false;

@@ -5,8 +5,8 @@
 <mapper namespace="micky.sports.shop.dao.Member">
 	<!-- 회원가입 -->
 	<insert id="join">
-		INSERT INTO MEMBER(M_ID,M_PW,M_NAME,M_TEL,M_NAME2,M_EMAIL,M_GRADE,M_AGE,M_GENDER,M_CASH,M_FILESRC,SHA,RSA)
-		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},#{param11},#{param12},#{param13})
+		INSERT INTO MEMBER(M_ID,M_PW,M_NAME,M_TEL,M_NAME2,M_EMAIL,M_GRADE,M_AGE,M_GENDER,M_CASH,M_FILESRC,SHA,RSA,M_DATE)
+		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},#{param11},#{param12},#{param13},SYSDATE)
 	</insert>
 	
 	<select id="getsharsa" resultType="micky.sports.shop.dto.MemberDto">
@@ -78,9 +78,14 @@
 	<!-- <select id="getqnalist" resultType="micky.sports.shop.dto.Qna_MemberDto">
 		SELECT * FROM QNA_MEMBER WHERE Q_MID=#{param1} ORDER BY Q_MGROUP DESC,Q_MSTEP ASC
 	</select>  -->
-	<select id="getqnalist" resultType="micky.sports.shop.dto.Qna_MemberDto">
+	<!-- <select id="getqnalist" resultType="micky.sports.shop.dto.Qna_MemberDto">
 		SELECT Q_MNO,Q_MTITLE,Q_MCONTENT,Q_MREPLY,Q_MID,Q_MYNN,Q_MDATE,Q_MGROUP,Q_MSTEP,Q_MINDENT FROM(
 		SELECT ROWNUM NUM,N.*FROM(SELECT * FROM QNA_MEMBER WHERE Q_MID=#{param1} ORDER BY Q_MNO DESC)N) 
+		WHERE NUM BETWEEN #{param2} AND #{param3}
+	</select> -->
+	<select id="getqnalist" resultType="micky.sports.shop.dto.Qna_MemberDto">
+		SELECT Q_MNO,Q_MTITLE,Q_MCONTENT,Q_MREPLY,Q_MID,Q_MYNN,Q_MDATE,Q_MGROUP,Q_MSTEP,Q_MINDENT FROM(
+		SELECT ROWNUM NUM,N.*FROM(SELECT * FROM QNA_MEMBER WHERE Q_MID=#{param1} ORDER BY Q_MGROUP DESC,Q_MSTEP ASC)N) 
 		WHERE NUM BETWEEN #{param2} AND #{param3}
 	</select>
 	
@@ -252,5 +257,16 @@
 	<select id="selectadminqnalistTotCount4" resultType="Integer">
 		SELECT COUNT(*) FROM
 		QNA_MEMBER WHERE Q_MYNN!='A'
+	</select>
+	
+	
+	<select id="getTotalMember" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	<select id="getMaleMember" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE M_GENDER='male'
+	</select>
+	<select id="getFemaleMember" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE M_GENDER='female'
 	</select>
 </mapper>

@@ -18,10 +18,22 @@ $(document).ready(function(){
 		window.location.href="../member/loginform"
 	}
 })
+function checkValue(){
+	var inputTitle = qwf.q_mtitle.value;
+	var inputContent = qwf.q_mcontent.value;
+	//alert(inputTitle)
+	if(inputTitle==0 || inputTitle==null){
+		alert("제목입력하세요")
+		return false;
+	}else if(inputContent==0 || inputContent==null){
+		alert("내용입력하세요")
+		return false;
+	}
+}
 </script>
 <h3>qnawriteform.jsp</h3>
 <h1>문의하기화면</h1>
-<form action="qnawrite">
+<form name="qwf" action="qnawrite" onsubmit="return checkValue()">
 <table>
 	<tr>
 		<td class = "left">제목</td>

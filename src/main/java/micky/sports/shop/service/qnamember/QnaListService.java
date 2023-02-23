@@ -35,8 +35,7 @@ public class QnaListService implements MickyServiceInter{
 		
 		Member dao = sqlSession.getMapper(Member.class);
 		
-		
-		
+	
 		String m_id = (String)session.getAttribute("loginid"); //로그인중인 아이디
 		
 		

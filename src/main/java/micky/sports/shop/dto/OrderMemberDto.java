@@ -22,7 +22,7 @@ public class OrderMemberDto {
 	private String om_cancle; //주문취소여부
 	private Date om_cdate; //주문취소일자
 	private String c_reason;//주문취소사유
-	
+	private String om_delcancle;//반품요청여부(N,Y)
 	private ProductDto productDto; //join  테이블
 	
 	public OrderMemberDto() {
@@ -32,7 +32,7 @@ public class OrderMemberDto {
 	//※ AdminDao의 OrderMemberDto dto = new OrderMemberDto와 순서가 동일해야 한다.
 	public OrderMemberDto(String om_cntnum, String om_num, String p_no,
 			 int u_cnt, String m_id, Date om_date, String om_pay, int p_price, 
-			String om_state, String om_cancle, Date om_cdate,String c_reason) {
+			String om_state, String om_cancle, Date om_cdate,String c_reason,String om_delcancle) {
 		
 		this.om_cntnum = om_cntnum;//상품주문번호
 		this.om_num = om_num;//주문번호
@@ -46,5 +46,6 @@ public class OrderMemberDto {
 		this.om_cancle = om_cancle;//주문취소여부
 		this.om_cdate = om_cdate;//주문취소일자
 		this.c_reason = c_reason;//주문취소사유
+		this.om_delcancle = om_delcancle;//반품요청여부(N,Y)
 	}
 }

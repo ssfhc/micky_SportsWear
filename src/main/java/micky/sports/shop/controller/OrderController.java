@@ -56,7 +56,7 @@ public class OrderController {
 		mickyServiceInter=new OrderDeliveryService(sqlSession,httpsession);
 		mickyServiceInter.execute(model);
 		
-		return "redirect:myOrderList";
+		return "/order/orderResult";
 	}
 	
 	//나의 주문 내역보기

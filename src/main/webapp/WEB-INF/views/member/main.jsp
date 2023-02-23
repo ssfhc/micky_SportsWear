@@ -56,6 +56,6 @@ if(loginid.equals("admintest")){ //로그인아이디가 admintest라면 관리�
 
 
 <hr />
-<a href="../product/productList">productlist</a>  <br />
+<a href="../product/productChart">productChart</a> <br />
 </body>
 </html>

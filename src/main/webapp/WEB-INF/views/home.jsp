@@ -2,15 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Titillium+Web&display=swap" rel="stylesheet">
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
-<h1 >
+<h1>
 	Hello world!  
 </h1>
 
@@ -26,5 +23,13 @@
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
 <a href="admin_product">admin_product</a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<a href="header">header</a>
+>>>>>>> seokjinhong4
+
+=======
+>>>>>>> c7751d12a5258bbe87dab57f5b92592630e5748b
 </body>
 </html>

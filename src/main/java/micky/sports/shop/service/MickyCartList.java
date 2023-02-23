@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -15,9 +16,12 @@ import micky.sports.shop.dto.CartDto;
 public class MickyCartList implements MickyServiceInter{
 
 	private SqlSession sqlSession;
+	private HttpSession session;
 	
-	public MickyCartList(SqlSession sqlsession) {
+	
+	public MickyCartList(SqlSession sqlsession, HttpSession session) {
 		this.sqlSession=sqlsession;
+		this.session=session;
 	}
 
 	@Override
@@ -25,22 +29,26 @@ public class MickyCartList implements MickyServiceInter{
 				
 		Map<String, Object> map= model.asMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		String p_no=request.getParameter("p_no");
 		
 		CartDao dao=sqlSession.getMapper(CartDao.class);
+		String c_no=request.getParameter("c_no");
+		String m_id=(String)session.getAttribute("loginid");
+		if (m_id==null) {
+			m_id="";
+		}
+		System.out.println("m_id : "+m_id);
+		System.out.println("c_no : "+c_no);
+		ArrayList<CartDto> list=dao.Cartlist(m_id);
 		
-		//p_no(상품번호)를 토대로 product table의 레코드를 가져와서 그 레코드의 파람값을 Cart table에 인서트
 		
-		ArrayList<CartDto> list=dao.Cartlist(p_no);
 		
 		System.out.println("Cartlist 서비스");
-		System.out.println(p_no);
 		int sum=0;
 		for (CartDto cartDto : list) {
-			System.out.println("가격  : "+cartDto.getProductDto().getP_price());
+//			System.out.println("가격  : "+cartDto.getProductDto().getP_price());
 			
 			sum +=cartDto.getProductDto().getP_price()*cartDto.getC_cnt();
-			System.out.println("총합 : "+sum);
+//			System.out.println("총합 : "+sum);
 			model.addAttribute("totalprice",sum);
 		}
 		model.addAttribute("list",list);	

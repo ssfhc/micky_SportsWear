@@ -12,6 +12,8 @@ public class CartDto {
 	private String p_no;//상품번호
 	private int c_cnt;//상품의 수량
 	private String c_send;//배송 유무 (배송준비,배송완료)
+
+	private int totalcnt;//c_cnt의 합계
 	
 	private ProductDto productDto; //쿼리로 join
 	public CartDto() {

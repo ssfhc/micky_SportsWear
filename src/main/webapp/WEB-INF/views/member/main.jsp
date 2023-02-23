@@ -69,6 +69,11 @@ if(loginid.equals("admintest")||loginid.equals("admintest2")){ //로그인아이
 
 
 <hr />
+<<<<<<< HEAD
 <a href="../product/productChart">productChart</a> <br />
+=======
+<a href="../product/productList">productlist</a>  <br />
+<a href="../Cart/Cartlist">cart</a>
+>>>>>>> seokjinhong4
 </body>
 </html>

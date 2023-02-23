@@ -19,6 +19,7 @@ function fnCalCount(type, ths){
     }else{
         if(tCount >0) $input.val(Number(tCount)-1);    
         }
+    
 }
 /* 옵션창 이동  */
 function changeoption(ths) {
@@ -37,6 +38,7 @@ function changeoption(ths) {
 ${list.size() } <br />
 <a href="alldeleteCart">전체삭제</a> 
 <form action="order" name="cart">
+<a href="../">홈으로</a>
 <div class="Cart_list">
 <table border="1" width="800">
 		  <tr>
@@ -57,14 +59,15 @@ ${list.size() } <br />
 		    	제품선택수량 : ${cart.c_cnt } <br />    	
 		    	제품재고 : ${cart.productDto.p_cnt } <br />    	
 		    	장바구니번호 : ${cart.c_no }				
+		    	카테고리 : ${cart.productDto.p_category }				
 		    </td>
 		    <td>
 		    	<!-- +,- update -->
-				<a href="plusCartcount?p_no=${cart.p_no }&c_no=${cart.c_no }">
+				<a href="plusCartcount?p_no=${cart.p_no }&c_no=${cart.c_no }" >
 					<button type ="button" onclick="fnCalCount('p',this);">+</button>
 				</a> 
        				<input type="text" name="pop_out" value="${cart.c_cnt }" readonly="readonly" style="text-align:center;" size=2/> 
-       			<a href="minusCartcount?p_no=${cart.p_no }&c_no=${cart.c_no }">
+       			<a href="minusCartcount?p_no=${cart.p_no }&c_no=${cart.c_no }" >
         			<button type="button" onclick="fnCalCount('m', this);">-</button> <br />
         		</a>
 		    	<!-- 사이즈, 색상 변경으로인해 제품번경 -->
@@ -97,7 +100,7 @@ ${list.size() } <br />
 					<em>배송비</em><em>0</em><span>원</span>
 				</li>
 				<li>
-					<em>상품 핳인금액</em><em>9,860</em><span>원</span>
+					<em>상품 핳인금액</em><em>0</em><span>원</span>
 				</li>
 				<li>
 					<em>주문 할인금액</em><em>0</em><span>원</span>

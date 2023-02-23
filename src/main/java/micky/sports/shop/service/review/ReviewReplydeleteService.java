@@ -9,21 +9,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
-import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class ReviewReplyviewService implements MickyServiceInter{
+public class ReviewReplydeleteService implements MickyServiceInter{
+
 	private SqlSession sqlSession;
 	private HttpSession httpSession;
 	
-	public ReviewReplyviewService(SqlSession sqlSession,HttpSession httpsession) {
+	public ReviewReplydeleteService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
 		this.httpSession = httpsession;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println(">>>ReviewReplyviewService");
+		System.out.println(">>>>ReviewReplydeleteService");
 		
 //		model에서 request를 풀어내는 방법
 		Map<String, Object> map=model.asMap(); //model을 Map으로 변환
@@ -35,12 +35,8 @@ public class ReviewReplyviewService implements MickyServiceInter{
 		
 		String r_no=request.getParameter("r_no");
 		
-		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
-		ReviewDto replyview=rdao.replyview(r_no);
-		
-		model.addAttribute("replyview",replyview);
-		
+		rdao.replydelete(r_no);
 	}
 
 }

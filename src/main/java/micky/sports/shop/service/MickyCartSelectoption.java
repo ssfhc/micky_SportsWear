@@ -33,7 +33,7 @@ public class MickyCartSelectoption implements MickyServiceInter{
 //		ArrayList<CartDto> list=dao.CartSelectOptionlist(c_no);
 		CartDto list=dao.CartSelectOptionlist(c_no);
 		
-		System.out.println("MickyCartSelectoption 서비스");
+//		System.out.println("MickyCartSelectoption 서비스");
 //		int sum=0;
 //		for (CartDto cartDto : list) {
 //			System.out.println("가격  : "+cartDto.getProductDto().getP_price());

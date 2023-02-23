@@ -14,10 +14,10 @@ import micky.sports.shop.service.MickyServiceInter;
 
 //관리자 주문관리 현황 리스트
 @Service
-public class AProductDeleteService implements MickyServiceInter{
+public class AProductUpdateService implements MickyServiceInter{
 	private SqlSession sqlSession;
 	
-	public AProductDeleteService(SqlSession sqlSession) {
+	public AProductUpdateService(SqlSession sqlSession) {
 		this.sqlSession=sqlSession;
 	}
 	
@@ -28,16 +28,18 @@ public class AProductDeleteService implements MickyServiceInter{
 		Map<String , Object> map=model.asMap();
 		HttpServletRequest request=
 				(HttpServletRequest)map.get("request");
-		// service단말고 AdminController2에서 사용해보기 (가져와지긴함)
-		List<String> checkBoxArr=(List<String>)map.get("checkBoxArr");
+		
 		Admin2 dao=sqlSession.getMapper(Admin2.class);
-		int delnum=0;
-		for (String str : checkBoxArr) {
-			System.out.println("삭제할 checkbox 서비스단 : "+str);
-			dao.Checkdelete(str);
-			delnum+=1;
-		}
-//		System.out.println("삭제값 :  : : :"+delnum);
-		model.addAttribute("delnum",delnum);
+		String p_name=request.getParameter("p_name");
+		String p_price=request.getParameter("p_price");
+		String p_cnt=request.getParameter("p_cnt");
+		String p_no=request.getParameter("p_no");
+		System.out.println("나올까?   :"+p_name);
+		System.out.println("나올까?   :"+p_price);
+		System.out.println("나올까?   :"+p_cnt);
+		System.out.println("나올까?   :"+p_no);
+		
+		dao.aProductUpdate(p_name,p_price,p_cnt,p_no);
+		
 	}
 }

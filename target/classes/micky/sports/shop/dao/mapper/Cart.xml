@@ -3,24 +3,6 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="micky.sports.shop.dao.CartDao">
-	
-<!-- 	<resultMap type="micky.sports.shop.dto.ProductDto" id="ProductDto"> -->
-<!-- 		<id column="p_no" property="p_no"/> -->
-<!-- 		<result column="p_name" property="p_name"/> -->
-<!-- 		<result column="p_price" property="p_price"/> -->
-<!-- 		<result column="p_cnt" property="p_cnt"/> -->
-<!-- 		<result column="p_color" property="p_color"/> -->
-<!-- 		<result column="p_size" property="p_size"/> -->
-<!-- 		<result column="p_filesrc" property="p_filesrc"/> -->
-		
-<!-- 	</resultMap> -->
-	
-<!-- 	<resultMap type="micky.sports.shop.dto.CartDto" id="CartDto"> -->
-<!-- 		<result column="c_no" property="c_no"/> -->
-<!-- 		<result column="m_id" property="m_id"/> -->
-<!-- 		<result column="p_no" property="p_no"/> -->
-<!-- 		<result column="c_cnt" property="c_cnt"/> -->
-<!-- 	</resultMap> -->
 	<!-- 메인단 -->
 	<select id="Productlist" resultType="micky.sports.shop.dto.ProductDto" >
 		SELECT * FROM PRODUCT
@@ -29,9 +11,27 @@
 	<select id="Detaillist" resultType="micky.sports.shop.dto.ProductDto">
 		SELECT * FROM PRODUCT WHERE P_NO=#{param1}
 	</select>
+	<!-- cart중복검사 -->
+	<select id="checkCartlist" resultType="Integer">
+		SELECT COUNT(*) FROM CART WHERE M_ID=#{param1} AND P_NO=#{param2}
+	</select>
+	<!-- cartoption중복검사 -->
+	<select id="checkCartlist2" resultType="Integer">
+		SELECT
+		    COUNT(*)
+		FROM
+		    CART C
+		LEFT JOIN
+		    PRODUCT P
+		ON
+		    C.P_NO = P.P_NO
+		WHERE
+		    C.M_ID=#{param1} AND P.P_SIZE=#{param2} AND P.P_COLOR=#{param3} AND P.P_CATEGORY=#{param4} 
+		    AND C.C_NO NOT IN #{param5} AND P.P_NAME=#{param6}
+	</select>
 	<!-- 장바구니 추가 -->
 	<insert id="insertCart" >
-		INSERT INTO CART VALUES((SELECT MAX(C_NO) FROM CART)+1,'BLUE',#{param1},'1')		
+		INSERT INTO CART VALUES((SELECT MAX(C_NO) FROM CART)+1,#{param1},#{param2},#{param3})		
 	</insert>
 	
 	<resultMap type="micky.sports.shop.dto.ProductDto" id="ProductDto" >	
@@ -42,6 +42,8 @@
 		<result column="p_color" property="p_color"/>
 		<result column="p_size" property="p_size"/>
 		<result column="p_filesrc" property="p_filesrc"/>
+		<result column="p_category" property="p_category"/>
+		<result column="p_info" property="p_info"/>
 	</resultMap>
 	
 	<resultMap type="micky.sports.shop.dto.CartDto" id="CartDto">
@@ -49,13 +51,14 @@
 		<result column="m_id" property="m_id"/>
 		<result column="p_no" property="p_no"/>
 		<result column="c_cnt" property="c_cnt"/>
+		<result column="totalcnt" property="totalcnt"/>
 		<collection property="productDto" resultMap="ProductDto"></collection>
 	</resultMap>
 	
 	<!-- 장바구니 리스트 -->
 	<select id="Cartlist" parameterType="micky.sports.shop.dto.CartDto" resultMap="CartDto">
 		SELECT
-		    P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID, C.C_NO
+		    P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID, C.C_NO, P.P_CATEGORY
 		FROM
 		    CART C
 		LEFT JOIN
@@ -75,7 +78,7 @@
 	<delete id="AllDeletelist">
 		DELETE CART WHERE M_ID=#{param1}
 	</delete>
-	<!-- 구매상품 수량증가 -->
+	<!-- 장바구니 수량증가 -->
 	<update id="plusCartcount">
 		UPDATE
 			CART C
@@ -84,7 +87,7 @@
 		WHERE 
 			C.C_NO=#{param1} AND (SELECT P_CNT FROM PRODUCT WHERE P_NO=#{param2})> C.C_CNT
 	</update>
-	<!-- 구매상품 수량감소 -->
+	<!-- 장바구니 수량감소 -->
 	<update id="minusCartcount">
 		UPDATE
 			CART C
@@ -93,10 +96,10 @@
 		WHERE 
 			C.C_NO=#{param1} AND C.C_CNT > 1
 	</update>
-	
+	<!-- 장바구니 옵션변경화면 -->
 	<select id="CartSelectOptionlist" parameterType="micky.sports.shop.dto.CartDto" resultMap="CartDto" >
 		SELECT
-   		 	P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID, C.C_NO
+   		 	P.P_NO, P.P_NAME, P.P_PRICE, P.P_CNT, P.P_COLOR, P.P_SIZE, P.P_FILESRC, C.C_CNT, C.M_ID, C.C_NO, P.P_CATEGORY
 		FROM
 		    CART C
 		LEFT JOIN
@@ -106,7 +109,7 @@
 		WHERE
 		    C.C_NO=#{param1}
 	</select>
-	
+	<!-- 중복검사하여 중복되지 않으면 변경 -->
 	<update id="CartOptionModify">
 		UPDATE 
 		    CART 
@@ -115,4 +118,16 @@
 		WHERE 
 		    C_NO=#{param4}
 	</update>
+	<select id="cartChartList" parameterType="micky.sports.shop.dto.CartDto" resultMap="CartDto" >
+		SELECT 
+			P_NAME,SUM(C.C_CNT) AS TOTALCNT 
+		FROM 
+			CART C,PRODUCT P 
+		WHERE 
+			C.P_NO=P.P_NO 
+		GROUP BY 
+			P.P_NAME 
+		ORDER BY 
+			P.P_NAME
+	</select>
 </mapper>

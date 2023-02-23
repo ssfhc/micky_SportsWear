@@ -3,6 +3,7 @@ package micky.sports.shop.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class CartController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	private HttpSession session;
 	
 	@RequestMapping("/before")
 	public String before(HttpServletRequest request, Model model) {
@@ -58,12 +61,13 @@ public class CartController {
 	@RequestMapping("/insertCart")
 	public String insertCart(HttpServletRequest request,Model model) {
 		System.out.println("insertCart");
-		String p_no=request.getParameter("p_no");
+		String[] p_no=request.getParameterValues("choice_pno");
 		model.addAttribute("request",request);
 		
-		mickyServiceInter=new MickyCartinsertservice(sqlSession);
+		mickyServiceInter=new MickyCartinsertservice(sqlSession,session);
 		mickyServiceInter.execute(model);
-		return "redirect:/Cart/detaillist?p_no="+p_no;
+//		위치변경필
+		return "product/productDetail";
 	}
 	//장바구니 리스트
 	@RequestMapping("/Cartlist")
@@ -71,19 +75,9 @@ public class CartController {
 		//장바구니 화면 구성 
 		model.addAttribute("request",request);
 		
-		mickyServiceInter=new MickyCartList(sqlSession);
+		mickyServiceInter=new MickyCartList(sqlSession,session);
 		mickyServiceInter.execute(model);
 		return "Cart/Cartlist";
-	}
-	//장바구니 리스트샘플
-	@RequestMapping("/Cartlist2")
-	public String Cart2(HttpServletRequest request,Model model) {
-		//장바구니 화면 구성 
-		model.addAttribute("request",request);
-		
-		mickyServiceInter=new MickyCartList(sqlSession);
-		mickyServiceInter.execute(model);
-		return "Cart/Cartlist2";
 	}
 	//장바구니 상품삭제
 	@RequestMapping("/deleteCart")
@@ -104,7 +98,7 @@ public class CartController {
 			String p_no=request.getParameter("p_no");
 			model.addAttribute("request",request);
 			
-			mickyServiceInter=new MickyCartAllDelete(sqlSession);
+			mickyServiceInter=new MickyCartAllDelete(sqlSession,session);
 			mickyServiceInter.execute(model);
 			
 			return "redirect:/Cart/Cartlist?p_no="+p_no;
@@ -139,7 +133,7 @@ public class CartController {
 		//장바구니 화면 구성 
 		String c_no=request.getParameter("c_no");
 		model.addAttribute("request",request);
-		System.out.println("장바구니 넘버확인 : "+c_no);
+//		System.out.println("장바구니 넘버확인 : "+c_no);
 		
 		mickyServiceInter=new MickyCartSelectoption(sqlSession);
 		mickyServiceInter.execute(model);
@@ -153,14 +147,13 @@ public class CartController {
 	public int modifycartoption(HttpServletRequest request,Model model) {
 		
 		System.out.println("modifycartoption컨트롤러");	
-		String p_no=request.getParameter("p_no");
 		model.addAttribute("request",request);
-		mickyServiceInter=new MickyModifyCartOption(sqlSession);
+		mickyServiceInter=new MickyModifyCartOption(sqlSession,session);
 		mickyServiceInter.execute(model);
 		
 		Map<String, Object> map= model.asMap();
-		int num=(Integer)map.get("num");
-		System.out.println("자자자자자자자자자넘버 : "+num);
-		return num;
+		int count=(Integer)map.get("count");
+		System.out.println("자자자자자자자자자넘버 : "+count);
+		return count;
 	}
 }

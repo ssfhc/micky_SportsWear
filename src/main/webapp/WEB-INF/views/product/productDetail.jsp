@@ -72,9 +72,15 @@
  			 name="choice_pno" value="pno" -->
 	</div>
 	<input type="submit" id="order_form" value="바로구매" />
+	<input type="button" value="장바구니추가" onclick="return addcart(this.form)"/>
 </form>
 
 <script>
+	function addcart(frm) {
+		frm.action='../Cart/insertCart';
+		frm.submit();
+		return true;
+	}
 	function Count(type,pno,totcnt) { /* ths [object HTMLButtonElement] */
 		/* alert(type+"***"+pno+"***"+totcnt); */
 		var cnt=".cnt_"+pno;

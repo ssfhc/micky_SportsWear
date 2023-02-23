@@ -5,30 +5,37 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.support.ReplaceOverride;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
-import micky.sports.shop.vopage.SearchVO;
 
 public class ReviewService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
+	private HttpSession httpSession;
 	
-	public ReviewService(SqlSession sqlSession) {
+	public ReviewService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
+		this.httpSession = httpsession;
 	}
 	
 	@Override
 	public void execute(Model model) {
 		System.out.println(">>>>ReviewService");
-		
+	
 		Map<String, Object> map=model.asMap();
 		HttpServletRequest request=
 				(HttpServletRequest) map.get("request");
+		
+		httpSession = request.getSession();
+		String loginId = (String)httpSession.getAttribute("loginid");
+		
 		
 		ServletContext application=request.getSession().getServletContext();
 		String p_name=(String)application.getAttribute("pname");
@@ -58,11 +65,12 @@ public class ReviewService implements MickyServiceInter{
 
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
 		
-//		총게시글
-		int totalCount=rdao.totalCount();
-//		int replyTotalCount=rdao.replyTotalCount(r_no);
-//		System.out.println(totalCount);
-		
+//		총게시글 수
+		int totalCount=0;
+		totalCount=rdao.totalCount(p_name);
+//		별점평균
+		double avgStarscore=0;
+		avgStarscore=rdao.avgStarscore(p_name);
 
 		ArrayList<ReviewDto> review_list=rdao.reviewboard(selectType,searchKeyword,p_name);
 		
@@ -71,8 +79,8 @@ public class ReviewService implements MickyServiceInter{
 		model.addAttribute("resk",searchKeyword);
 //		총게시글
 		model.addAttribute("totalCount", totalCount);
-//		게시글에 달린 답글 수
-//		model.addAttribute("replyTotalCount", replyTotalCount);
+//		별점평균
+		model.addAttribute("avgStarscore", avgStarscore);
 	}
-
+	
 }

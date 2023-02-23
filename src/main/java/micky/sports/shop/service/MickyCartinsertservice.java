@@ -31,12 +31,12 @@ public class MickyCartinsertservice implements MickyServiceInter{
 		Map<String, Object> map= model.asMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 //		String[] p_no=request.getParameterValues("choice_pno");
-		String[] p_no=request.getParameterValues("choice_pno");
-		String[] c_cnt=request.getParameterValues("choice_cnt");
+		String[] p_no=request.getParameterValues("p_no");
+		String[] c_cnt=request.getParameterValues("c_cnt");
 //		String[] p_cnt=request.getParameterValues("choice_cnt");
 		
-		System.out.println("p_no : "+p_no);
-		System.out.println("p_cnt : "+c_cnt);
+		System.out.println("p_no : "+p_no[0]);
+		System.out.println("p_cnt : "+c_cnt[0]);
 		CartDao dao=sqlSession.getMapper(CartDao.class);
 		String m_id=(String)session.getAttribute("loginid");
 		if (m_id==null) {

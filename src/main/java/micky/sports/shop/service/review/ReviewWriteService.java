@@ -12,20 +12,21 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import micky.sports.shop.dao.ReviewDao;
-import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
 public class ReviewWriteService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
+	private HttpSession httpsession;
 	
-	public ReviewWriteService(SqlSession sqlSession) {
+	public ReviewWriteService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
+		this.httpsession = httpsession;
 	}
 	
 	@Override
 	public void execute(Model model) {
-System.out.println(">>>>ReviewWriteService");
+		System.out.println(">>>>ReviewWriteService");
 		
 //		model에서 request를 풀어내는 방법
 		Map<String, Object> map=model.asMap(); //model을 Map으로 변환
@@ -33,6 +34,8 @@ System.out.println(">>>>ReviewWriteService");
 				(HttpServletRequest) map.get("request");
 		
 
+		httpsession = request.getSession();
+		String loginId = (String)httpsession.getAttribute("loginid");
 		
 		
 //		reviewupload code=================
@@ -40,9 +43,9 @@ System.out.println(">>>>ReviewWriteService");
 		String uploadPath=request.getSession().getServletContext().getRealPath("/");
 		
 //		학원에서 작업
-		String path="C:\\2022spring\\springwork1\\micky_SportsWear_review\\src\\main\\webapp\\resources\\reviewupload";
+		String path="C:\\2022spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\reviewupload";
 //		노트북에서 작업
-//		String path="C:\\2023spring\\springwork1\\micky_SportsWear_review\\src\\main\\webapp\\resources\\reviewupload";
+//		String path="C:\\2023spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\reviewupload";
 		
 		MultipartRequest req=null;
 		try {
@@ -52,7 +55,12 @@ System.out.println(">>>>ReviewWriteService");
 			e.printStackTrace();
 		}
 		
-		String m_id=req.getParameter("m_id");
+		String om_cntnum=req.getParameter("om_cntnum");
+		String p_no=req.getParameter("p_no");
+		String om_state=req.getParameter("om_state");
+		System.out.println("om_cntnum : "+om_cntnum);
+		System.out.println("p_no : "+p_no);
+		System.out.println("om_state : "+om_state);
 		
 		String r_title=req.getParameter("r_title");
 		String r_content=req.getParameter("r_content");
@@ -68,7 +76,7 @@ System.out.println(">>>>ReviewWriteService");
 		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
 		
-		rdao.write(m_id,r_title,r_content,r_filesrc,r_score);
+		rdao.write(loginId,r_title,r_content,r_filesrc,r_score,p_no,om_cntnum);
 	}
 
 }

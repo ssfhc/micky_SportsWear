@@ -17,12 +17,15 @@
 
 
 
-<a href="product/productList">productList</a>
+<a href="product/productChart">productChart</a>
 <a href="review/reviewBoard">review</a>
 <a href="Cart/before">Cart</a>
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
 <a href="admin_product">admin_product</a>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7751d12a5258bbe87dab57f5b92592630e5748b
 </body>
 </html>

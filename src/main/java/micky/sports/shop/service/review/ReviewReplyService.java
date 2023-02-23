@@ -3,19 +3,21 @@ package micky.sports.shop.service.review;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
-import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
 public class ReviewReplyService implements MickyServiceInter{
 	private SqlSession sqlSession;
-
-	public ReviewReplyService(SqlSession sqlSession) {
+	private HttpSession httpSession;
+	
+	public ReviewReplyService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
+		this.httpSession = httpsession;
 	}
 	
 	@Override
@@ -28,13 +30,15 @@ public class ReviewReplyService implements MickyServiceInter{
 		HttpServletRequest request=
 				(HttpServletRequest) map.get("request");
 		
+		httpSession = request.getSession();
+		String loginId = (String)httpSession.getAttribute("loginid");
+		
 		String r_no=request.getParameter("r_no");
 		String r_id=request.getParameter("r_id");
 		String r_retitle=request.getParameter("r_retitle");
 		String r_recontent=request.getParameter("r_recontent");
-		
+				
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
-//		int replyTotalCount=rdao.replyTotalCount(r_no);
 		
 		rdao.replyUpdate(r_no,r_id,r_retitle,r_recontent);
 	}

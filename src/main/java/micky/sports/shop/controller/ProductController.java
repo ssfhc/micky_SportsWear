@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.product.ProductChartService;
 import micky.sports.shop.service.product.ProductDetailService;
 import micky.sports.shop.service.product.ProductListService;
 
@@ -45,6 +46,18 @@ public class ProductController {
 		mickyServiceInter.execute(model);
 		
 		return "/product/productDetail";
+	}
+	//상품목록차트
+	@RequestMapping("/productChart")
+	public String productChart(HttpServletRequest request, Model model) {
+		System.out.println("========productChart=======");
+
+		model.addAttribute("request",request);
+		
+		mickyServiceInter=new ProductChartService(sqlSession,httpsession);
+		mickyServiceInter.execute(model);
+		
+		return "/product/productChart";
 	}
 	
 

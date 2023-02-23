@@ -84,7 +84,7 @@
 							<button type="button" onclick="myOrder_btn('myOrderConfirm','${mlist.om_cntnum}')">구매확정</button>
 						</c:when>
 						<c:when test="${mlist.om_state eq '구매확정'}">
-							<button type="button" onclick="location.href='../review/reviewMylistview?account=${sessionScope.loginid}'">리뷰쓰기</button>
+							<button type="button" onclick="location.href='../review/reviewMylistview'">리뷰쓰기</button>
 						</c:when>
 						<c:when test="${mlist.om_state eq '반품완료'}">
 							<p>감사합니다.</p>

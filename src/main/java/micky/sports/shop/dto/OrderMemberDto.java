@@ -22,12 +22,8 @@ public class OrderMemberDto {
 	private String om_cancle; //주문취소여부
 	private Date om_cdate; //주문취소일자
 	private String c_reason;//주문취소사유
-<<<<<<< HEAD
 	private String om_delcancle;//반품요청여부(N,Y)
-=======
-	private String om_delcancle;//반품
-	
->>>>>>> choimyunghwa4444
+
 	private ProductDto productDto; //join  테이블
 	private MemberDto memberDto; //join
 	private ReviewDto reviewDto; //join

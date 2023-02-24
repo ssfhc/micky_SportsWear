@@ -9,55 +9,36 @@
 <title>Insert title here</title>
 <!-- css 링크 -->
 <link rel="stylesheet" href="resources/css/admin_oliststyle.css" />
- <style>
- .page{
-	 text-decoration: none;
-	 color: black;
- }
- .page:hover{
- 	color: gray;
-    font-weight: bold;
- }
- .om_cntnum{
-	 color: black;
-	 text-decoration: none;
- }
- .om_cntnum:hover{
- 	color: gray;
- 	font-weight: bold;
-
- }
- </style>
+<style>
+</style>
 
 <!-- header section -->
- <%@include file="admin_header.jsp" %> 
+<%@include file="admin_header.jsp" %>
+
 </head>
 
 <body>
+
 <%-- <aside>
 <%@include file="admin_sidebar.jsp" %>
 </aside> --%>
-<div style="margin-top: 100px; margin-bottom: 500px">
+
+<!-- <div class="jumbotron text-center">
+	<h1 class="line-h1" align="center">주문관리 현황 리스트</h1>
+</div> -->
 <h1 class="line-h1" align="center">주문관리 현황 리스트</h1>
-</div> 
-
-
-
-
-
 
 <!-- 주문취소 목록 검색 기능 : 시작날짜~종료날짜+취소요청Y 기준 -->
-<div style="">
 <form action="search_olist" method="post">
-	<div class="container1" align="center">
+	<div class="search1" align="center">
 		<label>
 			검색시작일 : 
 			<input type="date" name="som_cdate" required pattern="\d{4}-\d{2}-\d{2}" value="som_cdate" />
 		</label>
-		<label>&nbsp;
+		<label>&nbsp;&nbsp;
 			검색종료일 : 
  		<input type="date" name="eom_cdate" required pattern="\d{4}-\d{2}-\d{2}" value="eom_cdate" />
-		</label>&nbsp;&nbsp;
+		</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	        <label>주문취소요청여부</label>
 	    	<input type="text" name="om_cancle" value="${resk }" placeholder="검색어를 입력해주세요"/> 
 		    <input type="submit" value="조회"/>		
@@ -80,12 +61,12 @@
 			<th class="th1" width="6%">처리상태</th>
 			<th class="th1" width="8%">주문취소요청여부</th>
 			<th class="th1" width="8%">주문취소일자</th>
-<!-- 		<th class="th1" width="8%">배송일자</th> -->
+<!-- 			<th class="th1" width="8%">배송일자</th> -->
 			<th class="th1" width="7%">반품요청여부</th>
 		</tr>
 		
 		<c:forEach items="${olist }" var="dto">
-		<tr style="text-align: center;" height=" 50px;">
+		<tr style="text-align: center;" height="50px;">
 <!-- 상품주문번호 -->       <td><a href="admin_contentview?om_cntnum=${dto.om_cntnum}" class="om_cntnum">
 									${dto.om_cntnum }</a></td> 
 <!-- 주문번호 -->		    <td>${dto.om_num }</td>
@@ -130,12 +111,11 @@
 		<a href="admin_olist?page=${searchVo.totPage }" class="page">[마지막]</a>
 	</c:if>
 	</div>
-</div> <!-- 검색+표 -->
 	<br /><br /><br /><br />
 
 <!-- footer section -->
 <footer>
-<%-- <%@ include file="admin_footer.jsp"%> --%>
+<%@ include file="admin_footer.jsp"%>
 </footer>
 </body>
 </html>

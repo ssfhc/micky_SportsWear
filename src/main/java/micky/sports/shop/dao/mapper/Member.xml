@@ -270,5 +270,38 @@
 		SELECT COUNT(*) FROM MEMBER WHERE M_GENDER='female'
 	</select>
 	
+	<select id="getmemberchart1" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[WHERE 10<=M_AGE AND M_AGE<20]]>
+	</select>
+	<select id="getmemberchart2" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 20<=m_age and m_age<30]]>
+	</select>
+	<select id="getmemberchart3" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 30<=m_age and m_age<40]]>
+	</select>
+	<select id="getmemberchart4" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 40<=m_age and m_age<50]]>
+	</select>
+	<select id="getmemberchart5" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 50<=m_age and m_age<60]]>
+	</select>
+	<select id="getmemberchart6" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 60<=m_age and m_age<70]]>
+	</select>
+	<select id="getmemberchart7" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 70<=m_age and m_age<80]]>
+	</select>
+	<select id="getmemberchart8" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<![CDATA[where 80<=m_age and m_age<90]]>
+	</select>
+	
 
 </mapper>

@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Micky Sports Wear</title>
+<!-- css 링크 -->
+<link rel="stylesheet" href="resources/css/admin_header.css" />
+<!-- 폰트 링크 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 <!-- 반응형 setting -->
@@ -13,101 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-header{
-background-color: #CCCCCC;
-height: 200px;
-position: fixed; width: 100%
-}
-.top_ul{
-list-style-type: none;
-font-family: 'Noto Sans KR', sans-serif;
-float: right; 			/* top메뉴 우측정렬 */
-margin: 30px 30px 5px 0px;  /* [위] [오른쪽] [아래] [왼쪽] */
-border: 1px solid black;
-}
-.top_ul li {
-	display: inline; 	/* ※float Χ */
-	font-size: 15px;
-	border-left: 1px solid black;
-	padding: 0px 10px 0px 10px; 
-	margin: 10px 0px 5px 0px; /* [위] [오른쪽] [아래] [왼쪽] */
-}
-.top_ul li:first-child{
- border-left: none; 	/* home 영역 좌측 테두리만 제거 */
-}
-.top_ul li a{
-	text-decoration: none;
-	color: black;
-}
-.top_ul li a:hover{
-	text-decoration: underline;
-	color: black; font-weight: bold;
-}
-.main_ul{
-	list-style-type: none;
-	font-family: 'Noto Sans KR', sans-serif;
-	float: right;
-	margin: 0px 100px 5px 0px; /* [위] [오른쪽] [아래] [왼쪽] */
-	border: 1px black solid;
-}
-.main_ul li{
-	display: inline;
-	font-size: 20px;
-	padding: 0px 60px 0px 60px; 
-}
-.main_ul li a{
-	text-decoration: none;
-	color: black;
-}
-.main_ul li:hover{
-	text-decoration: underline;
-	background-color: white;
-	color: black; font-weight: bold;
-}
-
-
-/* h1+logo */
-.header-wrap1{
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-	padding: 10px 90px 10px 80px;  /* [위] [오른쪽] [아래] [왼쪽] */
-	border: 1px solid black;
-}
-
-.header-h1{
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 50px;
-	text-align: center;	
-	border: 1px solid black;
-	margin-right: 500px;
-	padding: 1px 0px 0px 5px;
-	
-}
-
-.head-logo{
-	border: 1px solid black;
-	margin-bottom: 10px;
-}
-
-/* icon */
-.home{
-width: 20px;
-height: 15px;
-
-}
-.logout{
-width: 20px;
-height: 15px;
-
-}
-.my{
-width: 20px;
-height: 18px;
-
-}
 </style>
-
 </head>
 
 <body>

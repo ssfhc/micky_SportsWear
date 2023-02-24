@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.support.ReplaceOverride;
 import org.springframework.ui.Model;
 
+import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
@@ -81,6 +82,12 @@ public class ReviewService implements MickyServiceInter{
 		model.addAttribute("totalCount", totalCount);
 //		별점평균
 		model.addAttribute("avgStarscore", avgStarscore);
+		
+		
+		//중간상품디테일
+		ProductDao Pdao=sqlSession.getMapper(ProductDao.class);
+		model.addAttribute("productMain",Pdao.productMain(p_name));
+		model.addAttribute("product",Pdao.product(p_name,p_filesrc));
 	}
 	
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.product.ProductChartService;
-import micky.sports.shop.service.product.ProductDetailService;
+import micky.sports.shop.service.product.ProductDetail_ReviewService;
 import micky.sports.shop.service.product.ProductListService;
 
 @Controller
@@ -42,7 +42,7 @@ public class ProductController {
 		System.out.println("========product=======");
 		
 		model.addAttribute("request",request);
-		mickyServiceInter=new ProductDetailService(sqlSession,httpsession);
+		mickyServiceInter=new ProductDetail_ReviewService(sqlSession,httpsession);
 		mickyServiceInter.execute(model);
 		
 		return "/product/productDetail";

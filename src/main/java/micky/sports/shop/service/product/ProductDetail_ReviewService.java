@@ -15,11 +15,11 @@ import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class ProductDetailService implements MickyServiceInter{
+public class ProductDetail_ReviewService implements MickyServiceInter{
 	private SqlSession sqlSession;
 	private HttpSession httpsession;
 	
-	public ProductDetailService(SqlSession sqlSession,HttpSession httpsession) {
+	public ProductDetail_ReviewService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
 		this.httpsession = httpsession;
 	}

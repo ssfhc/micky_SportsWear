@@ -37,9 +37,14 @@
 <%-- <aside>
 <%@include file="admin_sidebar.jsp" %>
 </aside> --%>
-<div style="margin-top: -100px; margin-bottom: -500px">
+<div style="margin-top: 100px; margin-bottom: 500px">
 <h1 class="line-h1" align="center">주문관리 현황 리스트</h1>
 </div> 
+
+
+
+
+
 
 <!-- 주문취소 목록 검색 기능 : 시작날짜~종료날짜+취소요청Y 기준 -->
 <div style="">

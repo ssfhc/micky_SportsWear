@@ -75,7 +75,7 @@
 			<th class="th1" width="6%">처리상태</th>
 			<th class="th1" width="8%">주문취소요청여부</th>
 			<th class="th1" width="8%">주문취소일자</th>
-<!-- 		<th class="th1" width="8%">배송일자</th> -->
+<!-- 			<th class="th1" width="8%">배송일자</th> -->
 			<th class="th1" width="7%">반품요청여부</th>
 		</tr>
 		

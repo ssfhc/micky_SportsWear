@@ -32,7 +32,7 @@ public class MickyCartinsertservice implements MickyServiceInter{
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 //		String[] p_no=request.getParameterValues("choice_pno");
 		String[] p_no=request.getParameterValues("p_no");
-		String[] c_cnt=request.getParameterValues("c_cnt");
+		String[] c_cnt=request.getParameterValues("u_cnt");
 //		String[] p_cnt=request.getParameterValues("choice_cnt");
 		
 		System.out.println("p_no : "+p_no[0]);

@@ -106,5 +106,14 @@ public interface Member {
 	public int getMaleMember();
 	public int getFemaleMember();
 	
+	public int getmemberchart1();
+	public int getmemberchart2();
+	public int getmemberchart3();
+	public int getmemberchart4();
+	public int getmemberchart5();
+	public int getmemberchart6();
+	public int getmemberchart7();
+	public int getmemberchart8();
+	
 
 }

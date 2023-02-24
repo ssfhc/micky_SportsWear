@@ -23,13 +23,13 @@
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
 <a href="admin_product">admin_product</a>
-<<<<<<< HEAD
 
 
 
-=======
+
+
 <a href="header">header</a>
 
->>>>>>> eda3e49a63c372496b8f08e24be57b5b394442a4
+
 </body>
 </html>

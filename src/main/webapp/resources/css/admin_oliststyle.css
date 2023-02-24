@@ -1,9 +1,9 @@
 @charset "UTF-8";
   h1.line-h1{
- 	margin-top: -30; 
+ 	margin-top: 78px; 
 	margin-right: 50px; 
-	padding: 500px;
- } 
+	padding: 100px;
+ }  
  table{
 	width: 1500px;
 	text-align: center;

@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 <script src="../resources/js/jquery.bpopup.min.js"></script>
-<link rel="stylesheet" href="../resources/css/pdetailstyle.css" />
+<link rel="stylesheet" href="../resources/css/pdetailstyle.css?after" />
 </head>
 <body>
 <c:if test="${empty sessionScope.loginid }">
@@ -29,6 +29,7 @@
  </c:if>
 
 <h3>상품</h3>
+
 <div class="pdt">
 	<c:forEach items="${product}" var="p" varStatus="status" begin="0" end="0">
 	<div class="main-img">
@@ -49,13 +50,14 @@
 					<input type="hidden" name="pname" value="${pm.p_name}" />
 					<input type="hidden" name="pfilesrc" value="${pm.p_filesrc}" /> 
 				<!-- 상품사진을 누를때마다 새로운 값을 보내서 아랫단의 ${product } 값을 지정하게됨 -->
-					<a href="productDetail?pname=${pm.p_name}&pfilesrc=${pm.p_filesrc}">
+					<a href="../product/productDetail?pname=${pm.p_name}&pfilesrc=${pm.p_filesrc}">
 					<img src="../resources/img/productimg/${pm.p_filesrc}.jpg" width="150" class="product_img" alt="" />
 					</a>
 					<input type="hidden" name="pcolor" value="${pm.p_color}" />
 				</div>		
 			</c:forEach>
 		</div>
+		
 		<br /> <br />
 		<div class="productDetail">
 			<c:forEach items="${product}" var="p" begin="0" end="0">
@@ -82,6 +84,7 @@
 				</c:forEach>
 			</div>
 		</div>
+	
 	</div>
 
 
@@ -99,7 +102,7 @@
 	<input type="submit" id="order_form" value="바로구매" />
 	<input type="button" value="장바구니추가" onclick="return addcart(this.form)"/>
 </form>
-
+</div>
 <script>
 	function addcart(frm) {
 		frm.action='../Cart/insertCart';
@@ -108,13 +111,13 @@
 	}
 	function Count(type,pno,totcnt) { /* ths [object HTMLButtonElement] */
 		/* alert(type+"***"+pno+"***"+totcnt); */
-		var cnt=".cnt_"+pno;
+		var cnt="#cnt_"+pno;
 		var tCount = Number($(cnt).val());
 		if (type == 'plus') {
 			if (tCount < totcnt)
 				$(cnt).val(Number(tCount) + 1);
 		} else {
-			if (tCount > 0)
+			if (tCount >=2)
 				$(cnt).val(Number(tCount) - 1);
 		}
 	}
@@ -134,10 +137,10 @@
 /* 중복클릭 if else 처리 필요함 */
 	 	var elems= document.getElementsByName('choice');	 	
 	 	/* alert(elems.length); */
-	 	var html='<div name="choice" id="choice_'+pno+'">'+pcolor+'&nbsp;'+psize+'&nbsp;&nbsp;'
+	 	var html='<div class="choice" name="choice" id="choice_'+pno+'"><p>'+pcolor+'&nbsp;'+psize+'</p>&nbsp;&nbsp;'
 	 	+'<span>수량</span>'
 	 	+'<input type="hidden" class="cnttot" name="재고수량" value="'+totcnt+'" />'
-	    +'<input type="text" class="cnt_'+pno+'" name="u_cnt" value="1" size="1" readonly="readonly" style="text-align: center;" />'
+	    +'<input type="text" class="choice_pno" id="cnt_'+pno+'" name="u_cnt" value="1" size="1" readonly="readonly" style="text-align: center;" />'
 	 	+'<input type="hidden" name="p_no" id="choice_pno" value="'+pno+'" />'
 	    +'<button type="button" onclick="Count(\'minus\',\''+pno+'\','+totcnt+');">-</button>'
 	 	+'<button type="button" onclick="Count(\'plus\',\''+pno+'\','+totcnt+');">+</button>'
@@ -172,11 +175,7 @@ $('#order_form').click(function(){
 });
 </script>
 
-장바구니
 
-<br />
-<br />
-<a href="../review/reviewBoard">reviewBoard</a>
 <br />
 <c:set var="pname" value="${param.pname }" scope="application"/> <br />
 <c:set var="pfilesrc" value="${param.pfilesrc }" scope="application"/> <br />

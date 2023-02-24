@@ -11,7 +11,12 @@
 <body>
 <div class="container">
 	<div class="col-md-6">
-		<canvas id="myChart" width="400" height="400"></canvas>
+		<canvas id="myChart" width="300" height="300"></canvas>
+	</div>
+</div>
+<div class="container">
+	<div class="col-md-6">
+		<canvas id="myChart2" width="300" height="300"></canvas>
 	</div>
 </div>
 <script>
@@ -19,12 +24,12 @@
 	
 			const ctx = document.getElementById('myChart').getContext('2d');
 			const myChart = new Chart(ctx,{ //위에 가져온 차트 구조를 맞춰준다
-				type:'bar',
+				type:'pie',
 				data:{
-					labels:['총회원수','남성','여성','Green','Purple','Orange'],
+					labels:['남성','여성'],
 					datasets:[{
 						//label:'회원수',
-						data:['${totalMember}','${maleMember}','${femaleMember}'],
+						data:['${maleMember}','${femaleMember}'],
 						backgroundColor:[
 							 'rgba(255, 99, 132, 1.0)',
 				                'rgba(54, 162, 235, 0.2)',
@@ -47,6 +52,7 @@
 					}]
 				},
 				options:{
+					responsive: false,
 					scales:{
 						y:{
 							beginAtZero:true
@@ -56,8 +62,46 @@
 			}
 					
 			);
-			
-		
+			const ctx2 = document.getElementById('myChart2').getContext('2d');
+			const myChart2 = new Chart(ctx2,{ //위에 가져온 차트 구조를 맞춰준다
+				type:'pie',
+				data:{
+					labels:['10대','20대','30대','40대','50대'],
+					datasets:[{
+						//label:'회원수',
+						data:['${memberchart1}','${memberchart2}','${memberchart3}','${memberchart4}','${memberchart5}'],
+						backgroundColor:[
+							 'rgba(255, 99, 132, 1.0)',
+				                'rgba(54, 162, 235, 0.2)',
+				                'rgba(255, 206, 86, 0.2)',
+				                'rgba(75, 192, 192, 1.0)',
+				                'rgba(153, 102, 255, 0.2)',
+				                '#0000ff'
+
+						],
+						borderColor: [
+			                'rgba(255, 99, 132, 1)',
+			                'rgba(54, 162, 235, 1)',
+			                'rgba(255, 206, 86, 1)',
+			                'rgba(75, 192, 192, 1)',
+			                'rgba(153, 102, 255, 1)',
+			                'rgba(255, 159, 64, 1)'
+			            ],
+
+						borderWidth:3
+					}]
+				},
+				options:{
+					responsive: false,
+					scales:{
+						y:{
+							beginAtZero:true
+						}
+					}
+				}
+			}
+					
+			);
 </script>
 <h3>chartchart.jsp</h3>
 <h1>차트만들어보기</h1>

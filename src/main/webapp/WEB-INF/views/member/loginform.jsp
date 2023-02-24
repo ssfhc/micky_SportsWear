@@ -19,15 +19,11 @@ function check_id_pw(){
 	}else{
 		$.ajax({
 			type:'GET',
-<<<<<<< HEAD
+
 			url:'../member/login?loginform_input_id=' + loginform_input_id + '&loginform_input_pw=' + loginform_input_pw, //membercontroller의 login()으로 input_id,input_pw를 보냄
 			success:function(result){ //input_id,input_pw를 db에 select한 결과(int)
 				if(result==0){ //아이디나비밀번호가 틀릴때
-=======
-			url:'../member/login?loginform_input_id=' + loginform_input_id + '&loginform_input_pw=' + loginform_input_pw,
-			success:function(result){
-				if(result==0){
->>>>>>> seokjinhong4
+
 					alert("아이디비밀번호를확인하세요")
 				}else if(result==1){ //아이디비밀번호가 맞을때
 					alert("로그인성공")

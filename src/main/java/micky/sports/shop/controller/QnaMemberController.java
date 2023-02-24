@@ -496,7 +496,7 @@ public class QnaMemberController {
 		
 		
 		return "/qnamember/chartchart"; //return 한 값이 ajax success (data)로 간다
-	}			
+	}
 	/*
 	 * //비밀번호찾기화면
 	 * 

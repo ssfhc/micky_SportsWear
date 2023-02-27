@@ -36,11 +36,13 @@ button{
 	background-color: #FFF;
 	border: 1px solid #141414;
 	border-radius: 3px;
-	margin: 1px auto;
+	margin: 2px auto;
 	text-align: center;
 }
 .stateInfo{
-	padding: 2px;
+	padding: 1px;
+	margin: 2px auto;
+	text-align: center;
 }
 .logInOut-box,.page-more{
 	margin: 10px 20px 10px 700px;
@@ -112,7 +114,7 @@ button{
 							<button type="button" onclick="myOrder_btn('myOrderCancel','${mlist.om_cntnum}')">결제취소</button>
 						</c:when>
 						<c:when test="${mlist.om_state eq '주문확정' || mlist.om_state eq '배송중'}">
-							<button type="button" onclick="deliveryCheck('${mlist.om_cntnum}');">배송조회</button>
+							<button type="button" onclick="deliveryCheck('${mlist.om_state}');">배송조회</button>
 						</c:when>
 						<c:when test="${mlist.om_cancle eq 'Y'}">
 							<p>취소요청</p>
@@ -184,10 +186,16 @@ function myOrder_btn(type,omcntnum){
 }
 </script>
 <script>
-function deliveryCheck(omcntnum){
-	var win = window.open("", "Delivery", "width=500,height=600");
+function deliveryCheck(omstate){
+	var win = window.open("", "Delivery", "width=500,height=300");
+	var deliv;
+	if(omstate='주문확정'){
+		deliv='배송이 시작되었습니다.';
+	}else{
+		deliv='배송이 완료되었습니다.';
+	}
 	win.focus();
-	win.document.body.innerHTML = `<p>배송작업확인중</p>`;
+	win.document.body.innerHTML = `<p>`+deliv+`</p>`;
 }
 </script>
 

@@ -99,8 +99,10 @@
 		<!-- name="u_cnt"
  			 name="p_no" value="pno" -->
 	</div>
-	<input type="submit" id="order_form" value="바로구매" />
-	<input type="button" value="장바구니추가" onclick="return addcart(this.form)"/>
+	<div class="btns">
+		<input type="submit" id="order_form" value="바로구매" />
+		<input type="button" value="장바구니추가" onclick="return addcart(this.form)" id="cart-btn"/>
+	</div>
 </form>
 </div>
 <script>

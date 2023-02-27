@@ -12,8 +12,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
 </head>
 <body style="font-family: 'Noto Sans Korean'">
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
 <script>
 window.onload = function(){
 	var defaultemail = jf.defaultemail.value;
@@ -260,5 +265,6 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 		<a href="mypageform">마이페이지로</a> &nbsp;&nbsp;
 
 </form>
+</main><!-- 사이드 -->
 </body>
 </html>

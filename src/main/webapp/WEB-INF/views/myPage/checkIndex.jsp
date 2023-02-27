@@ -40,13 +40,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a href="../myPage/checkIndex" class="navbar-brand">MICKY</a>
+    <a href="../member/mypageform" class="navbar-brand">MICKY</a>
   </div>
 
   <nav class="sidebar">
     <div class="navbar-collapse" id="navbar-collapse">
       <div class="site-header hidden-xs">
-          <a class="site-brand" href="../myPage/checkIndex" title="">
+          <a class="site-brand" href="../member/mypageform" title="">
             <img class="img-responsive site-logo" alt="" src="../resources/img/myPage/mashup-logo.svg">
             MICKY SHOP
           </a>
@@ -74,7 +74,7 @@
       <ul class="nav">
         <li><a href="../order/myOrderList" title="">나의주문내역</a></li>
         <li><a href="../review/reviewMylistview" title="">나의리뷰보기</a></li>
-        <li><a href="../member/infoupdateform" title="">회원정보수정란</a></li>
+        <li><input type="button" value="내정보수정" onclick="window.open('../member/membercheckform','','width=500,height=500')" style="padding:0;border:0;outline:0;background: transparent;"/></li>
         <li><a href="#" title="">추가하기</a></li>
 
       </ul>

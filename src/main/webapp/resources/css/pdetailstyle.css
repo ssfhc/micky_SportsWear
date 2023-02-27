@@ -124,9 +124,25 @@ a {
 	border-radius: 3px;
 	margin: 0 1px;
 }
+.btns{
+	display: inline-block;
+	float: left;
+	width: 380px;
+	padding-top: 15px;
+	margin-left: 20px;
+}
 #order_form{
 	background: #141414;
 	color: #fff;
-	width: 200px;
-	margin: 20px 30px;
+	width: 170px;
+	height: 35px;
+	margin: 2px 3px;
+}
+#cart-btn{
+	background: #fff;
+	color: #141414;
+	width: 170px;
+	height: 35px;
+	margin: 2px 5px;
+	border: 1px solid #141414;
 }

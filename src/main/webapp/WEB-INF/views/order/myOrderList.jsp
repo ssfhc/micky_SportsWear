@@ -63,7 +63,7 @@ button{
 </c:if>
  <c:if test="${not empty sessionScope.loginid }">
 	 <div>
-	 	<p>회원님의 현재 보유 캐시 : ${myList.m_cash }</p>
+	 	<p>회원님의 현재 보유 캐시 : <fmt:formatNumber value="${myList.m_cash}" pattern="###,###"/>원</p>
 	 </div>
  </c:if>
 </div>
@@ -99,14 +99,14 @@ button{
 					<td>${mlist.om_num }</td>
 					<td><img src="../resources/img/productimg/${mlist.productDto.p_filesrc }.jpg" width="50" alt="상품사진" /></td>
 					<td>
-						${mlist.productDto.p_name } <br />
-						${mlist.productDto.p_color } <br />
-						${mlist.productDto.p_size }
+						${mlist.productDto.p_name} <br />
+						<div class="option">${mlist.productDto.p_color} / ${mlist.productDto.p_size}</div>
+						${mlist.u_cnt}개
 					</td>
 					<td>${mlist.u_cnt }</td>
-					<td>${mlist.p_price }</td>
-					<td>${mlist.om_state }</td>
-					<td>
+					<td><div class="right"><fmt:formatNumber value="${mlist.p_price}" pattern="###,###"/>원</div></td>
+					<td><div class="state">${mlist.om_state}</div></td>
+					<td class="stateInfo">
 					<c:choose>
 						<c:when test="${mlist.om_cancle eq 'N' && mlist.om_state eq '결제완료'}">
 							<button type="button" onclick="myOrder_btn('myOrderCancel','${mlist.om_cntnum}')">결제취소</button>
@@ -115,8 +115,7 @@ button{
 							<button type="button" onclick="deliveryCheck('${mlist.om_cntnum}');">배송조회</button>
 						</c:when>
 						<c:when test="${mlist.om_cancle eq 'Y'}">
-							취소요청 사유 <br />
-							${mlist.c_reason}
+							<p>취소요청</p>
 						</c:when>
 						<c:when test="${mlist.om_state eq '배송완료' && mlist.om_delcancle eq 'N'}">
 							<button type="button" onclick="myOrder_btn('myDelivCancel','${mlist.om_cntnum}')">반품요청</button> <br />

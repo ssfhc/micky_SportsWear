@@ -23,7 +23,7 @@
  ${sessionScope.loginid } 님, 로그인상태입니다 ദ്ദി*ˊᗜˋ*)
  	 <div>
 		<p class="go-myOrderList" style="color: #336666;">
-		<a href="../myPage/checkIndex">마이페이지로</a>
+		<a href="../member/mypageform">마이페이지로</a>
 		</p>
 	</div>
  </c:if>

@@ -18,7 +18,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&family=Noto+Sans+KR:wght@900&family=UnifrakturCook&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../resources/css/reviewstyle.css?after" />
+<link rel="stylesheet" href="../resources/css/footer.css" />
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 <script src="../resources/js/jquery.bpopup.min.js"></script>
 <script src="../resources/js/scriptjsp.js"></script>
@@ -34,13 +39,30 @@
 	
 	/* 리뷰작성 시 window.open 사용하여 새창 띄우기 */
 	function writeviewOpen(om_cntnum,p_no){
-		var url="reviewWriteview?om_cntnum="+om_cntnum+"&p_no="+p_no;
-		window.open(url,'writeviewOpen','width=400,heigth=500,location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no');
+		var openWidth=400;
+		var openheight=1000;
+		
+		var openWidthX=(window.screen.width/2)-(openWidth/2);
+		var openheightY=(window.screen.height/2)-(openheight/2);
+		
+		var url="../review/reviewWriteview?om_cntnum="+om_cntnum+"&p_no="+p_no;
+		window.open(url,'writeviewOpen','width=400,height=1000,location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no,left='+openWidthX+',top='+openheightY);
+	}
+
+	function modifyviewOpen(r_no){
+		var openWidth=400;
+		var openheight=1000;
+		
+		var openWidthX=(window.screen.width/2)-(openWidth/2);
+		var openheightY=(window.screen.height/2)-(openheight/2);
+		
+		var url="../review/reviewModifyview?r_no="+r_no;
+		window.open(url,'modifyview','width=400,height=1000,location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no,left='+openWidthX+',top='+openheightY);
 	}
 	
 </script>
 </head>
-<body>
+<body style="margin: 0px;">
 <h1>상품리뷰</h1>
 <div class="mileage_box">
 		<span>리뷰 작성 시 적립 가능한 최대 캐시</span><span class="mileage_span"><strong>${checkMileage }</strong> 캐시</span>
@@ -132,12 +154,12 @@
 					</div>
 					<div>
 						<!-- 수정, 삭제 -->
-						<button onclick="window.open('reviewModifyview?r_no=${mylist.r_no }','modifyview','width=400,heigth=500,location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no');">수정</button>
+						<button onclick="modifyviewOpen('${mylist.r_no }')">수정</button>
 						
 						<!-- 답글이 달리면 삭제할 수 없도록 '삭제'버튼을 제거 -->
 						<c:choose>
 							<c:when test="${mylist.r_ynn eq 'n' }">
-								<button type="button" onclick="location.href='reviewMylistDelete?r_no=${mylist.r_no }'">삭제</button>
+								<button type="button" onclick="location.href='../review/reviewMylistDelete?r_no=${mylist.r_no }'">삭제</button>
 							</c:when>
 						</c:choose>
 					</div>
@@ -179,5 +201,7 @@
 		</div>
 	</div>
 </c:if>
+<div class="clear"></div>
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

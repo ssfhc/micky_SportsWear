@@ -1,5 +1,6 @@
 package micky.sports.shop.service.review;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,21 +10,22 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
+import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
-public class ReviewDeleteService implements MickyServiceInter{
+public class ReviewChartService implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	private HttpSession httpSession;
 	
-	public ReviewDeleteService(SqlSession sqlSession,HttpSession httpsession) {
+	public ReviewChartService(SqlSession sqlSession,HttpSession httpsession) {
 		this.sqlSession=sqlSession;
 		this.httpSession = httpsession;
 	}
 	
 	@Override
 	public void execute(Model model) {
-		System.out.println(">>>>ReviewDeleteService");
+		System.out.println(">>>>ReviewChartService");
 		
 //		model에서 request를 풀어내는 방법
 		Map<String, Object> map=model.asMap(); //model을 Map으로 변환
@@ -33,10 +35,14 @@ public class ReviewDeleteService implements MickyServiceInter{
 		httpSession = request.getSession();
 		String loginId = (String)httpSession.getAttribute("loginid");
 		
-		String r_no=request.getParameter("r_no");
-		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
-		rdao.delete(r_no);
+		ArrayList<ReviewDto> chartScore_top5=rdao.chartScore_top5();
+		
+//		for (ReviewDto val : chartScore_top5) {
+//			System.out.println(val.getProductDto().getP_name());
+//		}
+		
+		model.addAttribute("chartScore_top5", chartScore_top5);
 	}
 
 }

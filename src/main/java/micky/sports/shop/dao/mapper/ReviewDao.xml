@@ -55,6 +55,7 @@
 		<result column="p_date" property="p_date"/>
 		<result column="p_category" property="p_category"/>
 		<result column="p_info" property="p_info"/>
+		<result column="avgscore" property="avgscore"/>
 	</resultMap>
 	
 	<!-- 4.join위해 사용한 OrderMemberDto -->
@@ -183,6 +184,12 @@
 		R_CONTENT=#{param3}, R_SCORE=#{param4}, R_FILESRC=#{param5}
 		WHERE R_NO=#{param1}
 	</update>
+
+	<update id="modify2">
+		UPDATE REVIEW SET R_TITLE=#{param2},
+		R_CONTENT=#{param3}, R_SCORE=#{param4}
+		WHERE R_NO=#{param1}
+	</update>
 	
 	<select id="replyview" resultType="micky.sports.shop.dto.ReviewDto">
 		SELECT R_NO,M_ID,R_TITLE,R_CONTENT,R_ID,R_RETITLE,
@@ -237,5 +244,40 @@
 		AND O.OM_STATE='구매확정'
 		AND O.OM_CANCLE='N'
 		AND R.R_CONTENT IS NULL)
+	</select>
+	
+	<select id="chartScore_top5" parameterType="micky.sports.shop.dto.ReviewDto" resultMap="ReviewDto">
+		SELECT ROWNUM,R.* FROM
+		(
+		SELECT P.P_NAME,P.P_PRICE,ROUND(AVG(R.R_SCORE),1) AVGSCORE
+		FROM MEMBER M, REVIEW R, PRODUCT P, ORDER_MEMBER O
+		WHERE M.M_ID=R.M_ID
+		AND R.P_NO=P.P_NO
+		AND R.OM_CNTNUM=O.OM_CNTNUM
+		AND O.OM_STATE='구매확정'
+		AND R.R_CONTENT IS NOT NULL
+		GROUP BY P.P_NAME,P.P_PRICE
+		ORDER BY AVGSCORE DESC, P.P_NAME DESC
+		)R
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+
+	<select id="reviewAdmin_ScoreDesc" parameterType="micky.sports.shop.dto.ReviewDto" resultMap="ReviewDto">
+		SELECT 
+		P.P_NAME AS P_NAME,P.P_PRICE AS P_PRICE,ROUND(AVG(R.R_SCORE),1) AS AVGSCORE
+		FROM MEMBER M, REVIEW R, PRODUCT P, ORDER_MEMBER O
+		WHERE M.M_ID=R.M_ID 
+		AND R.P_NO=P.P_NO
+		AND R.OM_CNTNUM=O.OM_CNTNUM
+		AND O.OM_STATE='구매확정'
+		AND R.R_CONTENT IS NOT NULL
+		GROUP BY P.P_NAME,P.P_PRICE
+		ORDER BY AVGSCORE DESC, P.P_NAME DESC
+	</select>
+	
+	<select id="productInfo" parameterType="micky.sports.shop.dto.ProductDto" resultMap="ProductDto">
+		SELECT P_INFO FROM PRODUCT
+		WHERE P_NAME=#{param1} AND P_FILESRC=#{param2}
+		GROUP BY P_INFO
 	</select>
 </mapper>

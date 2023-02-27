@@ -9,54 +9,84 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&family=Noto+Sans+KR:wght@900&family=UnifrakturCook&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../resources/css/reviewstyle.css" />
+<link rel="stylesheet" href="../resources/css/footer.css" />
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 <script src="../resources/js/jquery.bpopup.min.js"></script>
 <script src="../resources/js/scriptjsp.js"></script>
 <script>
-   $(document).ready(function(){
-      $(".u_content").click(function(){
-         $(this).toggleClass("u_content").toggleClass("u_contentGray");
-      });
-   });
-   
-   /* 별점 */      
-   function redeptlist(target) {
-      $('#starInput[name=r_score]').attr('value',target.value);   
-   }
-   function getvalue(target) {
-      alert(target.value);
-   } 
+	
+	/* r_content의 내용이 미리보기를 초과할 때 말줄임표로 줄이기 */
+	$(document).ready(function() {
+		$(".u_content").click(function() {
+			$(this).toggleClass("u_content").toggleClass("u_contentGray");
+		});
+	});
 
-   /* 리뷰작성 로그인 확인 */
-   function fn_01(checked_id){
-      if(fn_02(checked_id)==false){
-         alert('로그인이 필요합니다.');
-         $(location).attr('href','../member/loginform');
-      }else{
-         $(location).attr('href','../review/reviewMylistview')
-      }
-   }
-   function fn_02(checked_id){
-      if(checked_id=='' || checked_id==null){
-         return false;
-      }else{
-         return true;
-      }
-   }
-   
-   /* admin-답글 */
-   $(document).ready(function(){
-        $('#reply_menu > div > a').off().on("click",function(){
-          $(this).next($('.snd_menu')).slideToggle();
-        });
-      });
-   
+	/* 별점 */
+	function redeptlist(target) {
+		$('#starInput[name=r_score]').attr('value', target.value);
+	}
+	function getvalue(target) {
+		alert(target.value);
+	}
+
+	/* 리뷰작성 로그인 확인 */
+	function fn_01(checked_id) {
+		if (fn_02(checked_id) == false) {
+			alert('로그인이 필요합니다.');
+			$(location).attr('href', '../member/loginform');
+		} else {
+			$(location).attr('href', '../review/reviewMylistview')
+		}
+	}
+	function fn_02(checked_id) {
+		if (checked_id == '' || checked_id == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/* admin-답글 */
+	$(document).ready(function() {
+		$('#reply_menu > div > a').off().on("click", function() {
+			$(this).next($('.snd_menu')).slideToggle();
+		});
+	});
+
+	/* 버튼을 누르면 해당 위치로 스크롤 이동 */
+	$(document).ready(function() {
+		$('#productinfoBtn').click(function() {
+			var offset = $("#p_info").offset();
+			$('html, body').animate({
+				scrollTop : offset.top
+			}, 400);
+		});
+
+		$('#reviewsizeBtn').click(function() {
+			var offset = $("#reviewSize").offset();
+			$('html, body').animate({
+				scrollTop : offset.top
+			}, 400);
+		});
+
+		$('#reviewBtn').click(function() {
+			var offset = $("#reviewtitle_writebutton").offset();
+			$('html, body').animate({
+				scrollTop : offset.top
+			}, 400);
+		});
+
+	});
 </script>
 </head>
 
 <body>
-<h3>Reviewboard</h3>
 <a href="../member/main">메인</a> <br />
 <!-- 로그아웃 상태 -->
 <c:if test="${empty sessionScope.loginid }">
@@ -78,10 +108,8 @@
 <br />
 </c:if>
 
-<br />
-PRODUCT 값 확인 <br />
-pname : ${pname } <br />
-pfilesrc : ${pfilesrc } <br />
+<a href="../review/reviewChart">별점순 top5</a>
+
 <br />
 <br />
 <br />
@@ -94,6 +122,9 @@ pfilesrc : ${pfilesrc } <br />
 .js-load.active {
     display: block;
     border-bottom: 1px solid #ddd;
+}
+.js-load.active:last-child {
+	border-bottom: none;
 }
 .is_comp.js-load:after {
     display: none;
@@ -122,12 +153,35 @@ pfilesrc : ${pfilesrc } <br />
 </style>
 
 
+
+
 <!--@@@ 평균별점(avgStarscore), 총 게시글 수(totalCount ) @@@-->
 <div class="review_table">
-   <span style="font-size: 1.5em; font-weight: bolder;">리뷰</span>
-   <span><input style="float: right;" type="button" value="리뷰작성" onclick="fn_01('${sessionScope.loginid }');" /></span>
-   <hr />
-   <div>
+		<div class="pinfo_review">
+			<a href="#" id="productinfoBtn" style="font-size: 1.5em; font-weight: bolder;" onclick="return false;">상품설명</a>
+			<a href="#" id="reviewsizeBtn" style="font-size: 1.5em; font-weight: bolder;" onclick="return false;">사이즈 정보</a>
+			<a href="#" id="reviewBtn" style="font-size: 1.5em; font-weight: bolder;" onclick="return false;">리뷰</a>
+		</div>
+		<div class="p_info" id="p_info">
+			<span style="font-size: 1.5em; font-weight: bolder;">상품설명</span> <br />
+			<hr />
+			<div class="p_info_div">
+				<c:forEach items="${productinfo }" var="info">
+					${info.p_info }
+				</c:forEach>
+			</div>
+		</div>
+		<div id="reviewSize">
+			<span style="font-size: 1.5em; font-weight: bolder;">사이즈 정보</span> <br />
+			<hr />
+			<img src="../resources/img/NT7UP19A_NT7UP19A_size00_P.jpg" />
+		</div>
+		<div id="reviewtitle_writebutton">
+			<span style="font-size: 1.5em; font-weight: bolder;">리뷰</span>
+	   		<span><input style="float: right;" type="button" value="리뷰작성" onclick="fn_01('${sessionScope.loginid }');" /></span>
+  		</div>
+  		<hr />
+   <div class="avgstar_totalcount">
    <br />
    <br />
       <div class="avg_star">
@@ -329,7 +383,14 @@ pfilesrc : ${pfilesrc } <br />
                               <c:if test="${sessionScope.loginid eq list.memberDto.m_id }">
                                           
                                           <!--@@@ 수정하기 @@@-->
-                                          <button onclick="window.open('../review/reviewModifyview?r_no=${list.r_no }','modifyview','width=400,heigth=500,location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no');">수정</button>
+                                          <script>
+                                           	var openWidth=400;
+                                      		var openheight=1000;
+                                      		
+                                      		var openWidthX=(window.screen.width/2)-(openWidth/2);
+                                      		var openheightY=(window.screen.height/2)-(openheight/2);
+                                          </script>
+                                          <button onclick="window.open('../review/reviewModifyview?r_no=${list.r_no }','modifyview','width='+openWidth+',height='+openheight+',location=no,fullscreen=no,menubar=no,toolbar=no,status=no,scrollbars=no,left='+openWidthX+',top='+openheightY);">수정</button>
                                           
                                           <!--@@@ 답글이 달리지 않았다면(r_ynn이 n이라면) 삭제 가능 @@@-->
                                           <c:choose>
@@ -359,12 +420,14 @@ pfilesrc : ${pfilesrc } <br />
       </div>
 <br />
    </div>
+
 <br />
 <br />
 <br />
 <br />
 
 </body>
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 <!-- 더보기 script -->
 <script>
 $(window).on('load', function () {

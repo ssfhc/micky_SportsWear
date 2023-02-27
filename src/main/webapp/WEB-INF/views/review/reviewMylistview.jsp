@@ -39,8 +39,14 @@
 	}
 	
 </script>
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
 </head>
 <body>
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
+
 <h1>상품리뷰</h1>
 <div class="mileage_box">
 		<span>리뷰 작성 시 적립 가능한 최대 캐시</span><span class="mileage_span"><strong>${checkMileage }</strong> 캐시</span>
@@ -179,5 +185,6 @@
 		</div>
 	</div>
 </c:if>
+</main>
 </body>
 </html>

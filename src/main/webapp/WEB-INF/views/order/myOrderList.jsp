@@ -7,27 +7,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body{ font-family: Nanum Gothic;}
+h3{ color: #2E2E2E; font-size: 30px; font-weight: 400; text-align: center; margin: 10px; padding: 10px;}
+#more_list{
+	width: 1000px;
+	border-collapse: collapse;
+	border: 1px solid #E6E6E6;
+	margin: 5px auto;
+	font-size: 14px;
+}
+thead tr td{
+	text-align: center;
+	border: 1px solid #E6E6E6;
+	color: #141414;
+	background-color: #FBFAFA;
+}
+tbody tr td{
+	border-bottom: 1px solid #E6E6E6;
+	color: #353535;
+	margin: 0;
+	padding: 5px 0 5px 8px;
+}
+.option{ color: #757575; font-size: 12px; margin: 2px 0;}
+.right{text-align: right; margin: 10px;}
+.state{text-align: center;}
+button{
+	background-color: #FFF;
+	border: 1px solid #141414;
+	border-radius: 3px;
+	margin: 1px auto;
+	text-align: center;
+}
+.stateInfo{
+	padding: 2px;
+}
+.logInOut-box,.page-more{
+	margin: 10px 20px 10px 700px;
+	width: 250px;
+}
+</style>
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
 </head>
 <body>
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
+
+<div class="logInOut-box">
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
    |  <a href="">join</a>
 
 </c:if>
  <c:if test="${not empty sessionScope.loginid }">
-    <a href="../member/logout">logout</a> 
- <br />
- ${sessionScope.loginid } 님, 로그인상태입니다 ദ്ദി*ˊᗜˋ*)
+	 <div>
+	 	<p>회원님의 현재 보유 캐시 : ${myList.m_cash }</p>
+	 </div>
  </c:if>
-
-<div>
-	<p class="go-productList" style="color: #336666;">
-	<a href="../product/productList">상품둘러보기</a>
-	</p>
- </div>
- <div>
- 	<p>회원님의 현재 보유 캐시 : ${myList.m_cash }</p>
- </div>
+</div>
  
 <h3>나의 주문내역</h3>
 <form action="">
@@ -127,6 +166,8 @@ totCnt : ${totRowcnt } <br />
 	<a href="myOrderList?page=${searchVO.page+1 }">[다음]</a>
 	<a href="myOrderList?page=${searchVO.totPage }">[마지막]</a>
 </c:if>
+</main>
+
 
 <script>
 function myOrder_btn(type,omcntnum){
@@ -150,5 +191,6 @@ function deliveryCheck(omcntnum){
 	win.document.body.innerHTML = `<p>배송작업확인중</p>`;
 }
 </script>
+
 </body>
 </html>

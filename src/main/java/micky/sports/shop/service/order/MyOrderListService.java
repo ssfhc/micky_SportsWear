@@ -33,31 +33,32 @@ public class MyOrderListService implements MickyServiceInter {
 		httpsession = request.getSession();
 		String loginId = (String)httpsession.getAttribute("loginid");
 		System.out.println("*********~~~~~~~~~~~~~~~~~"+loginId);
-		
-		OrderDao odao=sqlSession.getMapper(OrderDao.class);
-		
-		//페이징
-		String strPage=request.getParameter("page");
-		if(strPage==null) {
-			strPage="1";
+		if(loginId!=null) {
+			OrderDao odao=sqlSession.getMapper(OrderDao.class);
+			
+			//페이징
+			String strPage=request.getParameter("page");
+			if(strPage==null) {
+				strPage="1";
+			}
+			//System.out.println("---------/"+strPage);
+			int page=Integer.parseInt(strPage);
+			searchVO.setPage(page);
+			int total=odao.selectBoardTotCount(loginId);	
+			searchVO.pageCalculate(total);
+			//System.out.println("---------/"+total);
+			int rowStart=searchVO.getRowStart();
+			int rowEnd=searchVO.getRowEnd();
+			
+			ArrayList<OrderMemberDto> omdList=odao.mtOrderList(loginId,rowStart,rowEnd);
+	
+			model.addAttribute("omdList",omdList);
+			model.addAttribute("totRowcnt",total);
+			model.addAttribute("searchVO",searchVO);
+			
+			//나의주문내역에서 정보확인
+			model.addAttribute("myList",odao.ordersMember(loginId));
 		}
-		//System.out.println("---------/"+strPage);
-		int page=Integer.parseInt(strPage);
-		searchVO.setPage(page);
-		int total=odao.selectBoardTotCount(loginId);	
-		searchVO.pageCalculate(total);
-		//System.out.println("---------/"+total);
-		int rowStart=searchVO.getRowStart();
-		int rowEnd=searchVO.getRowEnd();
-		
-		ArrayList<OrderMemberDto> omdList=odao.mtOrderList(loginId,rowStart,rowEnd);
-
-		model.addAttribute("omdList",omdList);
-		model.addAttribute("totRowcnt",total);
-		model.addAttribute("searchVO",searchVO);
-		
-		//나의주문내역에서 정보확인
-		model.addAttribute("myList",odao.ordersMember(loginId));
 	}
 
 }

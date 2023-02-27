@@ -21,4 +21,8 @@ public interface ProductDao {
 
 	//상품목록 차트
 	public ArrayList<ProductDto> productChart();
+	
+	//상품목록 차트
+	public ArrayList<ProductDto> pdtTimeChart(String simpleTime);
+
 }

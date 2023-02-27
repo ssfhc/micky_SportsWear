@@ -1,5 +1,10 @@
 package micky.sports.shop.service.product;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +39,14 @@ public class ProductChartService implements MickyServiceInter{
 		
 		ProductDao Pdao=sqlSession.getMapper(ProductDao.class);
 		model.addAttribute("productChart",Pdao.productChart());
+		
+		//시간별
+		Date today=new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
+		String simpleTime = simpleDateFormat.format(today);
+		System.out.println("****시간시간~"+simpleTime);
+		model.addAttribute("pdtTimeChart", Pdao.pdtTimeChart(simpleTime));
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 package micky.sports.shop.controller;
 
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

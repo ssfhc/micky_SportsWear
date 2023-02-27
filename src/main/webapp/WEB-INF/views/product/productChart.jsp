@@ -34,6 +34,32 @@
 <h3>판매량 top5</h3>
 <div class="productChartPackage">
 
+<h4>현재시간 top5</h4>
+<ul class="productChart">
+<c:forEach items="${pdtTimeChart }" var="pTChart">
+	<li>
+		<div class="pdtthumbnail">
+			<a href="productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
+			<img src="../resources/img/productimg/${pTChart.p_filesrc }.jpg" alt="" />
+			</a>
+		</div>
+		<div class="pdtdetail">
+			<p class="pname">
+			<a href="productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
+			${pTChart.p_name}
+			</a>
+			</p>
+			<p class="pcolor">
+				<span>${pTChart.p_color}</span>
+			</p>
+			<p class="pprice">
+				<span>${pTChart.p_price}</span>
+			</p>
+		</div>
+	</li>	
+</c:forEach>
+</ul>
+<h4>전체상품 top5</h4>
 <ul class="productChart">
 <c:forEach items="${productChart }" var="pChart">
 	<li>

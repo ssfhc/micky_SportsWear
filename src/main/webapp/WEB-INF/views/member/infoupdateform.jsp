@@ -677,8 +677,8 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 <br />
 		<input type="submit" value="수정완료" /> &nbsp;&nbsp;
 		<a href="mypageform">마이페이지로</a> &nbsp;&nbsp; --%>
+<form class="container" style="height: 0px; padding-top: 700px;" action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkinfovalue()">
 <h1 style="font-family:'Nanum Gothic'">회원정보수정화면</h1>
-<form class="container" action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkinfovalue()">
 <input type="hidden" name="m_id" value="${infoupdateform.m_id }" />
 <input type="hidden" name="checkname2_YESorNO" id="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
 <input type="hidden" name="checkpassword_YESorNO" id="checkpassword_YESorNO" value="NO" />
@@ -783,5 +783,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 
 </form>
 </main><!-- 사이드 -->
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

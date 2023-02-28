@@ -9,7 +9,14 @@
 <link rel="stylesheet" href="../resources/css/footer.css?after" />
 </head>
 <body>
+
 <footer class="footer">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 	<div class="footer-total">
 		<div class="footer_container">
 			<div class="inner">

@@ -121,5 +121,7 @@ totCnt : ${totRowcnt }
 </c:if>
 </div>
 </main><!-- 사이드 -->
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

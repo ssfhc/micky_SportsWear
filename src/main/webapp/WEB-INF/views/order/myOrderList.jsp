@@ -163,6 +163,7 @@ function myOrder_btn(type,omcntnum){
 }
 </script>
 
-
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

@@ -32,7 +32,6 @@
 		<form action="../order/payment" name="sub_addr" method="post">
 		 	<label class="label" for="receipt_name">수령인</label>
 		 	<input type="text" name="receipt_name" id="receipt_name" placeholder="수령인을 입력하세요" onclick="$('.message-no-addr-name').css('display','none')"/>  <br />
-		 
 		 	<label class="label" for="receipt_phone">전화번호</label>
 		 	<input type="text" name="receipt_phone" id="receipt_phone" placeholder="전화번호를 입력하세요" onclick="$('.message-no-addr-phone').css('display','none')"/>
 		 	<input type="button" value="확인" name="btn_checkPhone" id="btn_checkPhone"onclick="checkPhone();"/>
@@ -43,8 +42,7 @@
 		 	<label class="label" for="addr2">주소</label>
 		 	<input type="text" name="addr2" id="addr2" size="50" readonly placeholder="주소"/> <br />
 		 	<label class="label" for="addr2">상세주소</label>
-		 	<input type="text" name="addr3" id="addr3" size="50" placeholder="상세주소를 입력하세요"/> <br />
-		 	<span id="addr3-maxtext-display" style="display: none; color: #CC0099; font-size: 12px;">50자까지 입력 가능합니다.</span>
+		 	<input type="text" name="addr3" id="addr3" size="50" placeholder="상세주소를 입력하세요(50자 내외)"/> <br />
 		</form>
 	</div>
 <div class="orderSelectList">
@@ -185,14 +183,16 @@ $(document).ready(function(){
 	    if (content.length > 100) {
 	    	// 100자 부터 제한
 	        $(this).val($(this).val().substring(0, 100));
-	        // 100자 넘으면 뜨도록
-	        $('#addr3-maxtext-display').css("display","");
-	    }else{
-	    	//100자 안넘으면 다시 문구사라지기
-	        $('#addr3-maxtext-display').css("display","none");	    	
 	    }
 	});
-
+	$('#receipt_name').keyup(function (e) {
+		let content = $(this).val();
+	    // 글자수 제한
+	    if (content.length > 10) {
+	    	// 100자 부터 제한
+	        $(this).val($(this).val().substring(0, 10));
+	    }
+	});
 </script>
 
 </body>

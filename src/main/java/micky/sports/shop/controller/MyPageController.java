@@ -24,12 +24,8 @@ public class MyPageController {
 	//마이페이지
 	@RequestMapping("/checkIndex")
 	public String checkIndex(HttpServletRequest request, Model model) {
-		System.out.println("========checkIndex=======");
 		
 		model.addAttribute("request",request);
-		
-//		mickyServiceInter=new ProductListService(sqlSession,httpsession);
-//		mickyServiceInter.execute(model);
 		
 		return "myPage/checkIndex";
 	}

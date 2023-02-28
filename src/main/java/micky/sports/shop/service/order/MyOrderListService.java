@@ -32,7 +32,7 @@ public class MyOrderListService implements MickyServiceInter {
 		//로그인 세션
 		httpsession = request.getSession();
 		String loginId = (String)httpsession.getAttribute("loginid");
-		System.out.println("*********~~~~~~~~~~~~~~~~~"+loginId);
+		
 		if(loginId!=null) {
 			OrderDao odao=sqlSession.getMapper(OrderDao.class);
 			
@@ -41,12 +41,12 @@ public class MyOrderListService implements MickyServiceInter {
 			if(strPage==null) {
 				strPage="1";
 			}
-			//System.out.println("---------/"+strPage);
+
 			int page=Integer.parseInt(strPage);
 			searchVO.setPage(page);
 			int total=odao.selectBoardTotCount(loginId);	
 			searchVO.pageCalculate(total);
-			//System.out.println("---------/"+total);
+
 			int rowStart=searchVO.getRowStart();
 			int rowEnd=searchVO.getRowEnd();
 			

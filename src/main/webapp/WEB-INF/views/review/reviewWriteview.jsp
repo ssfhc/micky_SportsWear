@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&family=Noto+Sans+KR:wght@900&family=UnifrakturCook&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../resources/css/reviewstyle.css" />
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
@@ -21,6 +24,15 @@
 	function getvalue(target) {
 		alert(target.value);
 	}
+	
+	$(function writeviewClose(){
+		$("#writeBtn").click(function(){
+			setTimeout(function(){
+				opener.location.reload();
+				window.close();
+			},10);
+		});	
+	});
 </script>
 </head>
 <body>
@@ -75,18 +87,10 @@
 		</tr>
 		<tr>
 			<td class="left">파일첨부</td>
-			<td colspan="2">
-				<input type="file" name="r_filesrc"/>
-				<!-- <input type="file" name="r_filesrc" onchange="readURL(this);" /> -->
-				<!-- <input type="file" id="file" name="r_filesrc" onchange="LoadImg(this);" multiple /> -->
-				<!-- <input type="file" id="image" name="r_filesrc" accept="image/*" onchange="setThumbnail(event);" multiple/> -->
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<!-- <img id="preview" src="" width="200"/> -->
-				<!-- <img id="loadImg" src="" width="200"/> -->
-				<div id="image_container"></div>
+			<td colspan="2" class="image-container">
+				<img style="width: 200px;" id="preview-image" src="">
+   				<input style="display: block;" type="file" name="r_filesrc" id="input-image">
+				<!-- <input type="file" name="r_filesrc"/> -->
 			</td>
 		</tr>
 		<tr>
@@ -97,14 +101,27 @@
 		</tr>
 	</table>
 </form>
-</body>
 <script>
-$(function writeviewClose(){
-	$("#writeBtn").click(function(){
-		setTimeout(function(){
-			opener.location.reload();
-			window.close();
-		},10);
-	});	
-});</script>
+function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    }
+}
+// input file에 change 이벤트 부여
+const inputImage = document.getElementById("input-image")
+inputImage.addEventListener("change", e => {
+    readImage(e.target)
+})
+</script>
+</body>
 </html>

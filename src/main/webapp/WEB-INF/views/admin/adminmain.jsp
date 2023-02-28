@@ -33,7 +33,7 @@ footer{
 <!-- sub menu section -->
 <%@include file="admin_sidebar.jsp" %>
 </div> 
-
+<h1></h1>
 <div id="content">
 <%@include file="adminmain_content.jsp" %>
 </div> 

@@ -22,12 +22,12 @@ public interface ProductDao {
 	//상품목록 차트
 	public ArrayList<ProductDto> productChart();
 	
-<<<<<<< HEAD
+
 	//메인 검색기능
 	public int mainsearch(String search);
-=======
+
 	//상품목록 차트
 	public ArrayList<ProductDto> pdtTimeChart(String simpleTime);
 
->>>>>>> choimyunghwa6
+
 }

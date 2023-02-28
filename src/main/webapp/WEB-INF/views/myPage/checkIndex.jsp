@@ -30,7 +30,7 @@
 <body>
 
 
-
+<div>
 <!-- Add your content of header -->
 <header class="">
   <div class="navbar navbar-default visible-xs">
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 
 <script type="text/javascript" src="../resources/js/checkIndex.js"></script>
-
+</div>
 </body>
 
 

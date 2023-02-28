@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="../resources/css/pstyle.css" />
 </head>
 <body>
+<!--@@@ header @@@-->
+<jsp:include page="/WEB-INF/views/header.jsp" />
+
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
    |  <a href="../member/joinform">join</a>

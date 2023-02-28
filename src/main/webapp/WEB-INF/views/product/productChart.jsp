@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="../resources/css/pchartstyle.css" />
 </head>
 <body>
+<!--@@@ header @@@-->
+<jsp:include page="/WEB-INF/views/header.jsp" />
 
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
@@ -88,6 +90,7 @@
 
 </div>
 
-
 </body>
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </html>

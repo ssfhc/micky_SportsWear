@@ -56,7 +56,7 @@ b{
 		</div>
 		
 			<div>
-				<img src="resources/micky.png" alt="img" width="100" height="100" class="img"/>
+				<img src="../resources/micky.png" alt="img" width="100" height="100" class="img"/>
 				<a href="product/productChart" class="main"><b>micky SportsWear</b></a>
 			
 			</div>	
@@ -132,11 +132,7 @@ b{
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-													
+									
 
 </body>
 </html>

@@ -30,6 +30,8 @@ button{	background-color: #FFF;	border: 1px solid #353535; border-radius: 3px; m
 <link href="../resources/css/checkIndex.css" rel="stylesheet">
 </head>
 <body>
+<!--@@@ header @@@-->
+<jsp:include page="/WEB-INF/views/header.jsp" />
 <!-- 사이드 -->
 <jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
 <main class="" id="main-collapse">

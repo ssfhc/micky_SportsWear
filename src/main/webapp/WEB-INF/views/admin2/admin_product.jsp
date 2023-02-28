@@ -10,7 +10,7 @@ function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('checkbox');
 	  
-	  checkboxes.forEach((checkbox) => {
+	  checkboxes.forEach((checkbox) = {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}

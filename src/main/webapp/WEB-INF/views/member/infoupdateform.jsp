@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
+<<<<<<< HEAD
 <style>
 
         body{
@@ -164,6 +165,15 @@
     </style>
 </head>
 <body style="font-family: 'Noto Sans Korean'; text-align: center">
+=======
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
+</head>
+<body style="font-family: 'Noto Sans Korean'">
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
+>>>>>>> choimyunghwa6
 <script>
 var code = ""; //이메일전송 인증번호 저장을 위한 코드
 
@@ -773,5 +783,6 @@ $(document).ready(function(){ //비밀번호표시 체크박스
         </div>
 
 </form>
+</main><!-- 사이드 -->
 </body>
 </html>

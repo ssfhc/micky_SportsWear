@@ -1,5 +1,10 @@
 package micky.sports.shop.service.product;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +26,6 @@ public class ProductChartService implements MickyServiceInter{
 	}
 		@Override
 	public void execute(Model model) {
-		System.out.println("*/*/*ProductListService");
 		
 		Map<String, Object> map=model.asMap();
 		HttpServletRequest request=
@@ -30,10 +34,18 @@ public class ProductChartService implements MickyServiceInter{
 		//로그인 세션
 		httpsession = request.getSession();
 		String loginId = (String)httpsession.getAttribute("loginid");
-		System.out.println("*********~~~~~~~~~~~~~~~~~"+loginId);
+	
 		
 		ProductDao Pdao=sqlSession.getMapper(ProductDao.class);
 		model.addAttribute("productChart",Pdao.productChart());
+		
+		//시간별
+		Date today=new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
+		String simpleTime = simpleDateFormat.format(today);
+		
+		model.addAttribute("pdtTimeChart", Pdao.pdtTimeChart(simpleTime));
+		
 	}
 
 }

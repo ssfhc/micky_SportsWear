@@ -25,7 +25,7 @@
  <c:if test="${not empty sessionScope.loginid }">
     <a href="../member/logout">logout</a> 
  <br />
- ${sessionScope.loginid } 님, 로그인상태입니다 ദ്ദി*ˊᗜˋ*)
+ ${sessionScope.loginid } 님, 로그인상태입니다.
  </c:if>
 
 <h3>상품</h3>
@@ -99,8 +99,15 @@
 		<!-- name="u_cnt"
  			 name="p_no" value="pno" -->
 	</div>
+<<<<<<< HEAD
 	<input type="submit" id="order_form" value="바로구매" />
 	<input type="button" id="cart_form" value="장바구니추가" onclick="return addcart(this.form)"/>
+=======
+	<div class="btns">
+		<input type="submit" id="order_form" value="바로구매" />
+		<input type="button" value="장바구니추가" onclick="return addcart(this.form)" id="cart-btn"/>
+	</div>
+>>>>>>> choimyunghwa6
 </form>
 </div>
 <script>

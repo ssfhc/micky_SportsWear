@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
+<<<<<<< HEAD
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 	.btn1{
@@ -34,6 +35,16 @@
 </style>
 </head>
 <body style="text-align: center">
+=======
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
+>>>>>>> choimyunghwa6
 <script>
 var loginid2 = <%=session.getAttribute("loginid")%>;
 $(document).ready(function(){
@@ -110,6 +121,10 @@ totCnt : ${totRowcnt }
    <a href="qnalist?page=${searchVo.page+1 }">[다음]</a>   
    <a href="qnalist?page=${searchVo.totPage }">[마지막]</a>
 </c:if>
+<<<<<<< HEAD
 </div>
+=======
+</main>
+>>>>>>> choimyunghwa6
 </body>
 </html>

@@ -35,7 +35,6 @@
 <header class="">
   <div class="navbar navbar-default visible-xs">
     <button type="button" class="navbar-toggle collapsed">
-      <span class="sr-only">Toggle nav</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -46,11 +45,14 @@
   <nav class="sidebar">
     <div class="navbar-collapse" id="navbar-collapse">
       <div class="site-header hidden-xs">
-          <a class="site-brand" href="../member/mypageform" title="">
+          <a class="site-brand" href="../product/productChart" title="">
             <img class="img-responsive site-logo" alt="" src="../resources/img/myPage/mashup-logo.svg">
             MICKY SHOP
           </a>
-        <p>마이페이지</p>
+          <a href="../member/mypageform" title="">
+         	마이페이지
+          </a>
+        
         <div class="loginJoin-box">
 <c:if test="${empty sessionScope.loginid}">
    <a href="../member/loginform">login</a> 
@@ -75,7 +77,7 @@
         <li><a href="../order/myOrderList" title="">나의주문내역</a></li>
         <li><a href="../review/reviewMylistview" title="">나의리뷰보기</a></li>
         <li><input type="button" value="내정보수정" onclick="window.open('../member/membercheckform','','width=500,height=500')" style="padding:0;border:0;outline:0;background: transparent;"/></li>
-        <li><a href="#" title="">추가하기</a></li>
+        <li><a href="../qnamember/qnalist" title="">나의문의내역</a></li>
 
       </ul>
 

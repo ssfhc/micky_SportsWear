@@ -43,7 +43,8 @@
 		 	<label class="label" for="addr2">주소</label>
 		 	<input type="text" name="addr2" id="addr2" size="50" readonly placeholder="주소"/> <br />
 		 	<label class="label" for="addr2">상세주소</label>
-		 	<input type="text" name="addr3" id="addr3" size="50" placeholder="상세주소를 입력하세요"/>
+		 	<input type="text" name="addr3" id="addr3" size="50" placeholder="상세주소를 입력하세요"/> <br />
+		 	<span id="addr3-maxtext-display" style="display: none; color: #CC0099; font-size: 12px;">50자까지 입력 가능합니다.</span>
 		</form>
 	</div>
 <div class="orderSelectList">
@@ -175,6 +176,23 @@ $(document).ready(function(){
         }).open();
     });
 });
+</script>
+<script>
+/* 상세주소 글자수제한 */
+	$('#addr3').keyup(function (e) {
+		let content = $(this).val();
+	    // 글자수 제한
+	    if (content.length > 100) {
+	    	// 100자 부터 제한
+	        $(this).val($(this).val().substring(0, 100));
+	        // 100자 넘으면 뜨도록
+	        $('#addr3-maxtext-display').css("display","");
+	    }else{
+	    	//100자 안넘으면 다시 문구사라지기
+	        $('#addr3-maxtext-display').css("display","none");	    	
+	    }
+	});
+
 </script>
 
 </body>

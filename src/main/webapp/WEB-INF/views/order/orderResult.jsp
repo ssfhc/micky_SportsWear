@@ -34,6 +34,9 @@
 	<c:when test="${orderResult eq '2'}">
 		<c:out value="새로고침되었습니다."></c:out>
 	</c:when>
+	<c:when test="${orderResult eq '3'}">
+		<c:out value="오류입니다.서버점검중."></c:out>
+	</c:when>
 	<c:otherwise>
 		<span>주문성공</span>
 		<p>주문번호</p>

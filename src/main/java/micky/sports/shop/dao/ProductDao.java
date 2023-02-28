@@ -17,7 +17,7 @@ public interface ProductDao {
 	public ProductDto checkPrdCnt(String pno);
 	
 	//구매한 수량 재고 삭제
-	public void delpayment(String pno,int cnt);
+	public int delpayment(String pno,int cnt);
 
 	//상품목록 차트
 	public ArrayList<ProductDto> productChart();

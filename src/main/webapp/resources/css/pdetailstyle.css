@@ -70,7 +70,7 @@ a {
 	padding: 2px;
 }
 .pdtsizeradio {
-	width: 43px;
+	width: 50px;
 	height: 43px;
 	padding: 2px 5px;
 	display: inline-block;
@@ -80,7 +80,7 @@ a {
 }
 .pdtsizeradio input[type=radio]+label {
 	display: inline-block;
-    width: 40px;
+    width: 55px;
 	height: 40px;
 	border: 1px solid #333;
 	line-height: 40px;

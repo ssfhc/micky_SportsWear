@@ -23,8 +23,7 @@
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
 <a href="admin_product">admin_product</a>
-
-
+<a href="adminmain">adminmain</a>
 
 
 

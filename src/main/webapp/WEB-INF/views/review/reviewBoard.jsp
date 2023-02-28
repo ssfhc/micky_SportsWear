@@ -108,51 +108,12 @@
 <br />
 </c:if>
 
+
 <a href="../review/reviewChart">별점순 top5</a>
 
 <br />
 <br />
 <br />
-
-
-<style>
-.js-load {
-    display: none;
-}
-.js-load.active {
-    display: block;
-    border-bottom: 1px solid #ddd;
-}
-.js-load.active:last-child {
-	border-bottom: none;
-}
-.is_comp.js-load:after {
-    display: none;
-}
-.btn-wrap, .lists, .main {
-    display: block;
-}
-.main {
-    max-width: 100%;
-    margin: 0 auto;
-}
-.lists {
-    margin-bottom: 4rem;
-}
-.lists__item {
-    padding: 10px;
-    /* background: #EEE; */
-}
-.lists__item:nth-child(2n) {
-    /* background: #59b1eb;
-    color: #fff; */
-}
-.btn-wrap {
-    text-align: center;
-}
-</style>
-
-
 
 
 <!--@@@ 평균별점(avgStarscore), 총 게시글 수(totalCount ) @@@-->
@@ -414,7 +375,7 @@
             
          <!--@@@ 더보기 @@@-->   
          <div id="js-btn-wrap" class="btn-wrap">
-            <a href="javascript:;" class="button">더보기</a>
+            <a href="javascript:;" class="button">리뷰 더보기 &nbsp;<img src="../resources/img/more_icon.png" /></a>
          </div>
       </div>
       </div>
@@ -427,8 +388,10 @@
 <br />
 
 </body>
+<!--@@@ footer @@@-->
 <jsp:include page="/WEB-INF/views/footer.jsp" />
-<!-- 더보기 script -->
+
+<!--@@@ 더보기 script @@@-->
 <script>
 $(window).on('load', function () {
     load('#js-load', '10');

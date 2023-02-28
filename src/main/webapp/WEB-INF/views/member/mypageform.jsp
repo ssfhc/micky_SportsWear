@@ -27,8 +27,8 @@ $(document).ready(function(){
 <%if(session.getAttribute("loginid")!="admintest" || session.getAttribute("loginid")==null){ %>
 <input type="button" value="문의페이지" onclick="location.href='../qnamember/qnalist'" />
 <!-- <input type="button" value="내정보수정" onclick="location.href='infoupdateform'" /> -->
-<input type="button" value="내정보수정" onclick="window.open('membercheckform','','width=500,height=500')" />
-<input type="button" value="회원탈퇴" onclick="window.open('memberdropcheckform','','width=500,height=500')" />
+<input type="button" value="내정보수정" onclick="window.open('membercheckform','','width=500,height=200')" />
+<input type="button" value="회원탈퇴" onclick="window.open('memberdropcheckform','','width=500,height=200')" />
 <%
 }
 %>

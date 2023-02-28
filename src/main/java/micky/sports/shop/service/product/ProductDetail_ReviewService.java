@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.dao.ReviewDao;
+import micky.sports.shop.dto.ProductDto;
 import micky.sports.shop.dto.ReviewDto;
 import micky.sports.shop.service.MickyServiceInter;
 
@@ -32,7 +33,6 @@ public class ProductDetail_ReviewService implements MickyServiceInter{
 		//로그인 세션
 		httpsession = request.getSession();
 		String loginId = (String)httpsession.getAttribute("loginid");
-		//System.out.println("*********~~~~~~~~~~~~~~~~~"+loginId);
 		
 		String pname=request.getParameter("pname");
 		String pfilesrc=request.getParameter("pfilesrc");
@@ -41,8 +41,6 @@ public class ProductDetail_ReviewService implements MickyServiceInter{
 		ProductDao Pdao=sqlSession.getMapper(ProductDao.class);
 		model.addAttribute("productMain",Pdao.productMain(pname));
 		model.addAttribute("product",Pdao.product(pname,pfilesrc));
-		System.out.println("*pname : "+pname);
-		System.out.println("*pfilesrc : "+pfilesrc);
 		
 		//하단리뷰
 		ServletContext application=request.getSession().getServletContext();
@@ -89,6 +87,10 @@ public class ProductDetail_ReviewService implements MickyServiceInter{
 		model.addAttribute("totalCount", totalCount);
 //		별점평균
 		model.addAttribute("avgStarscore", avgStarscore);
+		
+//		reviewBoard에서 productInfo 사용
+		ArrayList<ProductDto> productinfo=rdao.productInfo(p_name,p_filesrc);
+		model.addAttribute("productinfo", productinfo);
 	}
 
 }

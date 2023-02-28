@@ -101,6 +101,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 </script>
 </head>
 <body class="text-center">
+
 <div class="container">
    <main class="form-signin">
          <img class="mb-4" src="../resources/kthimg/logo.png" alt="" width="300" height="250">

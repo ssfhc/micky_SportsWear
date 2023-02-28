@@ -38,4 +38,5 @@ public class ReviewDeleteService implements MickyServiceInter{
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
 		rdao.delete(r_no);
 	}
+
 }

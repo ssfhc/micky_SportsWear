@@ -45,7 +45,7 @@ public class ReviewWriteService implements MickyServiceInter{
 //		학원에서 작업
 		String path="C:\\2022spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\reviewupload";
 //		노트북에서 작업
-//		String path="C:\\2023spring\\springwork1\\micky_SportsWear\\src\\main\\webapp\\resources\\reviewupload";
+//		String path="C:\\2023spring\\springwork1\\micky_SportsWear_review\\src\\main\\webapp\\resources\\reviewupload";
 		
 		MultipartRequest req=null;
 		try {
@@ -57,10 +57,8 @@ public class ReviewWriteService implements MickyServiceInter{
 		
 		String om_cntnum=req.getParameter("om_cntnum");
 		String p_no=req.getParameter("p_no");
-		String om_state=req.getParameter("om_state");
 		System.out.println("om_cntnum : "+om_cntnum);
 		System.out.println("p_no : "+p_no);
-		System.out.println("om_state : "+om_state);
 		
 		String r_title=req.getParameter("r_title");
 		String r_content=req.getParameter("r_content");

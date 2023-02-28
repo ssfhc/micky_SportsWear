@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
+
 <style>
 
         body{
@@ -162,8 +163,16 @@
 			cursor: pointer;
 	}
     </style>
+<!-- 사이드 -->
+<link href="../resources/css/checkIndex.css" rel="stylesheet">
 </head>
 <body style="font-family: 'Noto Sans Korean'; text-align: center">
+<!--@@@ header @@@-->
+<jsp:include page="/WEB-INF/views/header.jsp" />
+<!-- 사이드 -->
+<jsp:include page="/WEB-INF/views/myPage/checkIndex.jsp" />
+<main class="" id="main-collapse">
+
 <script>
 var code = ""; //이메일전송 인증번호 저장을 위한 코드
 
@@ -668,8 +677,8 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 <br />
 		<input type="submit" value="수정완료" /> &nbsp;&nbsp;
 		<a href="mypageform">마이페이지로</a> &nbsp;&nbsp; --%>
+<form class="container" style="height: 0px; padding-top: 700px;" action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkinfovalue()">
 <h1 style="font-family:'Nanum Gothic'">회원정보수정화면</h1>
-<form class="container" action="infoupdate" name="jf" method = "post" enctype="multipart/form-data" onsubmit = "return checkinfovalue()">
 <input type="hidden" name="m_id" value="${infoupdateform.m_id }" />
 <input type="hidden" name="checkname2_YESorNO" id="checkname2_YESorNO" value="NO" /><br /> <!-- 닉네임중복체크유무 -->
 <input type="hidden" name="checkpassword_YESorNO" id="checkpassword_YESorNO" value="NO" />
@@ -773,5 +782,8 @@ $(document).ready(function(){ //비밀번호표시 체크박스
         </div>
 
 </form>
+</main><!-- 사이드 -->
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

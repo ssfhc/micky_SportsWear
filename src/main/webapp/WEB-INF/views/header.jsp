@@ -50,15 +50,15 @@ b{
 <body>
 	<div class="title">
 		<div class="title-link">
-		  	<a href="member/loginform">로그인</a>&nbsp; | &nbsp;
-			<a href="member/joinform">회원가입</a> &nbsp; | &nbsp;
-			<a href="Cart/Cartlist">장바구니</a> &nbsp;
+		  	<a href="../member/loginform">로그인</a>&nbsp; | &nbsp;
+			<a href="../member/joinform">회원가입</a> &nbsp; | &nbsp;
+			<a href="../Cart/Cartlist">장바구니</a> &nbsp;
 		</div>
 		
 			<div>
-				<img src="resources/micky.png" alt="img" width="100" height="100" class="img"/>
-				<a href="product/productChart" class="main"><b>micky SportsWear</b></a>
-			
+				<img src="../resources/micky.png" alt="img" width="100" height="100" class="img"/>
+				<a href="../product/productChart" class="main"><b>micky SportsWear</b></a>
+		
 			</div>	
 	</div>
 
@@ -132,11 +132,7 @@ b{
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-													
+									
 
 </body>
 </html>

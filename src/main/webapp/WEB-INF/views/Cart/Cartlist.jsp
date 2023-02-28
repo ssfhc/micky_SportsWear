@@ -155,8 +155,8 @@ b{
 </style>
 </head>
 <body>
-<h3>cart</h3>
-${list.size() } <br />
+<!--@@@ header @@@-->
+<jsp:include page="/WEB-INF/views/header.jsp" />
 
 
 <form action="../order/orderPage" method="post">
@@ -258,5 +258,7 @@ ${list.size() } <br />
 
   </div>
 </form>
+<!--@@@ footer @@@-->
+<jsp:include page="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

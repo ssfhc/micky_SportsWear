@@ -37,4 +37,12 @@
 		WHERE ROWNUM BETWEEN 1 AND 5
     </select>
     
+    <!-- 상품목록 차트 -->
+	<select id="mainsearch" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM PRODUCT 
+		WHERE P_NAME LIKE '%'||#{param1}||'%' OR P_COLOR LIKE '%'||#{param1}||'%' OR P_SIZE LIKE '%'||#{param1}||'%' 
+		OR P_CATEGORY LIKE '%'||#{param1}||'%' OR P_INFO LIKE '%'||#{param1}||'%'
+    </select>
+    
 </mapper>

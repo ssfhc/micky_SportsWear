@@ -131,7 +131,6 @@ public class CartController {
 	@RequestMapping("/changeoption")
 	public String changeoption(HttpServletRequest request,Model model) {
 		//장바구니 화면 구성 
-		String c_no=request.getParameter("c_no");
 		model.addAttribute("request",request);
 //		System.out.println("장바구니 넘버확인 : "+c_no);
 		

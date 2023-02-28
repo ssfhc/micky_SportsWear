@@ -100,7 +100,7 @@
  			 name="p_no" value="pno" -->
 	</div>
 	<input type="submit" id="order_form" value="바로구매" />
-	<input type="button" value="장바구니추가" onclick="return addcart(this.form)"/>
+	<input type="button" id="cart_form" value="장바구니추가" onclick="return addcart(this.form)"/>
 </form>
 </div>
 <script>
@@ -162,6 +162,18 @@
 <!-- 선택 null 일때 창 -->
 <script>
 $('#order_form').click(function(){
+	var userid='<%=(String)session.getAttribute("loginid")%>';
+	if(userid=='null'){
+		alert("로그인이 필요합니다.");
+		return false;
+	}
+	if($('#choice_pno').val()==null ){
+		$('.print-message-no-opt').css('display','block');
+		return false;
+	}
+
+});
+$('#cart_form').click(function(){
 	var userid='<%=(String)session.getAttribute("loginid")%>';
 	if(userid=='null'){
 		alert("로그인이 필요합니다.");

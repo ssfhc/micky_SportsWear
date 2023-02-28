@@ -21,4 +21,7 @@ public interface ProductDao {
 
 	//상품목록 차트
 	public ArrayList<ProductDto> productChart();
+	
+	//메인 검색기능
+	public int mainsearch(String search);
 }

@@ -56,12 +56,8 @@ function mypage(){
 <% 
 if(loginid.equals("admintest")||loginid.equals("admintest2")){ //로그인아이디가 admintest라면 관리자페이지button이 보임
 %>
-<<<<<<< HEAD
-<input type="button" value="관리자페이지" onclick="location.href='../qnamember/adminpage'"/>	<br /> 
-=======
 <!-- <input type="button" value="관리자페이지" onclick="location.href='../qnamember/adminpage'"/>	<br /> -->
-<input type="button" value="관리자페이지" onclick="location.href='../qnamember/adminpage'"/>
->>>>>>> kimtaehoon666666
+<input type="button" value="관리자페이지" onclick="location.href='../adminmain'"/>
 <%
 }
 %>

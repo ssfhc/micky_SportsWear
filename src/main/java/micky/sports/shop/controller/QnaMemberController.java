@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import micky.sports.shop.crypt.CryptoUtil;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 import micky.sports.shop.service.member.EmailOverlapCheckService;
 import micky.sports.shop.service.member.FindIdService;
 import micky.sports.shop.service.member.FindPwService;

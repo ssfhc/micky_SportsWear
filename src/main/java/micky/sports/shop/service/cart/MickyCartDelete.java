@@ -1,4 +1,4 @@
-package micky.sports.shop.service;
+package micky.sports.shop.service.cart;
 
 import java.util.Map;
 
@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import micky.sports.shop.dao.CartDao;
 
 
-public class MickyplusCartcount implements MickyServiceInter{
+public class MickyCartDelete implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	
-	public MickyplusCartcount(SqlSession sqlsession) {
+	public MickyCartDelete(SqlSession sqlsession) {
 		this.sqlSession=sqlsession;
 	}
 
@@ -24,12 +24,11 @@ public class MickyplusCartcount implements MickyServiceInter{
 		Map<String, Object> map= model.asMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		String c_no=request.getParameter("c_no");
-		String p_no=request.getParameter("p_no");
 		CartDao dao=sqlSession.getMapper(CartDao.class);
 		
-		dao.plusCartcount(c_no,p_no);
-		System.out.println("번호확인 : "+c_no+" :  "+p_no);
-//		model.addAttribute("list",list);
+		dao.Deletelist(c_no);
+		System.out.println("삭제완료 번호 : "+c_no);
+//		model.addAttribute("list",list);	
 	}
 	
 }

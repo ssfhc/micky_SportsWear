@@ -12,7 +12,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import micky.sports.shop.dao.ReviewDao;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 
 public class ReviewModifyService implements MickyServiceInter{
 

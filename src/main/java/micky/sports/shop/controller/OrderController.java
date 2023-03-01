@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 import micky.sports.shop.service.order.MyDelivCancelService;
 import micky.sports.shop.service.order.MyOCancelOfferService;
 import micky.sports.shop.service.order.MyOrderCancelService;

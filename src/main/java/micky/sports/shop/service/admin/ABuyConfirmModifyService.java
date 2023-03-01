@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.Admin;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 
 //관리자 주문내역 상세 : 결제완료 → 구매확정 변경(Update)
 public class ABuyConfirmModifyService implements MickyServiceInter{

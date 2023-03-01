@@ -19,7 +19,7 @@
 
 <a href="product/productChart">productChart</a>
 <a href="review/reviewBoard">review</a>
-<a href="Cart/before">Cart</a>
+<a href="before">Cart</a>
 <a href="admin_olist">admin_olist</a>
 <a href="member/loginform">loginform</a>
 <a href="admin_product">admin_product</a>

@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.OrderMemberDto;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 
 public class ReviewWriteviewService implements MickyServiceInter{
 	private SqlSession sqlSession;

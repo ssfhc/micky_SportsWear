@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 <link rel="stylesheet" href="../resources/css/aside.css?after" />
+<link rel="stylesheet" href="./resources/css/aside.css?after" />
 </head>
 <body>
 <aside>
@@ -60,7 +61,7 @@
 		</dl> -->
 		<ul id="main_menu">
           <li>
-            <a class="aside_atag as_category" href="#" onclick="return false;">아우터</a>
+            <a class="aside_atag as_category" href="./category?c=outer" onclick="javascript: js();event.preventDefault();">아우터</a>
             <ul class="snd_menu sub_menu">
                 <li><a class="aside_atag" href="#" onclick="return false;">패딩</a></li>
                 <li><a class="aside_atag" href="#" onclick="return false;">자켓</a></li>

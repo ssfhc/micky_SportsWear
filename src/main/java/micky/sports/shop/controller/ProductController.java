@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 import micky.sports.shop.service.product.ProductChartService;
 import micky.sports.shop.service.product.ProductDetail_ReviewService;
 import micky.sports.shop.service.product.ProductListService;

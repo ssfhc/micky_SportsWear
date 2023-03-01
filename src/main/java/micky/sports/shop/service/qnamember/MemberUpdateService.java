@@ -14,7 +14,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import micky.sports.shop.crypt.CryptoUtil;
 import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 
 public class MemberUpdateService implements MickyServiceInter{
 

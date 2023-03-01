@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 <html lang="ko">
 
 <style>
@@ -16,8 +16,6 @@
     display: block;
     margin-top: 0;
     background-color: #acacac;
-    
-    
 }
 .dropdown-menu{
 /* 	width: 1000px; */
@@ -47,11 +45,18 @@ b{
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>header</title>
 </head>
-<body>
+<body>  
 	<div class="title">
 		<div class="title-link">
-		  	<a href="../member/loginform">로그인</a>&nbsp; | &nbsp;
-			<a href="../member/joinform">회원가입</a> &nbsp; | &nbsp;
+		  	<c:if test="${empty sessionScope.loginid }">
+			   <a href="../member/loginform">로그인</a> 
+			   |  <a href="../member/joinform">회원가입</a> | 
+			
+			</c:if>
+			 <c:if test="${not empty sessionScope.loginid }">
+			    <a href="../member/logout">로그아웃</a> | 
+					<a href="../member/mypageform">마이페이지</a> |
+			 </c:if>
 			<a href="../Cart/Cartlist">장바구니</a> &nbsp;
 		</div>
 		
@@ -61,13 +66,6 @@ b{
 		
 			</div>	
 	</div>
-
-		<!-- 	<div> -->
-		<!-- 		<a href="product/productList">전체상품리스트</a> -->
-		<!--  		<a href="review/reviewBoard">리뷰</a> -->
-		<!-- 		<a href="admin_olist">관리자상품구매리스트</a> -->
-		<!-- 		<a href="admin_product">관리자상품관리</a> -->
-		<!-- 	</div> --> 
 <nav class="navbar navbar-inverse bg-dark">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,49 +78,45 @@ b{
       </button>
       <a class="navbar-brand" href="#">Micky</a>
     </div>
-
+	
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 <!--         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-        <li class="dropdown"><a href="#">아우터</a>
+        <li class="dropdown"><a href="../category?c=outer">아우터</a>
         	<ul class="dropdown-menu ">
-				<li><a href="#">패딩</a></li>
-				<li><a href="#">조끼</a></li>	
+				<li><a href="../category?c=outer-parka">패딩</a></li>
+				<li><a href="../category?c=outer-jacket">조끼</a></li>	
 			</ul>  
         </li>
-        <li class="dropdown"><a href="#">티&셔츠</a>    	
+        <li class="dropdown"><a href="../category?c=tshirts">티&셔츠</a>    	
         	<ul class="dropdown-menu ">	
-				<li><a href="#">후디</a></li>
-				<li><a href="#">라운드티</a></li>
-				<li><a href="#">셔츠</a></li>
+				<li><a href="../category?c=tshirts_hood">후디</a></li>
+				<li><a href="../category?c=tshirts_crewneck">라운드티</a></li>
+				<li><a href="../category?c=tshirts_shirts">셔츠</a></li>
 			</ul>  
         </li>
-        <li class="dropdown"><a href="#">바지</a>
+        <li class="dropdown"><a href="../category?c=pants_training">바지</a>
+
+        </li>
+        <li class="dropdown"><a href="../category?c=backpack">가방</a>
         	<ul class="dropdown-menu ">
-					<li><a href="#">트레이닝</a></li>
-					<li><a href="#">조거팬츠</a></li>
+				<li><a href="../category?c=backpack_climbing">등산백팩</a></li>
+				<li><a href="../category?c=backpack_casual">캐주얼백팩</a></li>
 			</ul>  
         </li>
-        <li class="dropdown"><a href="#">가방</a>
+        <li class="dropdown"><a href="../category?c=other">기타용품</a>
         	<ul class="dropdown-menu ">
-				<li><a href="#">가방</a></li>
+				<li><a href="../category?c=other_socks">양말</a></li>
+				<li><a href="../category?c=other_mask">마스크</a></li>
 			</ul>  
         </li>
-        <li class="dropdown"><a href="#">기타용품</a>
-        	<ul class="dropdown-menu ">
-				<li><a href="#">양말</a></li>
-				<li><a href="#">마스크</a></li>
-			</ul>  
-        </li>
-        <li class="dropdown"><a href="#">모자</a>
-        	<ul class="dropdown-menu ">
-					<li><a href="#">CAP</a></li>
-			</ul>  
+        <li class="dropdown"><a href="../category?c=hat_cap">모자</a>
+
         </li>
        
       </ul>
-      <form class="navbar-form navbar-right" role="search" action="header">
+      <form class="navbar-form navbar-right" role="search" action="../search">
         <div class="form-group">
           <input type="text" class="form-control" name="q" value="${search }" placeholder="상품검색">
         </div>

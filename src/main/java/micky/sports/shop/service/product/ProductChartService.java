@@ -18,7 +18,7 @@ import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.ProductDto;
 import micky.sports.shop.dto.ReviewDto;
-import micky.sports.shop.service.MickyServiceInter;
+import micky.sports.shop.service.cart.MickyServiceInter;
 
 public class ProductChartService implements MickyServiceInter{
 	private SqlSession sqlSession;

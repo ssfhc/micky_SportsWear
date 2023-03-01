@@ -1,4 +1,4 @@
-package micky.sports.shop.service;
+package micky.sports.shop.service.cart;
 
 import org.springframework.ui.Model;
 

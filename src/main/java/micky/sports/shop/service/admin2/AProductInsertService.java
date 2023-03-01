@@ -12,7 +12,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import micky.sports.shop.dao.Admin2;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 
 //관리자 주문관리 현황 리스트
 @Service

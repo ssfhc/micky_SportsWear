@@ -1,6 +1,5 @@
-package micky.sports.shop.service.cart;
+package micky.sports.shop.service;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,14 +8,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.CartDao;
-import micky.sports.shop.dto.ProductDto;
 
 
-public class MickyDetailList implements MickyServiceInter{
+public class MickyminusCartcount implements MickyServiceInter{
 
 	private SqlSession sqlSession;
 	
-	public MickyDetailList(SqlSession sqlsession) {
+	public MickyminusCartcount(SqlSession sqlsession) {
 		this.sqlSession=sqlsession;
 	}
 
@@ -25,13 +23,12 @@ public class MickyDetailList implements MickyServiceInter{
 				
 		Map<String, Object> map= model.asMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		String p_no=request.getParameter("p_no");
-		
+		String c_no=request.getParameter("c_no");
 		CartDao dao=sqlSession.getMapper(CartDao.class);
 		
-		ProductDto list=dao.Detaillist(p_no);
 		
-		model.addAttribute("list",list);	
+		dao.minusCartcount(c_no);
+//		model.addAttribute("list",list);
 	}
 	
 }

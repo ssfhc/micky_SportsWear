@@ -13,7 +13,7 @@ import micky.sports.shop.dao.OrderDao;
 import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.dto.OrderMemberDto;
 import micky.sports.shop.dto.ProductDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 
 public class OrderDeliveryService implements MickyServiceInter{
 	private SqlSession sqlSession;

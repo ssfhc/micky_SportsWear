@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.ReviewDao;
 import micky.sports.shop.dto.ReviewDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 
 public class ReviewAdminpageService implements MickyServiceInter{
 

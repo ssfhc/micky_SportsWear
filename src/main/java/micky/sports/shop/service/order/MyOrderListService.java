@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.OrderDao;
 import micky.sports.shop.dto.OrderMemberDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.vopage.SearchVO;
 
 public class MyOrderListService implements MickyServiceInter {

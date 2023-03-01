@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import micky.sports.shop.dao.ProductDao;
 import micky.sports.shop.dto.ProductDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.service.product.ProductListService;
 import micky.sports.shop.vopage.SearchVO;
 

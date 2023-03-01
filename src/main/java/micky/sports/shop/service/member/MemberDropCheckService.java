@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import micky.sports.shop.crypt.CryptoUtil;
 import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 
 public class MemberDropCheckService implements MickyServiceInter{
 

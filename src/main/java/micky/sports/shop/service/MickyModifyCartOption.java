@@ -1,4 +1,4 @@
-package micky.sports.shop.service.cart;
+package micky.sports.shop.service;
 
 import java.util.List;
 import java.util.Map;

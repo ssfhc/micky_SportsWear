@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import micky.sports.shop.dao.Admin;
 import micky.sports.shop.dto.OrderMemberDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 
 public class AMainService implements MickyServiceInter{
 	private SqlSession sqlSession;

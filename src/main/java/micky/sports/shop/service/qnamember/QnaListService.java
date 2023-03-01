@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import micky.sports.shop.dao.Member;
 import micky.sports.shop.dto.MemberDto;
 import micky.sports.shop.dto.Qna_MemberDto;
-import micky.sports.shop.service.cart.MickyServiceInter;
+import micky.sports.shop.service.MickyServiceInter;
 import micky.sports.shop.vopage.SearchVO;
 
 public class QnaListService implements MickyServiceInter{

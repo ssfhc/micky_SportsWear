@@ -34,6 +34,7 @@ import micky.sports.shop.service.member.MemberChartService;
 import micky.sports.shop.service.member.MemberDropCheckService;
 import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.TemporaryPwService;
+import micky.sports.shop.service.product.ProductChartService;
 import micky.sports.shop.service.qnamember.AdminQnaListService;
 import micky.sports.shop.service.qnamember.MemberDeleteService;
 import micky.sports.shop.service.qnamember.MemberListService;
@@ -129,8 +130,10 @@ public class MemberController {
 		//model.addAttribute("request",request);
 		mickyServiceInter = new LogOutService(sqlSession,session);
 		mickyServiceInter.execute(model);
+		mickyServiceInter=new ProductChartService(sqlSession,session);
+		mickyServiceInter.execute(model);
 				
-		return "/member/main";
+		return "/product/productChart";
 	}
 	
 	
@@ -472,8 +475,10 @@ public class MemberController {
 		model.addAttribute("request", request);
 		mickyServiceInter = new MemberDropService(sqlSession,session);
 		mickyServiceInter.execute(model);	
-				
-		return "redirect:/member/main";		
+		mickyServiceInter=new ProductChartService(sqlSession,session);
+		mickyServiceInter.execute(model);
+		
+		return "/product/productChart";		
 	}
 	
 	

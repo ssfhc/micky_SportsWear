@@ -81,7 +81,7 @@ function check_id_pw(){
 					alert("아이디비밀번호를확인하세요")
 				}else if(result==1){ //아이디비밀번호가 맞을때
 					alert("로그인성공")
-					window.location.href="../member/main" //로그인성공시 메인페이지로이동
+					window.location.href="../product/productChart" //로그인성공시 메인페이지로이동
 				}
 			}
 		})

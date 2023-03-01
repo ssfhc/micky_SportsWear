@@ -10,12 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&family=Noto+Sans+KR:wght@900&family=UnifrakturCook&display=swap" rel="stylesheet">
 
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
-<<<<<<< HEAD
-<link rel="stylesheet" href="../resources/css/aside.css" />
-=======
+
 <link rel="stylesheet" href="../resources/css/aside.css?after" />
 <link rel="stylesheet" href="./resources/css/aside.css?after" />
->>>>>>> seokjinhong6
+
 </head>
 <body>
 <aside>

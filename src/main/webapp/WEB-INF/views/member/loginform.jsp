@@ -69,8 +69,13 @@ function check_id_pw(){
 				if(result==0){ //아이디나비밀번호가 틀릴때
 					alert("아이디비밀번호를확인하세요")
 				}else if(result==1){ //아이디비밀번호가 맞을때
+<<<<<<< HEAD
 					alert("로그인완료")
 					window.location.href="../member/main" //로그인성공시 메인페이지로이동
+=======
+					alert("로그인성공")
+					window.location.href="../product/productChart" //로그인성공시 메인페이지로이동
+>>>>>>> choimyunghwa77
 				}
 			}
 		})

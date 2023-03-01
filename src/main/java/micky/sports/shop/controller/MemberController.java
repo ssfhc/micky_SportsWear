@@ -103,7 +103,7 @@ public class MemberController {
 	
 	
 	//로그인기능
-	@RequestMapping(value="/login",method = RequestMethod.GET)
+	@RequestMapping(value="/login",method = RequestMethod.POST)
 	@ResponseBody
 	public int login(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/login()@@@"); //controller 신호확인

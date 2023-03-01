@@ -5,10 +5,10 @@
 <html lang="ko">
 
 <style>
-.main{
+.main-header{
 	color: black;
 }
-.main:hover{
+.main-header:hover{
 	color: black;
 	text-decoration: none;
 }
@@ -55,14 +55,14 @@ b{
 			</c:if>
 			 <c:if test="${not empty sessionScope.loginid }">
 			    <a href="./member/logout">로그아웃</a> | 
-					<a href="./member/mypageform">마이페이지</a> |
+					<a href="./myPage/myPageIntro">마이페이지</a> |
 			 </c:if>
 			<a href="./Cart/Cartlist">장바구니</a> &nbsp;
 		</div>
 		
 			<div>
 				<img src="./resources/micky.png" alt="img" width="100" height="100" class="img"/>
-				<a href="./product/productChart" class="main"><b>micky SportsWear</b></a>
+				<a href="./product/productChart" class="main-header"><b>MICKY SportsWear</b></a>
 		
 			</div>	
 	</div>

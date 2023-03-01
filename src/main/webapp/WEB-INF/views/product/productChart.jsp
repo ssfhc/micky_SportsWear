@@ -113,7 +113,8 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
-				<img src="../resources/img/mainimg/0224_TNF_Main_KeyVisual_HIKING_PC_02.jpg">
+			<img src="...">
+				<img src="../resources/img/mainimg/0224_TNF_Main_KeyVisual_HIKING_PC_02.jpg" >
 				<div class="swiper-text-htag">
 					<h1>LET'S GO <br />
 					HIKING</h1>
@@ -359,13 +360,13 @@
 	<c:forEach items="${femaleScore_top5 }" var="femalescoredesc">
 		<li>
 			<div class="pdtthumbnail">
-				<a href="../product/productDetail?pname=${femalescoredesc.p_name }&pfilesrc=${scoredesc.p_filesrc }">
+				<a href="../product/productDetail?pname=${femalescoredesc.p_name }&pfilesrc=${femalescoredesc.p_filesrc }">
 				<img src="../resources/img/productimg/${femalescoredesc.p_filesrc }.jpg" alt="" />
 				</a>
 			</div>
 			<div class="pdtdetail">
 				<p class="pname">
-				<a href="../product/productDetail?pname=${femalescoredesc.p_name }&pfilesrc=${scoredesc.p_filesrc }">
+				<a href="../product/productDetail?pname=${femalescoredesc.p_name}&pfilesrc=${femalescoredesc.p_filesrc}">
 				${femalescoredesc.p_name}
 				</a>
 				</p>

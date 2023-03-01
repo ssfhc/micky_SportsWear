@@ -113,7 +113,6 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
-			<img src="...">
 				<img src="../resources/img/mainimg/0224_TNF_Main_KeyVisual_HIKING_PC_02.jpg" >
 				<div class="swiper-text-htag">
 					<h1>LET'S GO <br />

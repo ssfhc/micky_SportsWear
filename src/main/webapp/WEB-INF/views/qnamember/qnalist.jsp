@@ -10,27 +10,19 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
-	.btn1{
-		color: white;
-		background-color: black;
-		border-color: black;
-	}
-	.btn2{
-		color: white;
-		background-color: black;
-		border-color: black;
-	}
-	.btn1:hover {
-		color: black;
-		background-color: white;
-		border-color: white;
-		cursor: pointer;
-}
-	.btn2:hover {
-		color: black;
-		background-color: white;
-		border-color: white;
-		cursor: pointer;
+		.btn1{
+			color: white;
+			background-color: black;
+			border-color: black;
+			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+			border-radius: 5px;
+			border: 1px solid;
+		}
+		.btn1:hover {
+			color: black;
+			background-color: white;
+			border-color: black;
+			cursor: pointer;
 }
 </style>
 <!-- 사이드 -->
@@ -58,7 +50,7 @@ $(document).ready(function(){
 <%-- 현재로그인된아이디 확인용 : <%=session.getAttribute("loginid") %> <br />
 문의내역 확인하고싶은 아이디 확인용 : <%=session.getAttribute("loginid") %> --%>
 <input class="btn1" type="button" value="문의하기" onclick="location.href='../qnamember/qnawriteform'" />
-<input class="btn2" type="button" value="마이페이지" onclick="location.href='../member/mypageform'" />
+<input class="btn1" type="button" value="마이페이지" onclick="location.href='../member/mypageform'" />
 <table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto;">
 	<tr>
 		<!-- <td>문의번호</td> -->

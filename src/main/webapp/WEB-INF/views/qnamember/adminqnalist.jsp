@@ -8,11 +8,18 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+
+
 <style>
 	.btn1{
 		color: white;
 		background-color: black;
 		border-color: black;
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		border-radius: 5px;
+		border: 1px solid;
 	}
 		.btn1:hover {
 		color: black;
@@ -22,7 +29,7 @@
 }
 </style>
 </head>
-<body style="text-align: center">
+<body style="text-align: center; font-family: 'Noto Sans KR', sans-serif;">
 <script>
 var loginid2 = <%=session.getAttribute("loginid")%>;
 $(document).ready(function(){
@@ -33,7 +40,11 @@ $(document).ready(function(){
 	}
 })
 </script>
-<div class="container">
+<header id="header">
+ <!-- header section -->
+<%@include file="admin_header.jsp" %> 
+</header>
+<div class="container" style="margin-top: 150px; margin-bottom: 300px;">
 <h1>관리자문의게시판</h1>
 현재로그인된아이디 확인용 : <%=session.getAttribute("loginid") %> <br />
 <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/>
@@ -101,5 +112,9 @@ totCnt : ${totRowcnt }
 </div>
 </form>
 </div>
+<footer>
+<!-- footer section -->
+<%@ include file="admin_footer.jsp" %> 
+</footer>
 </body>
 </html>

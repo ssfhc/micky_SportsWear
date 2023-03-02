@@ -88,7 +88,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
          </div>
          <br />
          <div>
-            <input class="inputvalue" type="text" name="m_pw" id="m_pw" placeholder="비밀번호 입력.." />
+            <input class="inputvalue" type="password" name="m_pw" id="m_pw" placeholder="비밀번호 입력.." />
          </div>
          	비밀번호표시<input type="checkbox" name="showpassword" />
          <br />

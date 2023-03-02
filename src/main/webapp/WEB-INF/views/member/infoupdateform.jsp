@@ -776,7 +776,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
             </div>
             <div>
                 <!-- 취소 -->
-                <input class="btn1" type="button" value="취소" onclick="location.href='mypageform'">&nbsp;&nbsp;
+                <input class="btn1" type="button" value="취소" onclick="location.href='../myPage/myPageIntro'">&nbsp;&nbsp;
             </div>
 
         </div>

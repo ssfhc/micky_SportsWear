@@ -34,6 +34,7 @@ import micky.sports.shop.service.member.MemberChartService;
 import micky.sports.shop.service.member.MemberDropCheckService;
 import micky.sports.shop.service.member.MemberDropService;
 import micky.sports.shop.service.member.TemporaryPwService;
+import micky.sports.shop.service.myPage.MyPageService;
 import micky.sports.shop.service.product.ProductChartService;
 import micky.sports.shop.service.qnamember.AdminQnaListService;
 import micky.sports.shop.service.qnamember.MemberDeleteService;
@@ -361,8 +362,9 @@ public class MemberController {
 		model.addAttribute("crypt",crypt);
 			
 		mickyServiceInter = new InfoUpdateService(sqlSession,session);
+		mickyServiceInter = new MyPageService(sqlSession,session);
 		mickyServiceInter.execute(model);	
-		return "/member/mypageform";		
+		return "/myPage/myPageIntro";		
 	}
 	
 	

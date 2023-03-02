@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%String loginid = (String)session.getAttribute("loginid"); %>
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,7 @@
             <td>${reviewWrite_orderlist.productDto.p_name }</td>            
         </tr>
         <tr>
-            <td>${reviewWrite_orderlist.productDto.p_price } 원</td>            
+            <td><fmt:formatNumber value="${reviewWrite_orderlist.productDto.p_price }" pattern="###,###"/>원</td>            
         </tr>
 		<tr id="data">
 			<td class="star">

@@ -42,7 +42,7 @@
 	      <li class="main_lime"><a href="qnamember/memberlist">회원관리</a></li>
 		  <li class="main_liqn"><a href="qnamember/adminqnalist">관리자문의</a></li>
 		  
-	      <li class="main_lich"><a href="#">Chart</a>
+	      <li class="main_lich"><a href="admin_chart">Chart</a>
 	      		<!-- 차트 부메뉴 -->
  	      		<ul class="chartsub_ul">
 					<li class="chart_subp"><a href="admin_cartchart">ProductChart</a></li>

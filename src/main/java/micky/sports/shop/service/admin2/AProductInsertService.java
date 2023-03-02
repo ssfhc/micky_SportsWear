@@ -52,6 +52,7 @@ public class AProductInsertService implements MickyServiceInter{
 		String p_category=req.getParameter("p_category");
 		String p_info=req.getParameter("p_info");
 		System.out.println("파일 확인      : "+p_filesrc);
+		
 		dao.produectInsert(p_name,p_price,p_cnt,p_color,p_size,
 				p_filesrc,p_category,p_info);
 	}

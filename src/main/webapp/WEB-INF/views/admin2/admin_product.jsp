@@ -10,7 +10,7 @@ function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('checkbox');
 	  
-	  checkboxes.forEach((checkbox) = {
+	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}
@@ -96,15 +96,39 @@ function modifydb(ths) {
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+h1{
+	text-align: center;
+}
+.btn1{
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+.btn1:hover {
+color: black;
+background-color: white;
+border-color: white;
+cursor: pointer;
+}
+.product-page{
+	text-align: center;
+}
+</style>
 </head>
 <body>
-	<h3>admin_product</h3>
+<header id="header">
+ <!-- header section -->
+<%@include file="../admin/admin_header.jsp" %> 
+</header>
+	<h1>상품관리</h1>
 
 <div class="container">
 	<form action="admin_product" id="form">
 	<!-- 검색 -->		
 		<input type="text" id="q" name="q" value="${search}" placeholder="상품검색" />
-		<input type="submit" value="검색"/>
+		<input type="submit" value="검색" class="btn1"/>
 		
 		<select name="price">
 			<option >가격순</option>
@@ -162,8 +186,8 @@ function modifydb(ths) {
 					<td>${list.p_date }</td>
 					<td>
 <!-- 					<input type="button" value="수정하기" onclick="modify();"/> -->
-					<button type="button" id="${list.p_no }btn1" onclick="modify(this);">수정</button>
-					<button type="button" id="${list.p_no }btn2" onclick="modifydb(this);" style="display: none;">수정완료</button>
+					<button type="button" id="${list.p_no }btn1" onclick="modify(this);" class="btn1">수정</button>
+					<button type="button" id="${list.p_no }btn2" onclick="modifydb(this);" style="display: none;" class="btn1">수정완료</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -175,7 +199,7 @@ function modifydb(ths) {
 	<br />
 	<br />
 	<!-- 페이지 처리 -->
-	<div>
+	<div class="product-page">
 		<c:if test="${searchVo.page > 1 }">
 			<a href="admin_product?page=1&q=${search}&price=${price }&size=${size }">[처음]</a>
 			<a href="admin_product?page=${searchVo.page-1 }&q=${search}&price=${price }&size=${size }">[이전]</a>
@@ -198,6 +222,10 @@ function modifydb(ths) {
 			<a href="admin_product?page=${searchVo.totPage }&q=${search}&price=${price }&size=${size }">[마지막]</a>
 		</c:if>
 	</div>
-</div>
+</div><br /><br />
+    <footer>
+<!-- footer section -->
+<%@ include file="../admin/admin_footer.jsp" %> 
+</footer>
 </body>
 </html>

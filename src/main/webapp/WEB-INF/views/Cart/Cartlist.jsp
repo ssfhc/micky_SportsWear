@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -24,7 +25,8 @@ function fnCalCount(type, ths){
 /* 옵션창 이동  */
 function changeoption(ths) {
 	var cartNum = Number($(ths).parents("tr").find("td.c_no").html());
-	window.open('changeoption?c_no='+cartNum, '옵션변경', 'width=700px,height=800px,scrollbars=yes');
+	var cartName = $(ths).parents("tr").find("td.p_name").html();
+	window.open('changeoption?c_no='+cartNum+"&p_name="+cartName, '옵션변경', 'width=700px,height=800px,scrollbars=yes');
 }
 
 </script>
@@ -177,6 +179,7 @@ b{
                        <!-- 상품의 재고 -->
                        <td class="c_cnt" style="display: none;">${cart.productDto.p_cnt }</td>
                        <td class="c_no" style="display: none;">${cart.c_no }</td>
+                       <td class="p_name" style="display: none;">${cart.productDto.p_name }</td>
                        <td style="display: none;">
                            <input type="text" name="p_no" value="${cart.productDto.p_no }" />
                            <input type="text" name="u_cnt" value="${cart.c_cnt }" />
@@ -187,9 +190,9 @@ b{
                            <a href="#"><img src="../resources/img/productimg/${cart.productDto.p_filesrc }.jpg" alt="img_link" width="100px" height="100px"/></a>
                            ${cart.productDto.p_name } <br />
                            ${cart.productDto.p_size }/${cart.productDto.p_no } <br />
-                           제품선택수량 : ${cart.c_cnt } <br />    	
-                           제품재고 : ${cart.productDto.p_cnt } <br />    	
-                           장바구니번호 : ${cart.c_no }				
+<%--                            제품선택수량 : ${cart.c_cnt } <br />    	 --%>
+<%--                            제품재고 : ${cart.productDto.p_cnt } <br />    	 --%>
+<%--                            장바구니번호 : ${cart.c_no }				 --%>
                            카테고리 : ${cart.productDto.p_category }				
                        </td>
                        <td class="table-cnt">
@@ -214,7 +217,8 @@ b{
                            <a href="deleteCart?p_no=${cart.p_no }&c_no=${cart.c_no }"><img src="../resources/img/icon_delete.png" alt="현재 장바구니 삭제" /></a> <br />
                            <!-- 상품 갯수증가에 따른가격조정 -->
            <%-- 		    	<c:set value="${cart.productDto.p_price*cart.c_cnt }" var="cntprice" scope="application"/> --%>
-                           <strong>${cart.productDto.p_price}</strong><span><b>원</b></span>
+                           <strong><fmt:formatNumber value="${cart.productDto.p_price}" pattern="###,###"/></strong><span><b>원</b></span>
+                           
                        </td>
                    </tr>
                    </c:forEach>		 
@@ -230,7 +234,7 @@ b{
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <em>상품금액</em> <span>${totalprice }원</span>
+	                        <em>상품금액</em> <span><fmt:formatNumber value="${totalprice }" pattern="###,###"/>원</span>
 	                    </li>
 	                    <li>
 	                        <em>배송비</em> <span>0원</span>
@@ -244,7 +248,8 @@ b{
 	                </ul>
 	            </dd>
 	        </dl>
-	        <em style="font-style: normal;">총 결제금액</em> <b style="color: red;">${totalprice }</b> <span>원</span> <br />
+	        <em style="font-style: normal;">총 결제금액</em>
+	        <b style="color: red;"><fmt:formatNumber value="${totalprice }" pattern="###,###"/></b> <span>원</span> <br />
 	    <!-- 제품,사이즈,수량,가격,구매자  -->
 	
 	    <input class="orderbutton" type="submit" value="주문하기" />

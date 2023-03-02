@@ -20,7 +20,7 @@
 	<h3>상품리스트</h3>
 	
 	
-	<jsp:include page="/WEB-INF/views/aside.jsp" />
+	<jsp:include page="/WEB-INF/views/aside2.jsp" />
 	
 	<div class="productNormalPackage">
 	

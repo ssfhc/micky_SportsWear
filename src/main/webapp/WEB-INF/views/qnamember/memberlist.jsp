@@ -44,7 +44,7 @@ $(document).ready(function(){
 })
 </script>
 <h1>회원목록</h1>
-<input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/>
+<!-- <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/> -->
 <table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto;">
 	<tr>
 		<td>아이디</td>

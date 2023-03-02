@@ -36,7 +36,7 @@ $(document).ready(function(){
 <div class="container">
 <h1>관리자문의게시판</h1>
 현재로그인된아이디 확인용 : <%=session.getAttribute("loginid") %> <br />
-<input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/>
+<!-- <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/> -->
 <table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto;">
 	<tr>
 		<td>문의번호</td>

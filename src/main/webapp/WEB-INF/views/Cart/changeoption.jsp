@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -151,9 +152,10 @@ function redeptlist(target) {
             </div>
             <div class="col-xs-6">
                 ${list.productDto.p_no } <br />	
-                <b>${list.productDto.p_name }</b>  <a href="#">상품상세</a><br /><!-- 상품의 디테일로가는링크 -->
+                <b>${list.productDto.p_name }</b>
+<%--                 <a href="product/productDetail?pname=${list.productDto.p_name }&pfilesrc=${list.productDto.p_filesrc }">상품상세</a><br /><!-- 상품의 디테일로가는링크 --> --%>
                 
-                ${list.productDto.p_price } <span>원</span> <br />     
+                <fmt:formatNumber value="${list.productDto.p_price }" pattern="###,###"/><span>원</span> <br />     
                 <hr />
                 <div>
                     <div class="avg_star">
@@ -162,15 +164,14 @@ function redeptlist(target) {
                             <span class="user_date">
                                 <span class="reviewBoard_star">
                                     ★★★★★
-                                    <span id="star2" style="width:8${avgStarscore*20}%">★★★★★</span>
+                                    <span id="star2" style="width:${avgStarscore*20}%">★★★★★</span>
                                 </span>
                             </span>
                         </div>
                         <div class="tablerow">
-                            <%-- <b>&nbsp;&nbsp;&nbsp; ${avgStarscore } 총점</b> --%>
+                            <b>&nbsp;&nbsp;&nbsp; ${avgStarscore } 총점</b>
                         </div>
                         </div>
-                        <div><b>${totalCount }2개의 REVIEWS</b></div>
                     </div>
                 <br />
                 </div>

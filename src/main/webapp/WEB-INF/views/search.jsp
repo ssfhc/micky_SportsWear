@@ -16,14 +16,12 @@
 </head>
 <body>  
 	<jsp:include page="/WEB-INF/views/header2.jsp" />
-	
-	<h3>상품리스트</h3>
-	
-	
+		
+	<br />
 	<jsp:include page="/WEB-INF/views/aside2.jsp" />
 	
 	<div class="productNormalPackage">
-	
+	<span class="category_total" style="margin-left: 225px; font-weight: bold; font-size: 20px;">Total ${productlsit.size() }</span>
 	<ul class="productList">
 	
 	<c:forEach items="${productlsit}" var="plist">

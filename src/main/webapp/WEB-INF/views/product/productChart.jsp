@@ -16,23 +16,6 @@
 <!--@@@ header @@@-->
 <jsp:include page="/WEB-INF/views/header.jsp" />
 
-<%-- <c:if test="${empty sessionScope.loginid }">
-   <a href="../member/loginform">login</a> 
-   |  <a href="../member/joinform">join</a>
-
-</c:if>
- <c:if test="${not empty sessionScope.loginid }">
-    <a href="../member/logout">logout</a> 
- <br />
- ${sessionScope.loginid } 님, 로그인상태입니다.
-	 <div>
-		<p class="go-myOrderList" style="color: #336666;">
-		<a href="../myPage/myPageIntro">마이페이지로</a>
-		</p>
-	</div>
- </c:if> --%>
- 
- <!-- 로그인 상태라면 나의 주문내역보기 가능 -->
  
  <!--@@@ 메인 slide @@@-->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -106,6 +89,8 @@
         .middle_img{
         	position: relative;
         	top: -131px;
+        	width: 100vw;
+        	z-index: 2;
         }
       </style>
 </head>
@@ -113,7 +98,6 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
-			<img src="...">
 				<img src="../resources/img/mainimg/0224_TNF_Main_KeyVisual_HIKING_PC_02.jpg" >
 				<div class="swiper-text-htag">
 					<h1>LET'S GO <br />

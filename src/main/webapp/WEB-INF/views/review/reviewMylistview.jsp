@@ -127,7 +127,7 @@
 								<!--@@@ 상품명 @@@--><div style="font-weight: bold; font-size: 0.8em;">${myorderlist.productDto.p_name }</div>
 								<!--@@@ 색상, 사이즈 @@@--><div style="font-size: 0.8em;">${myorderlist.productDto.p_color }/${myorderlist.productDto.p_size }</div>
 								<!--@@@ 개수 @@@--><div style="font-size: 0.8em;">${myorderlist.u_cnt }개</div>
-								<!--@@@ 가격 @@@--><div style="font-weight: bolder;">${myorderlist.productDto.p_price } 원</div>
+								<!--@@@ 가격 @@@--><div style="font-weight: bolder;"><fmt:formatNumber value="${myorderlist.productDto.p_price }" pattern="###,###"/>원</div>
 							</div>
 		
 							<!--@@@ 작성하기 버튼 @@@-->

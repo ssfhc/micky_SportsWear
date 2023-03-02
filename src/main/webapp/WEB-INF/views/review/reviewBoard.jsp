@@ -87,7 +87,7 @@
 </head>
 
 <body>
-<a href="../member/main">메인</a> <br />
+<%-- <a href="../member/main">메인</a> <br />
 <!-- 로그아웃 상태 -->
 <c:if test="${empty sessionScope.loginid }">
    <a href="../member/loginform">login</a> 
@@ -106,13 +106,13 @@
       </c:otherwise>
    </c:choose>
 <br />
-</c:if>
+</c:if> --%>
 
 
-<a href="../review/reviewChart">별점순 top5</a>
+<!-- <a href="../review/reviewChart">별점순 top5</a> -->
 
 <br />
-<br />
+<br /> 
 <br />
 
 
@@ -202,9 +202,12 @@
                <div style="text-align: center;">
                   <br />
                   <br />
-                  <h4 style="font-weight: bold; color: #C0C0C0">리뷰가 없습니다.</h4>
-                  <h3 style="font-weight: bolder; color: #696969">리뷰를 작성해보세요!</h3> <br />
-                  <br />
+						<div class="htag">
+							<h4 style="font-weight: bold; color: #C0C0C0">리뷰가 없습니다.</h4>
+							<h3 style="font-weight: bolder; color: #696969">리뷰를 작성해보세요!</h3>
+							<br />
+						</div>
+					<br />
                   <br />
                </div>
             </c:if>

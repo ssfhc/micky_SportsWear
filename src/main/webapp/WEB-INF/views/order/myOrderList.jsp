@@ -75,11 +75,12 @@ button{	background-color: #FFF;	border: 1px solid #353535; border-radius: 3px; m
 		<c:otherwise>
 			<c:forEach items="${omdList }" var="mlist">
 				<tr>
-					<td style="text-align: center"><fmt:formatDate value="${mlist.om_date }" pattern="yyyy.MM.dd"/></td>
+					<td style="text-align: center"><fmt:formatDate value="${mlist.om_date}" pattern="yyyy.MM.dd"/></td>
 					<td>${mlist.om_num }</td>
-					<td><img src="../resources/img/productimg/${mlist.productDto.p_filesrc }.jpg" width="50" alt="상품사진" /></td>
+					<td><img src="../resources/img/productimg/${mlist.productDto.p_filesrc}.jpg" width="50" alt="상품사진" /></td>
 					<td>
-						${mlist.productDto.p_name} <br />
+						<a href="../product/productDetail?pname=${mlist.productDto.p_name}&pfilesrc=${mlist.productDto.p_filesrc}">
+						${mlist.productDto.p_name}</a> <br />
 						<div class="option">${mlist.productDto.p_color} / ${mlist.productDto.p_size}</div>
 						${mlist.u_cnt}개
 					</td>

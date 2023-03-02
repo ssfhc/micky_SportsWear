@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import micky.sports.shop.service.admin2.AProductDeleteService;
 import micky.sports.shop.service.admin2.AProductInsertService;
 import micky.sports.shop.service.admin2.AProductListService;
 import micky.sports.shop.service.admin2.AProductUpdateService;
+import micky.sports.shop.service.member.MemberChartService;
+import micky.sports.shop.service.review.ReviewAdminpageService;
+import micky.sports.shop.service.review.ReviewChartService;
 import micky.sports.shop.vopage.SearchVO;
 
 @Controller
@@ -28,7 +32,9 @@ public class AdminController2 {
 
 	@Autowired
 	private SqlSession sqlSession;
-
+	@Autowired
+	private HttpSession session;
+	
 	// 관리자 상품관리 현황 리스트
 	@RequestMapping("/admin_product")
 	public String adminproduct(HttpServletRequest request, SearchVO searchVO, Model model) {
@@ -96,6 +102,24 @@ public class AdminController2 {
 
 			return "/admin2/admin_cartchart";
 	}
+		
+		// 관리자 상품관리 차트
+				@RequestMapping("/admin_chart")
+				public String admin_chart(HttpServletRequest request, Model model) {
+					
+					model.addAttribute("request", request);
+
+					mickyServiceInter = new ACartChartService(sqlSession);
+					mickyServiceInter.execute(model);  
+					
+					mickyServiceInter = new MemberChartService(sqlSession,session);
+					mickyServiceInter.execute(model);
+					
+					mickyServiceInter=new ReviewAdminpageService(sqlSession,session);
+					mickyServiceInter.execute(model);
+					
+					return "/admin2/admin_chart";
+				}
 		
 
 }

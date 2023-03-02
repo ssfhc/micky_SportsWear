@@ -297,7 +297,7 @@
 				<span>${pChart.p_color}</span>
 			</p>
 			<p class="pprice">
-				<span>${pChart.p_price}</span>
+				<span><fmt:formatNumber value="${pChart.p_price}" pattern="###,###"/>원</span>
 			</p>
 		</div>
 	</li>	
@@ -323,7 +323,7 @@
 					<span style="color: #ff7f00;">★</span><span>${scoredesc.productDto.avgscore}</span>
 				</p>
 				<p class="pprice">
-					<span>${scoredesc.productDto.p_price}</span>
+					<span><fmt:formatNumber value="${scoredesc.productDto.p_price}" pattern="###,###"/>원</span>
 				</p>
 			</div>
 		</li>	
@@ -349,7 +349,7 @@
 					<span>${malescoredesc.p_color}</span>
 				</p>
 				<p class="pprice">
-					<span>${malescoredesc.p_price}</span>
+					<span><fmt:formatNumber value="${malescoredesc.p_price}" pattern="###,###"/>원</span>
 				</p>
 			</div>
 		</li>	
@@ -374,7 +374,7 @@
 					<span>${femalescoredesc.p_color}</span>
 				</p>
 				<p class="pprice">
-					<span>${femalescoredesc.p_price}</span>
+					<span><fmt:formatNumber value="${femalescoredesc.p_price}" pattern="###,###"/>원</span>
 				</p>
 			</div>
 		</li>	

@@ -20,6 +20,8 @@ import lombok.Setter;
 	   private String receipt_phone; //수령자번호
 	   private Date od_date;//배송일자
 	   
+	   private String om_cntnum; //추가 om_cntnum
+	   
 	   public OrderDeliveryDto() {
 	      // TODO Auto-generated constructor stub
 	   }

@@ -41,12 +41,21 @@ public class OrderDeliveryService implements MickyServiceInter{
 		String addr3 =request.getParameter("addr3");
 		
 		OrderDao odao=sqlSession.getMapper(OrderDao.class);
-		//가장최근 주문번호확인
-		OrderMemberDto checkOmCntnum= odao.checkOmCntnum(loginId);
+		//가장최근 주문번호확인 *변경전
+		//OrderMemberDto checkOmCntnum= odao.checkOmCntnum(loginId);
+		//String omCntnum=checkOmCntnum.getOm_cntnum();
+		//odao.deliverys(omCntnum,loginId,receipt_name,receipt_phone,addr1,addr2,addr3);
 		
-		String omCntnum=checkOmCntnum.getOm_cntnum();
-		
-		odao.delivery(omCntnum,loginId,receipt_name,receipt_phone,addr1,addr2,addr3);
+		//가장최근 주문번호확인 *변경후
+	    ArrayList<OrderMemberDto> oms=odao.checkOms(loginId);
+	    String omCntnum;
+	    String omNum;
+	    for (OrderMemberDto om : oms) {
+	       omCntnum=om.getOm_cntnum();
+	       omNum=om.getOm_num();
+	       odao.delivery(omNum,loginId,receipt_name,receipt_phone,addr1,addr2,addr3,omCntnum);   
+	    }
+	
 	}
 
 }

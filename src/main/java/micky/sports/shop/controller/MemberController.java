@@ -143,7 +143,7 @@ public class MemberController {
 	
 	
 	//아이디중복검사기능
-	@RequestMapping(value="/joinidcheck",method = RequestMethod.GET)
+	@RequestMapping(value="/joinidcheck",method = RequestMethod.POST)
 	@ResponseBody
 	public int joinidcheck(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/joinidcheck()@@@");
@@ -164,7 +164,7 @@ public class MemberController {
 	
 	
 	//닉네임중복검사기능
-	@RequestMapping(value="/joinnicknamecheck",method = RequestMethod.GET)
+	@RequestMapping(value="/joinnicknamecheck",method = RequestMethod.POST)
 	@ResponseBody
 	public int joinnicknamecheck(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/joinnicknamecheck()@@@");
@@ -369,7 +369,7 @@ public class MemberController {
 	
 	
 	//이메일중복확인
-	@RequestMapping(value="/emailoverlapcheck",method = RequestMethod.GET)
+	@RequestMapping(value="/emailoverlapcheck",method = RequestMethod.POST)
 	@ResponseBody
 	public int emailoverlapcheck(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/emailoverlapcheck()@@@");
@@ -391,7 +391,7 @@ public class MemberController {
 	
 	
 	//이메일인증
-	@RequestMapping(value="/emailcheck",method = RequestMethod.GET)
+	@RequestMapping(value="/emailcheck",method = RequestMethod.POST)
 	@ResponseBody
 	public String emailcheck(HttpServletRequest request,Model model) {
 		System.out.println("@@@MemberController/emailcheck()@@@");
@@ -446,7 +446,7 @@ public class MemberController {
 	
 	
 	//회원탈퇴진입전비밀번호본인인증
-	@RequestMapping(value="/memberdropcheck",method = RequestMethod.GET)
+	@RequestMapping(value="/memberdropcheck",method = RequestMethod.POST)
 	@ResponseBody
 	public int memberdropcheck(HttpServletRequest request, Model model,CryptoUtil crypt) {
 		System.out.println("@@@MemberController/memberdropcheckform()@@@");
@@ -515,7 +515,7 @@ public class MemberController {
 		  return "/member/findpwform"; 
 	 }	  	  
 		//비밀번호찾기인증
-		@RequestMapping(value="/findpw",method = RequestMethod.GET)
+		@RequestMapping(value="/findpw",method = RequestMethod.POST)
 		@ResponseBody
 		public int findpw(HttpServletRequest request,Model model) {
 			System.out.println("@@@MemberController/findpw()@@@");
@@ -534,7 +534,7 @@ public class MemberController {
 			return overlapcheck_result; //return 한 값이 ajax success (data)로 간다
 		}				
 	  //비밀번호찾기 임시비번전송
-	  @RequestMapping(value="/sendpwemail",method = RequestMethod.GET)
+	  @RequestMapping(value="/sendpwemail",method = RequestMethod.POST)
 	  @ResponseBody
 	  public String sendpwemail(HttpServletRequest request,Model model,CryptoUtil crypt) {
 		  System.out.println("@@@MemberController/sendpwemail()@@@");
@@ -591,7 +591,7 @@ public class MemberController {
 		  return "/member/findidform"; 
 	 }	  	  
 		//아이디찾기기능
-		@RequestMapping(value="/findid",method = RequestMethod.GET)
+		@RequestMapping(value="/findid",method = RequestMethod.POST)
 		@ResponseBody
 		public String findid(HttpServletRequest request,Model model) {
 			System.out.println("@@@MemberController/findid()@@@");

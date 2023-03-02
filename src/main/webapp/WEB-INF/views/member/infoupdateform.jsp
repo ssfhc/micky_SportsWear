@@ -239,8 +239,10 @@ function checknickname(){ //닉네임중복확인
 	}else{
 		$('.name2null').css("display","none");
 		$.ajax({
-			url: '../member/joinnicknamecheck?overlapcheck=' + overlapcheck_nickname, //input nickname을 controller joinnicknamecheck()으로
-			type: 'GET',
+			type: 'POST',
+			url: '../member/joinnicknamecheck', //input nickname을 controller joinnicknamecheck()으로
+			data:"overlapcheck="+overlapcheck_nickname,
+			dataType:'text',
 			success: function( result ) {
 				
 				if( result==0) { //닉네임이 중복하지않을때
@@ -334,8 +336,10 @@ function checktel(){
 		$('.emailcheck1').css("display","none");
 	}else {
 				$.ajax({
-					type:'GET',
-					url:'../member/emailoverlapcheck?email=' +m_email,
+					type:'POST',
+					url:'../member/emailoverlapcheck',
+					data:"email="+m_email,
+					dataType:'text',
 					success:function(result){
 						alert(result)
 						if(result==1){
@@ -349,8 +353,10 @@ function checktel(){
 							$('.emailcheck1').css("display","none");
 							$('.emailcheck').css("display","none");
 							$.ajax({
-								type : 'GET',
-								url : '../member/emailcheck?email=' + m_email, //email주소를 controller emailcheck()으로
+								type : 'POST',
+								url : '../member/emailcheck', //email주소를 controller emailcheck()으로
+								data:"email="+m_email,
+								dataType:'text',
 								success : function(data){
 									console.log("data : "+data); //인증번호확인용 (f12콘솔창 확인가능)
 									checkinput.attr('disabled',false); //인증번호입력란 활성화

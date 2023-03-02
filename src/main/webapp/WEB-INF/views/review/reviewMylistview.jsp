@@ -3,16 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%String loginid = (String)session.getAttribute("loginid"); %>
-<c:if test="${empty sessionScope.loginid }">
-	<a href="../member/loginform">login</a> 
-	<a href="">join</a>
-</c:if>
-<c:if test="${not empty sessionScope.loginid }">
-	<a href="../member/logout">logout</a> 
-	<a href="reviewMylistview">${sessionScope.loginid }님</a>
-<br />
-</c:if>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&family=Noto+Sans+KR:wght@900&family=UnifrakturCook&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../resources/css/reviewstyle.css?after" />
+<link rel="stylesheet" href="../resources/css/reviewstyle.css" />
 <link rel="stylesheet" href="../resources/css/footer.css" />
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 <script src="../resources/js/jquery.bpopup.min.js"></script>
@@ -66,6 +56,7 @@
 </head>
 
 <body style="margin: 0px;">
+
 <!--@@@ header @@@-->
 <jsp:include page="/WEB-INF/views/header.jsp" />
 

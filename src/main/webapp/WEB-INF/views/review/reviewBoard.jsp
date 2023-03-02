@@ -87,29 +87,6 @@
 </head>
 
 <body>
-<%-- <a href="../member/main">메인</a> <br />
-<!-- 로그아웃 상태 -->
-<c:if test="${empty sessionScope.loginid }">
-   <a href="../member/loginform">login</a> 
-   <a href="">join</a>
-</c:if>
-<!-- 로그인 상태 -->
-<c:if test="${not empty sessionScope.loginid }">
-   <a href="../member/logout">logout</a> 
-   <!-- 로그인한 id가 admintest일 경우 관리자페이지로 접근 -->
-   <c:choose>
-      <c:when test="${sessionScope.loginid eq 'admintest' }">
-         <a href="../review/reviewAdminpage">${sessionScope.loginid }님</a>
-      </c:when>
-      <c:otherwise>
-         <a href="../review/reviewMylistview">${sessionScope.loginid }님</a>
-      </c:otherwise>
-   </c:choose>
-<br />
-</c:if> --%>
-
-
-<!-- <a href="../review/reviewChart">별점순 top5</a> -->
 
 <br />
 <br /> 

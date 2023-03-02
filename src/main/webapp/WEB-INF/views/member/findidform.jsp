@@ -42,8 +42,10 @@ console.log('완성된 이메일 : '+ eamil);
 console.log('아이디입력한거 : '+m_namee); 
 		
 	$.ajax({
-		type:'GET',
+		type:'POST',
 		url:'../member/findid?email=' +eamil+ '&m_name=' + m_namee,
+		data:"email="+eamil+"&m_name="+m_namee,
+		dataType:'text',
 		success:function(result){
 			/* alert("ajax응답완료확인 : "+result) */			
 			if(result==""){

@@ -241,13 +241,13 @@
 <c:forEach items="${pdtTimeChart }" var="pTChart">
 	<li>
 		<div class="pdtthumbnail">
-			<a href="productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
+			<a href="../product/productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
 			<img src="../resources/img/productimg/${pTChart.p_filesrc }.jpg" alt="" />
 			</a>
 		</div>
 		<div class="pdtdetail">
 			<p class="pname">
-			<a href="productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
+			<a href="../product/productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
 			${pTChart.p_name}
 			</a>
 			</p>
@@ -267,13 +267,13 @@
 <c:forEach items="${productChart }" var="pChart">
 	<li>
 		<div class="pdtthumbnail">
-			<a href="productDetail?pname=${pChart.p_name }&pfilesrc=${pChart.p_filesrc }">
+			<a href="../product/productDetail?pname=${pChart.p_name }&pfilesrc=${pChart.p_filesrc }">
 			<img src="../resources/img/productimg/${pChart.p_filesrc }.jpg" alt="" />
 			</a>
 		</div>
 		<div class="pdtdetail">
 			<p class="pname">
-			<a href="productDetail?pname=${pChart.p_name }&pfilesrc=${pChart.p_filesrc }">
+			<a href="../product/productDetail?pname=${pChart.p_name }&pfilesrc=${pChart.p_filesrc }">
 			${pChart.p_name}
 			</a>
 			</p>
@@ -364,9 +364,7 @@
 		</li>	
 	</c:forEach>
 	</ul>
-
 </div>
-
 
 </body>
 <!--@@@ footer @@@-->

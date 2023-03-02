@@ -70,7 +70,7 @@
 	</update>
 	<!-- 회원정보수정2 -->
 	<update id="memberupdate2">
-		UPDATE MEMBER SET M_PW=#{param2},M_NAME=#{param3},M_TEL=#{param4},M_NAME2=#{param5},
+		UPDATE MEMBER SET M_ID=#{param1},M_PW=#{param2},M_NAME=#{param3},M_TEL=#{param4},M_NAME2=#{param5},
 		M_EMAIL=#{param6},M_GRADE=#{param7},M_AGE=#{param8},M_GENDER=#{param9},M_CASH=#{param10},
 		SHA=#{param11},RSA=#{param12} WHERE M_ID=#{param1}
 	</update>

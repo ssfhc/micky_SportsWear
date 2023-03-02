@@ -180,15 +180,20 @@ function readURL(input) { //프로필사진 업로드 (아직잘모름)
 	}
 function checkinfovalue(){
 	alert("관리자가회원정보수정신호")
-	/* var m_age = $("#m_age").val();
-	var m_name = $("#m_name").val(); */
-	
+	var m_age = $("#m_age").val();
+	var m_name = $("#m_name").val(); 
+	var m_gender = jf.m_gender.value;
 	var m_id = $("m_id").val();
-	var checkid_YESorNO = jf.checkid_YESorNO.value; //nickname중복확인진행 유무(기본값은 NO)
+	var m_grade = jf.m_grade.value;
+	var m_cash = jf.m_cash.value;Z
+	var m_name2 = jf.m_name2.value;
+	var m_tel = jf.m_tel.value;
+	//var checkid_YESorNO = jf.checkid_YESorNO.value; //nickname중복확인진행 유무(기본값은 NO)
+
 
 	
 
-	if(checkid_YESorNO=="NO" || m_id=="" || m_id==0){
+	if(m_gender=="" || m_gender==0 || m_age=="" || m_age==0 || m_name=="" || m_grade=="" || m_cash=="" || m_name2=="" || m_tel==""){
 		alert("입력다시")
 		return false;
 	}else{
@@ -197,8 +202,8 @@ function checkinfovalue(){
 	}
 	 
 }
-function checkid(){
-	var overlapcheck_id = $("m_id").val(); //input id의 value
+/* function checkid(){
+	var overlapcheck_id = jf.m_id.value; //input id의 value
 	let valcheck_id = /^[a-z]+[a-z0-9]{5,19}$/g; //아이디 정규식
 	
 	if(overlapcheck_id.length==0 || overlapcheck_id==""){ //input id를 타이핑하지않으면
@@ -218,14 +223,16 @@ function checkid(){
 	}else { //제대로된 input id가 타이핑되면
 		//window.location.href="/micky_SportsWear/member/joinidcheck?overlapcheck_id=" + overlapcheck_id;
 		$.ajax({
-			url: '../member/joinidcheck?overlapcheck=' + overlapcheck_id, //input id를 controller의 joinidcheck()으로
-			type: 'GET',
+			url: '../member/joinidcheck', //input id를 controller의 joinidcheck()으로
+			data:"overlapcheck="+overlapcheck_id,
+			dataType:'text',
+			type: 'POST',
 			success: function( result ) { 
 				
 				if( result==0) { //아이디가 중복하지않을때
-					//alert(result);
-					//alert("사용가능한아이디입니다 : "+result)
-					$('.idcheck0').css("display","inline-block");
+					/* alert(result);
+					alert("사용가능한아이디입니다 : "+result) */
+					/* $('.idcheck0').css("display","inline-block");
 					$('.idcheck1').css("display","none");
 					$('.idnull').css("display","none");
 					$('.idcheck').css("display","none");
@@ -235,30 +242,30 @@ function checkid(){
 					$('.idcheck0').css("display","none");
 					$('.idnull').css("display","none");
 					$('.idcheck').css("display","none");
-					//alert(result);
-					//alert("이미있는아이디입니다 : "+result)
-				}
+					/* alert(result);
+					alert("이미있는아이디입니다 : "+result) */
+			/* 	}
 			},
 			error: function() {
 				console.log( "joinForm의 ajax 에러" )
 			}
-		})
+		}) */
 	
 	
-}
-}
+/* }
+} */ 
 </script>
 <h3>memberupdateform.jsp</h3>
 <h1>회원정보수정화면</h1>
-<form class="container" action="memberupdate" method = "post" enctype="multipart/form-data" onsubmit="return checkinfovalue()" >
-<input type="hidden" name="m_id" value="${memberupdate_id.m_id }" />
+<form class="container" name="jf" action="memberupdate" method = "post" enctype="multipart/form-data" onsubmit="return checkinfovalue()" >
+<%-- <input type="hidden" name="m_id" value="${memberupdate_id.m_id }" /> --%>
 <input type="hidden" name="checkid_YESorNO" id="checkid_YESorNO" value="NO" /><br /> <!-- 아이디중복체크유무 -->
-<input type="hidden" name="m_grade" value="${memberupdate_id.m_grade }" readonly/>
-
+<%-- <input type="hidden" name="m_grade" value="${memberupdate_id.m_grade }" readonly/>
+<input type="hidden" name="m_cash" value="${memberupdate_id.m_cash }" /> --%>
 <div class="MemberInfo_box">
             
             <div>
-                <input type="text" id="m_id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " oninput="checkid()" value="${memberupdate_id.m_id }"/>
+                <input type="text" id="m_id" name="m_id" placeholder="영문자로 시작하는 영문자 또는 숫자 6~20자 " value="${memberupdate_id.m_id }" readonly/>
                 <p class="idnull" style="display: none; color: red;">아이디를 입력하세요</p>
                 <p class="idcheck" style="display: none; color: red;">영문자으로 시작하는 영문자 또는 숫자 6~20자</p>
                 <p class="idcheck1" style="display: none; color: red;">이미사용중인아이디입니다</p>
@@ -312,7 +319,7 @@ function checkid(){
 			
 			<!-- 등급 -->
 			<div>
-				<input class="grade" value="${memberupdate_id.m_grade }"/>
+				<input class="grade" name="m_grade" id="m_grade" value="${memberupdate_id.m_grade }"/>
 				<!-- <p class="emailcheckcheck" style="display: none; color: red;">이메일 인증하시오</p> -->
 				<!-- <p class="emailchecknumber0" style="display: none; color: red;">인증번호확인하세요</p>
 				<p class="emailchecknumber1" style="display: none; color: blue;">인증완료</p> -->

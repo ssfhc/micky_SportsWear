@@ -364,9 +364,7 @@
 		</li>	
 	</c:forEach>
 	</ul>
-
 </div>
-
 
 </body>
 <!--@@@ footer @@@-->

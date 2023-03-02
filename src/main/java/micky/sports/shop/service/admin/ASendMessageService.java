@@ -41,22 +41,22 @@ public class ASendMessageService implements MickyAMessageServiceInter{
 //		model.addAttribute("send_csms",sendcsms);
 		
 		 
-//		 String api_key = "#";//api key
-//		 String api_secret = "#";//secret key
-//		 Message coolsms = new Message(api_key,api_secret);
-//		 HashMap<String, String> params = new HashMap<String, String>();
-//		 params.put("type","SMS");//type
-//		 params.put("text","[MickySporsWear]주문이 취소되었습니다.");//content
-//		 params.put("to","010-0000-0000");//user
-//		 params.put("from","010-0000-0000");//admin
-//		 try{
-//		 	JSONObject obj = (JSONObject) coolsms.send(params);
-//		 	System.out.println("sms전송성공");
-//		 	System.out.println(obj.toString());
-//		 } catch(CoolsmsException e){
-//		 	System.out.println("sms전송실패");
-//		 	
-//		 }
+		 String api_key = "#";//api key
+		 String api_secret = "#";//secret key
+		 Message coolsms = new Message(api_key,api_secret);
+		 HashMap<String, String> params = new HashMap<String, String>();
+		 params.put("type","SMS");//type
+		 params.put("text","[MickySporsWear]주문이 취소되었습니다.");//content
+		 params.put("to","010-0000-0000");//user
+		 params.put("from","010-0000-0000");//admin
+		 try{
+		 	JSONObject obj = (JSONObject) coolsms.send(params);
+		 	System.out.println("sms전송성공");
+		 	System.out.println(obj.toString());
+		 } catch(CoolsmsException e){
+		 	System.out.println("sms전송실패");
+		 	
+		 }
 		
 	}
 }

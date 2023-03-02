@@ -33,11 +33,16 @@ public interface OrderDao {
 	//취소사유 적은후 취소요청하기 
 	public void myOCancelOffersubmit(String calcleOfferomcntnum,String myOrderCancelReason);
 	
-	//배송관련 최근주문번호확인
+	//배송관련 최근주문번호확인*변경전
 	public OrderMemberDto checkOmCntnum(String mId);
-	//배송
-	public void delivery(String omCntnum,String mId,String receipt_name,String receipt_phone,String addr1,String addr2,String addr3);
+	//배송*변경전
+	public void deliverys(String omCntnum,String mId,String receipt_name,String receipt_phone,String addr1,String addr2,String addr3);
 
+	//배송관련 최근주문번호확인*변경후
+	public ArrayList<OrderMemberDto> checkOms(String mId);
+	//배송*변경후
+	public void delivery(String omNum,String mId,String receipt_name,String receipt_phone,String addr1,String addr2,String addr3,String omCntnum);
+	
 	//구매확정
 	public void myOrderConfirm(String omnum);
 	//반품요청

@@ -21,8 +21,6 @@
 <jsp:include page="/WEB-INF/views/header.jsp" />
 
 
-<h3>상품</h3>
-
 <div class="pdt">
 	<c:forEach items="${product}" var="p" varStatus="status" begin="0" end="0">
 	<div class="main-img">

@@ -16,23 +16,6 @@
 <!--@@@ header @@@-->
 <jsp:include page="/WEB-INF/views/header.jsp" />
 
-<c:if test="${empty sessionScope.loginid }">
-   <a href="../member/loginform">login</a> 
-   |  <a href="../member/joinform">join</a>
-</c:if>
- <c:if test="${not empty sessionScope.loginid }">
-    <a href="../member/logout">logout</a> 
- <br />
- ${sessionScope.loginid } 님, 로그인상태입니다.
- 	 <div>
-		<p class="go-myOrderList" style="color: #336666;">
-		<a href="../myPage/myPageIntro">마이페이지로</a>
-		</p>
-	</div>
- </c:if>
-<br />
-<a href="../product/productChart">메인탑5으로</a>
-<h3>상품리스트</h3>
 
 
 <!--@@@ aside @@@-->

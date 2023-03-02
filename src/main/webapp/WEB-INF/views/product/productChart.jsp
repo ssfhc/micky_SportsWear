@@ -106,6 +106,8 @@
         .middle_img{
         	position: relative;
         	top: -131px;
+        	width: 100vw;
+        	z-index: 2;
         }
       </style>
 </head>

@@ -170,11 +170,16 @@
 		ORDER BY O.OM_CNTNUM DESC
 	</select>
 	
-	<select id="modifyview" resultType="micky.sports.shop.dto.ReviewDto">
-		SELECT R_NO,M_ID,R_TITLE,R_CONTENT,R_ID,R_RETITLE,
-		R_RECONTENT,R_YNN,R_DATE,R_GROUP,R_FILESRC,R_SCORE,P_NO FROM REVIEW
-		WHERE R_NO=#{param1}
-		ORDER BY R_GROUP DESC
+	<select id="modifyview" resultType="micky.sports.shop.dto.ReviewDto" resultMap="ReviewDto">
+		SELECT R.R_NO,R.M_ID,R.R_TITLE,R.R_CONTENT,R.R_ID,R.R_RETITLE,
+		R.R_RECONTENT,R.R_YNN,R.R_DATE,R.R_GROUP,R.R_FILESRC,R.R_SCORE,
+		P.P_NAME,P.P_PRICE,P.P_COLOR,P.P_SIZE,P.P_FILESRC,
+		O.OM_CNTNUM
+		FROM PRODUCT P, REVIEW R, ORDER_MEMBER O
+		WHERE P.P_NO=R.P_NO
+		AND R.OM_CNTNUM=O.OM_CNTNUM
+		AND R.R_NO=#{param1}
+		ORDER BY R_GROUP DESC	
 	</select>
 	
 	<update id="modify">

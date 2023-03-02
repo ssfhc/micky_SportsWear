@@ -44,6 +44,8 @@ console.log('아이디입력한거 : '+m_idd);
 	$.ajax({
 		type:'GET',
 		url:'/shop/member/findpw?email=' +eamil+ '&m_id=' + m_idd,
+		data:"email="+eamil+"&m_id="+m_idd,
+		dataType:'text',
 		success:function(result){
 			/* alert(result)	 */		
 			if(result==0){

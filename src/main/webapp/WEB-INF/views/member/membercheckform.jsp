@@ -40,8 +40,10 @@ function checkValue(){
 		alert("비밀번호입력하세요")
 	}else{
 		$.ajax({
-			url:'../member/memberdropcheck?m_pw=' + inputPw,
-			type:'GET',
+			url:'../member/memberdropcheck',
+			type:'POST',
+			data:"m_pw="+inputPw,
+			dataType:'text',
 			success:function(result){
 				if( result==0) { 
 					alert("본인인증실패")

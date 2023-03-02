@@ -67,46 +67,46 @@
 		</dl> -->
 		<ul id="main_menu">
           <li>
-            <a class="aside_atag as_category" href="../category?c=outer" >아우터</a>
+            <a class="aside_atag as_category" href="./category?c=outer" >아우터</a>
             <ul class="snd_menu sub_menu">
-                <li><a class="aside_atag" href="../category?c=outer-parka" >패딩</a></li>
-                <li><a class="aside_atag" href="../category?c=outer-jacket" >자켓</a></li>
+                <li><a class="aside_atag" href="./category?c=outer-parka" >패딩</a></li>
+                <li><a class="aside_atag" href="./category?c=outer-jacket" >자켓</a></li>
             </ul>
          </li>
           
             <li>
-                <a class="aside_atag as_category" href="../category?c=tshirts" >티＆셔츠</a>
+                <a class="aside_atag as_category" href="./category?c=tshirts" >티＆셔츠</a>
                 <ul class="snd_menu sub_menu">
-                    <li><a class="aside_atag" href="../category?c=tshirts_crewneck" >라운드티</a></li>
-                    <li><a class="aside_atag" href="../category?c=tshirts_hood" >후드티</a></li>
-                    <li><a class="aside_atag" href="../category?c=tshirts_shirts" >셔츠</a></li>
+                    <li><a class="aside_atag" href="./category?c=tshirts_crewneck" >라운드티</a></li>
+                    <li><a class="aside_atag" href="./category?c=tshirts_hood" >후드티</a></li>
+                    <li><a class="aside_atag" href="./category?c=tshirts_shirts" >셔츠</a></li>
                 </ul>
             </li>
             <li>
-                <a class="aside_atag as_category" href="../category?c=pants_training" >바지</a>
+                <a class="aside_atag as_category" href="./category?c=pants_training" >바지</a>
 <!--                 <ul class="snd_menu sub_menu"> -->
 <!--                     <li><a class="aside_atag" href="#" >트레이닝/조거팬츠</a></li> -->
 <!--                     <li><a class="aside_atag" href="#" >레깅스</a></li> -->
 <!--                 </ul> -->
             </li>
             <li>
-                <a class="aside_atag as_category" href="../category?c=backpack">BACK PACK</a>
+                <a class="aside_atag as_category" href="./category?c=backpack">BACK PACK</a>
                 <ul class="snd_menu sub_menu">
-                    <li><a class="aside_atag" href="../category?c=backpack_climbing">등산백팩</a></li>
-                    <li><a class="aside_atag" href="../category?c=backpack_casual" >캐주얼백팩</a></li>
+                    <li><a class="aside_atag" href="./category?c=backpack_climbing">등산백팩</a></li>
+                    <li><a class="aside_atag" href="./category?c=backpack_casual" >캐주얼백팩</a></li>
                 </ul>
             </li>
             <li>
-                <a class="aside_atag as_category" href="../category?c=hat_cap">모자</a>
+                <a class="aside_atag as_category" href="./category?c=hat_cap">모자</a>
                 <ul class="snd_menu sub_menu">
-                    <li><a class="aside_atag" href="../category?c=hat_cap" >캡</a></li>
+                    <li><a class="aside_atag" href="./category?c=hat_cap" >캡</a></li>
                 </ul>
             </li>
             <li>
-                <a class="aside_atag as_category" href="../category?c=other">기타용품</a>
+                <a class="aside_atag as_category" href="./category?c=other">기타용품</a>
                 <ul class="snd_menu sub_menu">
-                    <li><a class="aside_atag" href="../category?c=other_socks" >양말</a></li>
-                    <li><a class="aside_atag" href="../category?c=other_mask">마스크</a></li>
+                    <li><a class="aside_atag" href="./category?c=other_socks" >양말</a></li>
+                    <li><a class="aside_atag" href="./category?c=other_mask">마스크</a></li>
                 </ul>
             </li>
             <li>

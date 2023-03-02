@@ -51,8 +51,13 @@ $(document).ready(function(){
 })
 </script>
 <h1>회원목록</h1>
+<<<<<<< HEAD
+<!-- <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/> -->
+<table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto;">
+=======
 <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/>
 <table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto; ">
+>>>>>>> 2f3828169b412e07aeba8babae221b76c0d013ad
 	<tr>
 		<td>아이디</td>
 		<td>비밀번호</td>

@@ -40,10 +40,11 @@
 
     <!-- 상품목록 차트 -->
 	<select id="mainsearch" resultType="micky.sports.shop.dto.ProductDto">
-		SELECT * 
+		SELECT P_NAME,P_FILESRC,P_PRICE
 		FROM PRODUCT 
 		WHERE P_NAME LIKE '%'||#{param1}||'%' OR P_COLOR LIKE '%'||#{param1}||'%' OR P_SIZE LIKE '%'||#{param1}||'%' 
 		OR P_CATEGORY LIKE '%'||#{param1}||'%' OR P_INFO LIKE '%'||#{param1}||'%'
+		GROUP BY P_NAME,P_FILESRC,P_PRICE
     </select>
 
     <!-- 상품목록 차트 시간별 -->
@@ -57,7 +58,9 @@
     </select>
     <!-- 선택한 카테고리 리스트 -->
     <select id="categorylist" resultType="micky.sports.shop.dto.ProductDto">
-	    SELECT * FROM PRODUCT WHERE P_CATEGORY LIKE '%'||#{param1}||'%'
+	    SELECT P_NAME,P_FILESRC,P_PRICE 
+	    FROM PRODUCT WHERE P_CATEGORY LIKE '%'||#{param1}||'%'
+	    GROUP BY P_NAME,P_FILESRC,P_PRICE
     </select>
 
 

@@ -82,9 +82,7 @@ public class AdminController2 {
 	}
 	// 관리자 상품관리 상품등록
 	@RequestMapping(value = "/adminProductInsert", method = RequestMethod.POST)
-	public String adminProductInsert(HttpServletRequest request, Model model
-//			,@ModelAttribute("archiveFolder") ArchiveFolder archiveFolder
-			) {
+	public String adminProductInsert(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 
@@ -103,7 +101,7 @@ public class AdminController2 {
 			mickyServiceInter.execute(model);  
 
 			return "/admin2/admin_cartchart";
-		}
+	}
 		
 		// 관리자 상품관리 차트
 				@RequestMapping("/admin_chart")

@@ -19,7 +19,7 @@
 	
 	<h3>카테고리</h3>
 	
-	<jsp:include page="/WEB-INF/views/aside.jsp" />
+	<jsp:include page="/WEB-INF/views/aside2.jsp" />
 	
 	<div class="productNormalPackage">
 	${productlsit.size() }

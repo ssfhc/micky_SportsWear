@@ -30,7 +30,7 @@
 		<li class="side_lior"><a href="admin_olist">주문관리</a></li>
 		<li class="side_lipr"><a href="admin_product">상품관리</a></li>
 		<li class="side_lime"><a href="qnamember/memberlist">회원관리</a></li>
-		<li class="side_liqn"><a href="qnamember/qnalist">관리자문의</a></li>
+		<li class="side_liqn"><a href="qnamember/adminqnalist">관리자문의</a></li>
 		<li class="side_limy"><a href="member/mypageform">My Pages</a></li>
 		
 		<li class="side_lich"><a href="#">Chart</a>

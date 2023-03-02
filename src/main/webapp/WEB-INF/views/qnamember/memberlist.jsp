@@ -20,6 +20,9 @@
 		color: white;
 		background-color: black;
 		border-color: black;
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		border-radius: 5px;
+		border: 1px solid;
 	}
 		.btn1:hover {
 		color: black;
@@ -31,8 +34,12 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!-- 3.x.x 버전 - 가장 최신 버전, 아작스를 지원 -->
 <!-- header section -->
 </head>
-<body style="text-align: center">
-<div class="container">
+<body style="text-align: center; font-family: 'Noto Sans KR', sans-serif;">
+<header id="header">
+ <!-- header section -->
+<%@include file="admin_header.jsp" %> 
+</header>
+<div class="container" style="margin-top: 150px; margin-bottom: 300px;">
 <script>
 var loginid2 = <%=session.getAttribute("loginid")%>;
 $(document).ready(function(){
@@ -45,7 +52,7 @@ $(document).ready(function(){
 </script>
 <h1>회원목록</h1>
 <input class="btn1" type="button" value="관리자페이지로" onclick="location.href='../qnamember/adminpage'"/>
-<table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto;">
+<table class="table table-hover" width="1000" border="1" style="margin-left:auto;margin-right:auto; ">
 	<tr>
 		<td>아이디</td>
 		<td>비밀번호</td>
@@ -130,5 +137,9 @@ totCnt : ${totRowcnt }
 	</div>
 	</form>
 </div>
+<footer>
+<!-- footer section -->
+<%@ include file="admin_footer.jsp" %> 
+</footer>
 </body>
 </html>

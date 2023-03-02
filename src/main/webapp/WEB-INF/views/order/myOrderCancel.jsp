@@ -18,6 +18,10 @@ td{padding: 3px;margin: 3px;border:1px solid #ccc;}
 .submit-btn-div{margin: 3px auto;text-align: center;}
 .submit-btn{background-color: #FFF;	border: 1px solid #353535; border-radius: 3px; margin: 2px auto; text-align: center;}
 .go-productList{margin: 3px auto;text-align: center;}
+.textCnt,.textTot{font-size: 12px; float: left; margin-left: 10px;}
+#maxtext-display{font-size: 12px; color: #337ab7; margin-left: 10px;}
+.go-productList a{text-decoration: none; color: #337ab7; }
+.go-productList a:hover{text-decoration: underline;}
 </style>
 </head>
 <body>
@@ -49,9 +53,9 @@ td{padding: 3px;margin: 3px;border:1px solid #ccc;}
 			<tr>
 				<td colspan="8">
 					<div class="textLengthWrap">
-						<span id="maxtext-display" style="display: none;">글자수는 100자까지 입력 가능합니다.</span>
+						<span id="maxtext-display" style="display: none;">글자수는 100자까지 입력 가능합니다.<br /> </span> 
 						<p class="textCnt">0자</p>					
-						<p class="textTot">/100자</p>					
+						<p class="textTot">/100자 &nbsp;	</p> <br />			
 					<textarea name="myOrderCancelReason" id="myOrderCancelReason" cols="100" rows="5" maxlength="100" placeholder="주문취소사유를 작성해주세요." style="resize: none;"></textarea>
 					</div>
 				</td>

@@ -38,6 +38,7 @@ public class AOrderListService implements MickyServiceInter{
 //		DB select
 		Admin dao=sqlSession.getMapper(Admin.class);
 
+	
 		
 //		page
 		String strPage=request.getParameter("page");

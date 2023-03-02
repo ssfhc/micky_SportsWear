@@ -83,17 +83,29 @@
 		UPDATE ORDER_MEMBER SET OM_CANCLE='Y', C_REASON=#{param2}, OM_CDATE=SYSDATE WHERE OM_CNTNUM=#{param1}
 	</update>
 	
-	<!-- 배송관련 최근번호조회 -->
+	<!-- 배송관련 최근번호조회 *변경전 -->
 	<select id="checkOmCntnum" parameterType="micky.sports.shop.dto.OrderMemberDto" resultMap="OrderMemberDto">
    		SELECT OM_CNTNUM,OM_NUM,P_NO,U_CNT,M_ID,OM_DATE ,OM_PAY ,P_PRICE ,OM_STATE ,OM_CANCLE ,OM_CDATE,C_REASON
 		FROM(SELECT * FROM ORDER_MEMBER WHERE M_ID=#{param1} ORDER BY OM_DATE DESC) WHERE ROWNUM = 1
     </select>
-	<!-- 배송 -->
-	<insert id="delivery">
+	<!-- 배송 *변경전 -->
+	<insert id="deliverys">
 		INSERT INTO ORDER_DELIVERY(OD_NUM,OM_NUM,OM_DATE,M_ID,ADDR1,ADDR2,ADDR3,RECEIPT_NAME,RECEIPT_PHONE,OD_DATE)
 		VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||DELIVERY_SEQ.NEXTVAL,(SELECT OM_NUM FROM ORDER_MEMBER WHERE OM_CNTNUM=#{param1}),
 		(SELECT OM_DATE FROM ORDER_MEMBER WHERE OM_CNTNUM=#{param1}),#{param2},#{param5},#{param6},#{param7},#{param3},#{param4},'')
 	</insert>
+	
+	<!-- 배송관련 최근번호조회 *변경후 -->
+   <select id="checkOms" parameterType="micky.sports.shop.dto.OrderMemberDto" resultMap="OrderMemberDto">
+         SELECT OM_CNTNUM,OM_NUM,P_NO,U_CNT,M_ID,OM_DATE ,OM_PAY ,P_PRICE ,OM_STATE ,OM_CANCLE ,OM_CDATE,C_REASON
+         FROM ORDER_MEMBER WHERE M_ID=#{param1} AND OM_DATE=(SELECT MAX(OM_DATE) FROM ORDER_MEMBER)
+    </select>
+   <!-- 배송 *변경후-->
+   <insert id="delivery">
+      INSERT INTO ORDER_DELIVERY(OD_NUM,OM_NUM,OM_DATE,M_ID,RECEIPT_NAME,RECEIPT_PHONE,ADDR1,ADDR2,ADDR3,OD_DATE, OM_CNTNUM)
+      VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||DELIVERY_SEQ.NEXTVAL,#{param1},(SELECT OM_DATE FROM ORDER_MEMBER WHERE OM_CNTNUM=#{param8}),
+      #{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'',#{param8})
+   </insert>
 	
 	<!-- 구매확정 -->
 	<update id="myOrderConfirm">

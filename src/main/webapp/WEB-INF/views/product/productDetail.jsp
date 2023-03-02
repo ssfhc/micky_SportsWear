@@ -68,7 +68,7 @@
 					<c:if test="${p.p_cnt eq 0}">
 					<div style="color: #333; background-color: #ccc; border-radius: 10px;">
 						<input type="radio"/>
-						<label for="sizeNo${p.p_no}">${p.p_size}</label>		
+						<label for="sizeNo${p.p_no}" class="pdtsize-label">${p.p_size}</label>		
 					</div>
 					</c:if>
 				</div>

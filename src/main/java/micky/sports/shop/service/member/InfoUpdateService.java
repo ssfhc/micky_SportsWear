@@ -1,5 +1,6 @@
 package micky.sports.shop.service.member;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import micky.sports.shop.crypt.CryptoUtil;
 import micky.sports.shop.dao.Member;
+import micky.sports.shop.dao.OrderDao;
 import micky.sports.shop.dto.MemberDto;
+import micky.sports.shop.dto.OrderMemberDto;
 import micky.sports.shop.service.MickyServiceInter;
 
 public class InfoUpdateService implements MickyServiceInter{
@@ -73,7 +76,8 @@ public class InfoUpdateService implements MickyServiceInter{
 		System.out.println("이메일주소조합확인 : "+m_email);
 		
 		String m_filesrc = req.getFilesystemName("m_filesrc");
-		System.out.println("확인좀하자@@@@@@@@@@@@@@@@@"+m_filesrc);
+		System.out.println("파일확인좀하자 프로필사진 : "+m_filesrc);
+		System.out.println("확인좀하자@@@@@@@@@@@@@@@@@"+m_name2);
 		
 		
 		
@@ -121,6 +125,51 @@ public class InfoUpdateService implements MickyServiceInter{
 		}
 		//dao.infoupdate(m_id,m_pw,m_tel,m_name2,m_email,m_filesrc);
 
+		
+		
+		
+		
+		
+		
+		
+		String loginId = (String)session.getAttribute("loginid");
+		
+		OrderDao odao = sqlSession.getMapper(OrderDao.class);
+
+		model.addAttribute("myList",odao.ordersMember(loginId));
+		
+		model.addAttribute("myPage",odao.myPage(loginId));
+		
+		//결제완료 주문취소 배송완료 구매확정
+		ArrayList<OrderMemberDto> myPages =odao.myPage(loginId);
+		int state1=0;
+		int state2=0;
+		int state3=0;
+		int state4=0;
+		int[] stateList=new int[4];
+		String state;
+		for (OrderMemberDto orderMemberDto : myPages) {
+			state=orderMemberDto.getOm_state();
+			System.out.println(state);
+			if (state=="결제완료" || state.equals("결제완료")) {
+				state1=state1+1;
+			}else if(state=="주문취소"|| state.equals("주문취소")) {
+				state2=state2+1;
+			}else if(state=="배송완료"|| state.equals("배송완료")) {
+				state3=state3+1;
+			}else if(state=="구매확정"|| state.equals("구매확정")) {
+				state4=state4+1;
+			}
+		}
+		stateList[0]=state1;
+		stateList[1]=state2;
+		stateList[2]=state3;
+		stateList[3]=state4;
+		
+		for (int i : stateList) {
+			System.out.println(i);
+		}
+		model.addAttribute("stateList",stateList);
 		
 		
 	}

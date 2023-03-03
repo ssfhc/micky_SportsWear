@@ -89,20 +89,16 @@ public class AdminController {
 		 System.out.println(">>>>>>>>>amodify<<<<<<<<<<");
 		 //acontentview
 		 request.getParameter("om_state");
-		 
 		 //sms
 		 request.getParameter("m_id");
-		 
 		 //DB cancle
 		 model.addAttribute("request",request);
 		 //확인--null
 		 System.out.println(request.getParameter("inputValue"));
-		 
 		 //acountview select option : view단 select option 선택 값
 		 String option=request.getParameter("om_state");
 		 //view단 select option 선택값 확인
 //		 System.out.println("om_state : "+option);
-		 
 		 if(option.equals("주문취소")) {
 			 mickyServiceInter=new ACancleModifyService(sqlSession);//결제완료 → 주문취소
 			 mickyServiceInter.execute(model);
@@ -121,10 +117,8 @@ public class AdminController {
 		 }else if(option.equals("구매확정")) {
 			 mickyServiceInter=new ABuyConfirmModifyService(sqlSession);//결제완료 → 구매확정
 			 mickyServiceInter.execute(model);
-		 }
-		 		 		
+		 }	 		
 		 return "redirect:admin_olist"; 
-		 
 	} 
 	 
 	 //관리자 메인페이지

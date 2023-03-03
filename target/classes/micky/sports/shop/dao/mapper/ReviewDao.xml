@@ -137,7 +137,7 @@
 	<!-- 로그인 한 id가 작성한 리뷰글 전부 출력 -->
 	<select id="mylistview" parameterType="micky.sports.shop.dto.ReviewDto" resultMap="ReviewDto">
 		SELECT R.R_NO,
-		R.OM_CNTNUM,O.P_NO,O.OM_STATE,O.OM_CANCLE,
+		O.OM_CNTNUM,O.P_NO,O.OM_STATE,O.OM_CANCLE,
 		M.M_ID,R.R_TITLE,R.R_CONTENT,R.R_ID,R.R_RETITLE,
 		R.R_RECONTENT,R.R_YNN,R.R_DATE,R.R_GROUP,R.R_FILESRC,R.R_SCORE,
 		P.P_NAME,P.P_COLOR,P.P_SIZE,P.P_FILESRC

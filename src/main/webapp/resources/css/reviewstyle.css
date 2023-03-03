@@ -235,7 +235,7 @@ input#replyToggle:checked+div#reply_box{
 	padding: 15px 170px;
 	border: 1px solid #ddd;
 	position: relative;
-	top: -75px;
+	top: -54px;
 	background-color: white;
 }
 .btn-wrap>a>img{

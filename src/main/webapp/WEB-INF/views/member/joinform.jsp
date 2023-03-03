@@ -353,7 +353,7 @@ function checktel(){
 							$('.emailcheck').css("display","none");
 							$.ajax({
 								type : 'POST',
-								url : '../member/emailcheck?email=' + m_email, //email주소를 controller emailcheck()으로
+								url : '../member/emailcheck', //email주소를 controller emailcheck()으로
 								data: "email=" + m_email,
 								dataType: 'text',
 								success : function(data){

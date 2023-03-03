@@ -736,7 +736,7 @@ $(document).ready(function(){ //비밀번호표시 체크박스
 
 			<!-- 전화번호 -->
             <div>
-				<input type="text" name="m_tel" id="m_tel" pattern="\d*" maxlength='11' placeholder="ex)01012341234" oninput="checktel()" value="${infoupdateform.m_tel } "/> 
+				<input type="text" name="m_tel" id="m_tel" pattern="\d*" maxlength='11' placeholder="ex)01012341234" oninput="checktel()" value="${infoupdateform.m_tel }"/> 
 				<p class="telnull" style="display: none; color: red;">전화번호를확인하세요</p>
 			</div>
 			

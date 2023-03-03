@@ -60,16 +60,13 @@ function check_id_pw(){
 	}else {
 		$.ajax({
 			 type:'POST',
-			/*  url:'../member/login?loginform_input_id=' + loginform_input_id + '&loginform_input_pw=' + loginform_input_pw, */  //membercontroller의 login()으로 input_id,input_pw를 보냄
 			 url:'../member/login',
 			 data:"loginform_input_id="+loginform_input_id+"&loginform_input_pw="+loginform_input_pw,
-			 dataType:'text',
-					success:function(result){ //input_id,input_pw를 db에 select한 결과(int)
-				/* alert("result확인 : "+result) */
-				if(result==0){ //아이디나비밀번호가 틀릴때
+			/*  dataType:'text', */
+					success:function(result){				
+				if(result==0){ 
 					alert("아이디비밀번호를확인하세요")
-				}else if(result==1){ //아이디비밀번호가 맞을때
-
+				}else if(result==1){ 
 					alert("로그인성공");
 					window.location.href="../product/productChart" //로그인성공시 메인페이지로이동
 
@@ -100,13 +97,11 @@ $(document).ready(function(){ //비밀번호표시 체크박스
          <!-- <img src="../resources/kthimg/THEMICKYFACE2.png"  width="300" height="250"> -->   
 		 <h1>로그인</h1>  
          <div>
-            <input class="inputvalue" type="text" name="loginform_input_id" id="loginform_input_id" placeholder="아이디 입력..." />
-            <!-- <div class="id_notok">아이디를 입력하세요</div> -->
+            <input class="inputvalue" type="text" name="loginform_input_id" id="loginform_input_id" placeholder="아이디 입력..." />          
          </div>
          <br />
          <div>
-            <input class="inputvalue" type="password" name="loginform_input_pw" id="loginform_input_pw" placeholder="Password" />
-        	<!-- <div class="pw_notok">비밀번호를 입력하세요</div> -->
+            <input class="inputvalue" type="password" name="loginform_input_pw" id="loginform_input_pw" placeholder="Password" />       	
          </div>
          <input class="showpwbox" type="checkbox" name="showpassword" /> 비밀번호표시
          <br />

@@ -362,8 +362,9 @@ public class MemberController {
 		model.addAttribute("crypt",crypt);
 			
 		mickyServiceInter = new InfoUpdateService(sqlSession,session);
-		mickyServiceInter = new MyPageService(sqlSession,session);
-		mickyServiceInter.execute(model);	
+		mickyServiceInter.execute(model);
+//		mickyServiceInter = new MyPageService(sqlSession,session);
+//		mickyServiceInter.execute(model);	
 		return "/myPage/myPageIntro";		
 	}
 	

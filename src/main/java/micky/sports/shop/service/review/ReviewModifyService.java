@@ -54,18 +54,15 @@ public class ReviewModifyService implements MickyServiceInter{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		HttpSession session=request.getSession();
+		session.removeAttribute("r_score");
 
+		
 		String r_no=req.getParameter("r_no");
 		String r_title=req.getParameter("r_title");
 		String r_content=req.getParameter("r_content");
 		String r_score=req.getParameter("r_score");
 		String r_filesrc=req.getFilesystemName("r_filesrc");
-		
-		
-		
-		HttpSession session=request.getSession();
-		session.removeAttribute("r_score");
-		
 		ReviewDao rdao=sqlSession.getMapper(ReviewDao.class);
 		
 		if(r_filesrc==null) {

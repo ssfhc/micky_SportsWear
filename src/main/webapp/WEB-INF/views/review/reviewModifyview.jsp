@@ -40,13 +40,8 @@
 			</div>
 				<table>
 					<tr>
-<<<<<<< HEAD
 			            <td rowspan="4"><img src="../resources/img/productimg/${modifyview.productDto.p_filesrc }" width="150" /></td>
-			            <td>주문번호 : ${modifyview.om_cntnum }</td>            
-=======
-			            <td rowspan="4"><img src="../resources/img/productimg/${modifyview.productDto.p_filesrc }.jpg" width="150" /></td>
 			            <td>주문번호 : ${modifyview.ordermemberDto.om_cntnum }</td>            
->>>>>>> leejinyoung9check
 			        </tr>
 			        <tr>
 			            <td>${modifyview.productDto.p_no }</td>            

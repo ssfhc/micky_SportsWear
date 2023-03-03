@@ -19,24 +19,24 @@ function adminProductDelete() {
 	var checkBoxArr = []; 
 	  $("input:checkbox[name='checkbox']:checked").each(function() {
 	  checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-	  console.log(checkBoxArr);
+	  console.log(checkBoxArr);		//배열에 쌓인값을 확인가능
 	})
 	$.ajax({
 		type : "POST",
 		url :'adminProductDelete',
 		data : {
-			checkBoxArr : checkBoxArr
+			checkBoxArr : checkBoxArr 		//체크한 데이터 보내기
 		},
-		success : function(result){
+		success : function(result){ 		//결과값을 받아 삭제한 갯수 알림
 			location.reload();
 			console.log(result);
 			alert(result+"개 삭제완료")
 		},
-		error : function(xhr, status, error) {
+		error : function(xhr, status, error) { //오류시 애러확인
 			alert(error);
 		}
-		});
-	}
+	});
+}
 //	수정하기	
 function modify(ths) {
 	var num=$(ths).parents("tr").find("td#p_no").html();
@@ -194,7 +194,7 @@ cursor: pointer;
 		</table>
 		<a href="admin_addproduct">등록</a>	
 		<a href="#" onclick="adminProductDelete();">삭제</a>
-		<a href="admin_cartchart">차트보기</a>
+		<a href="admin_chart">차트보기</a>
 <!-- 		<button onclick="adminProductDelete();">삭제</button> -->
 	<br />
 	<br />

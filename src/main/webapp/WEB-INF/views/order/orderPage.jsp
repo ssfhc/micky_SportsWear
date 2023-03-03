@@ -128,7 +128,7 @@
 function checkPhone(){
 	var receipt_phone=document.getElementById('receipt_phone').value;
 	/* alert(receipt_phone); */
-	if (/^[0-9]{3}[0-9]{3,4}[0-9]{4}$/.test(receipt_phone)){
+	if (/^0[0-9]{2}[0-9]{3,4}[0-9]{4}$/.test(receipt_phone)){
 		document.getElementById("checkPhoneMessage").innerText = "OK";
 	}else {
 		document.getElementById("checkPhoneMessage").innerText = "전화번호를확인해주세요";

@@ -22,32 +22,9 @@
 </div>
 
 <script>
-//var selectValue = document.getElementById('1').value;
-//var selectValue = document.getElementById('select').value = '1';
-//document.querySelector('select').onchange();
-//alert(selectValue);
-/* $(document).ready(function(){
-  $(#admin_cancle).on('click' , function(){
-       $(#om_stateBox).val('주문취소').prop("selected", true);
-      });
-}); */
-
-/* $(document).ready(function(){
-  $(#om_stateBox).on('change' , function(){
-       $(this).val('주문확정').prop("selected", true);
-      });
-}); */
-
-/* $(document).ready(function(){
-	  $(#admin_rest).on('click' , function(){
-	       $(#om_stateBox).val('주문확정').prop("selected", true);
-	      });
-}); */
-
 //select 옵션 선택시  alert
 var selectValue = document.getElementById('om_stateBox').value;
 alert(selectValue);
-
 </script>
 
 

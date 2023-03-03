@@ -17,20 +17,16 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 //admin sms
 public class ASendMessageService implements MickyAMessageServiceInter{
 	private SqlSession sqlSession;
-	
 	public ASendMessageService(SqlSession sqlSession) {
 		this.sqlSession=sqlSession;
 	}
-	
 	@Override
 	public void execute(Model model) {
 		System.out.println("---ASendMessageService");
 		Map<String , Object> map=model.asMap();
 		HttpServletRequest request=
 				(HttpServletRequest)map.get("request");
-
-		String om_cntnum=request.getParameter("om_cntnum");//admin_olist(ordermemberdto)
-		
+		String om_cntnum=request.getParameter("om_cntnum");//admin_olist(ordermemberdto)	
 		Admin dao=sqlSession.getMapper(Admin.class);
 		MemberDto sendcsms=dao.sendcsms(om_cntnum);
 		//출력확인
@@ -38,9 +34,7 @@ public class ASendMessageService implements MickyAMessageServiceInter{
 		//member
 		System.out.println("m_id : "+sendcsms.getM_id());
 		System.out.println("m_tel : "+sendcsms.getM_tel());
-//		model.addAttribute("send_csms",sendcsms);
-		
-		 
+//		model.addAttribute("send_csms",sendcsms);	 
 		 String api_key = "#";//api key
 		 String api_secret = "#";//secret key
 		 Message coolsms = new Message(api_key,api_secret);
@@ -55,8 +49,6 @@ public class ASendMessageService implements MickyAMessageServiceInter{
 		 	System.out.println(obj.toString());
 		 } catch(CoolsmsException e){
 		 	System.out.println("sms전송실패");
-		 	
 		 }
-		
 	}
 }

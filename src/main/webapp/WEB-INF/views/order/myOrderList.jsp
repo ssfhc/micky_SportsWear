@@ -77,7 +77,7 @@ button{	background-color: #FFF;	border: 1px solid #353535; border-radius: 3px; m
 				<tr>
 					<td style="text-align: center"><fmt:formatDate value="${mlist.om_date}" pattern="yyyy.MM.dd"/></td>
 					<td>${mlist.om_num }</td>
-					<td><img src="../resources/img/productimg/${mlist.productDto.p_filesrc}.jpg" width="50" alt="상품사진" /></td>
+					<td><img src="../resources/img/productimg/${mlist.productDto.p_filesrc}" width="50" alt="상품사진" /></td>
 					<td>
 						<a href="../product/productDetail?pname=${mlist.productDto.p_name}&pfilesrc=${mlist.productDto.p_filesrc}">
 						${mlist.productDto.p_name}</a> <br />

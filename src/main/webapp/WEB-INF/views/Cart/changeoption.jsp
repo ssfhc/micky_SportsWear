@@ -148,7 +148,7 @@ function redeptlist(target) {
     <form name="forms">
         <div class="row">        
             <div class="col-xs-6">
-                <img src="../resources/img/productimg/${list.productDto.p_filesrc }.jpg" alt="img" class="option-img"/>        
+                <img src="../resources/img/productimg/${list.productDto.p_filesrc }" alt="img" class="option-img"/>        
             </div>
             <div class="col-xs-6">
                 ${list.productDto.p_no } <br />	

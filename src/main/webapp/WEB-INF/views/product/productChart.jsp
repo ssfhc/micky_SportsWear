@@ -242,7 +242,7 @@
 	<li>
 		<div class="pdtthumbnail">
 			<a href="../product/productDetail?pname=${pTChart.p_name }&pfilesrc=${pTChart.p_filesrc }">
-			<img src="../resources/img/productimg/${pTChart.p_filesrc }.jpg" alt="" />
+			<img src="../resources/img/productimg/${pTChart.p_filesrc }" alt="" />
 			</a>
 		</div>
 		<div class="pdtdetail">
@@ -268,7 +268,7 @@
 	<li>
 		<div class="pdtthumbnail">
 			<a href="../product/productDetail?pname=${pChart.p_name }&pfilesrc=${pChart.p_filesrc }">
-			<img src="../resources/img/productimg/${pChart.p_filesrc }.jpg" alt="" />
+			<img src="../resources/img/productimg/${pChart.p_filesrc }" alt="" />
 			</a>
 		</div>
 		<div class="pdtdetail">
@@ -294,7 +294,7 @@
 		<li>
 			<div class="pdtthumbnail">
 				<a href="../product/productDetail?pname=${scoredesc.productDto.p_name }&pfilesrc=${scoredesc.productDto.p_filesrc }">
-				<img src="../resources/img/productimg/${scoredesc.productDto.p_filesrc }.jpg" alt="" />
+				<img src="../resources/img/productimg/${scoredesc.productDto.p_filesrc }" alt="" />
 				</a>
 			</div>
 			<div class="pdtdetail">
@@ -320,7 +320,7 @@
 		<li>
 			<div class="pdtthumbnail">
 				<a href="../product/productDetail?pname=${malescoredesc.p_name }&pfilesrc=${malescoredesc.p_filesrc }">
-				<img src="../resources/img/productimg/${malescoredesc.p_filesrc }.jpg" alt="" />
+				<img src="../resources/img/productimg/${malescoredesc.p_filesrc }" alt="" />
 				</a>
 			</div>
 			<div class="pdtdetail">
@@ -345,7 +345,7 @@
 		<li>
 			<div class="pdtthumbnail">
 				<a href="../product/productDetail?pname=${femalescoredesc.p_name }&pfilesrc=${femalescoredesc.p_filesrc }">
-				<img src="../resources/img/productimg/${femalescoredesc.p_filesrc }.jpg" alt="" />
+				<img src="../resources/img/productimg/${femalescoredesc.p_filesrc }" alt="" />
 				</a>
 			</div>
 			<div class="pdtdetail">

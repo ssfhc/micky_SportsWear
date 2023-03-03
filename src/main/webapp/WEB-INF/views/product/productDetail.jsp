@@ -24,7 +24,7 @@
 <div class="pdt">
 	<c:forEach items="${product}" var="p" varStatus="status" begin="0" end="0">
 	<div class="main-img">
-		<img src="../resources/img/productimg/${p.p_filesrc}.jpg" alt="상품사진" />
+		<img src="../resources/img/productimg/${p.p_filesrc}" alt="상품사진" />
 	</div>
 	</c:forEach>
 	
@@ -42,7 +42,7 @@
 					<input type="hidden" name="pfilesrc" value="${pm.p_filesrc}" /> 
 				<!-- 상품사진을 누를때마다 새로운 값을 보내서 아랫단의 ${product } 값을 지정하게됨 -->
 					<a href="../product/productDetail?pname=${pm.p_name}&pfilesrc=${pm.p_filesrc}">
-					<img src="../resources/img/productimg/${pm.p_filesrc}.jpg" width="150" class="product_img" alt="" />
+					<img src="../resources/img/productimg/${pm.p_filesrc}" width="150" class="product_img" alt="" />
 					</a>
 					<input type="hidden" name="pcolor" value="${pm.p_color}" />
 				</div>		

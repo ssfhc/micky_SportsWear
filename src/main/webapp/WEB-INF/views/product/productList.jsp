@@ -28,7 +28,7 @@
 	<li>
 		<div class="pdtthumbnail" >
 			<a href="productDetail?pname=${plist.p_name }&pfilesrc=${plist.p_filesrc}">
-			<img src="../resources/img/productimg/${plist.p_filesrc}.jpg" alt="" />
+			<img src="../resources/img/productimg/${plist.p_filesrc}" alt="" />
 			</a>
 		</div>
 		<div class="pdtname">

@@ -46,7 +46,7 @@
 </div>
 	<table id="writeview">
 		<tr>
-            <td rowspan="4"><img src="../resources/img/productimg/${reviewWrite_orderlist.productDto.p_filesrc }.jpg" width="150" /></td>
+            <td rowspan="4"><img src="../resources/img/productimg/${reviewWrite_orderlist.productDto.p_filesrc }" width="150" /></td>
             <td>주문번호 : ${reviewWrite_orderlist.om_cntnum }</td>            
         </tr>
         <tr>

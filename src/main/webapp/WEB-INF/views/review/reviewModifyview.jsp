@@ -40,7 +40,7 @@
 			</div>
 				<table>
 					<tr>
-			            <td rowspan="4"><img src="../resources/img/productimg/${modifyview.productDto.p_filesrc }.jpg" width="150" /></td>
+			            <td rowspan="4"><img src="../resources/img/productimg/${modifyview.productDto.p_filesrc }" width="150" /></td>
 			            <td>주문번호 : ${modifyview.om_cntnum }</td>            
 			        </tr>
 			        <tr>

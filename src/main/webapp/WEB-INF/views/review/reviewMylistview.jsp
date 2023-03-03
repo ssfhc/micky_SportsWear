@@ -111,7 +111,7 @@
 						<div>
 							<div class="reviewListview_img_box">
 								<a href="../product/productDetail?pname=${myorderlist.productDto.p_name }&pfilesrc=${myorderlist.productDto.p_filesrc }">
-									<img src="../resources/img/productimg/${myorderlist.productDto.p_filesrc }.jpg" width="230" />
+									<img src="../resources/img/productimg/${myorderlist.productDto.p_filesrc }" width="230" />
 								</a>
 							</div>
 							<div style="font-size: small;">
@@ -167,7 +167,7 @@
 					<div class="cell col11">
 						<div class="reviewListview_img_box">
 							<a href="../product/productDetail?pname=${mylist.productDto.p_name }&pfilesrc=${mylist.productDto.p_filesrc }">
-								<img src="../resources/img/productimg/${mylist.productDto.p_filesrc }.jpg" width="200" />
+								<img src="../resources/img/productimg/${mylist.productDto.p_filesrc }" width="200" />
 							</a>
 						</div>
 						<div>

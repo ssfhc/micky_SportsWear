@@ -166,7 +166,7 @@ cursor: pointer;
 					<td>
 						<input type="checkbox" name="checkbox" value="${list.p_no }"/>
 					</td>
-					<td><img src="./resources/img/productimg/${list.p_filesrc }.jpg" alt="img" width="100px" height="100px"/></td>
+					<td><img src="./resources/img/productimg/${list.p_filesrc }" alt="img" width="100px" height="100px"/></td>
 					<td class="p_no" id="p_no">${list.p_no }</td>
 					<td>
 						<em id="${list.p_no }a1">${list.p_name }</em>

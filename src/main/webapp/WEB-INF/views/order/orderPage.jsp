@@ -50,7 +50,7 @@
 <div>
 	<c:forEach items="${orderPSelectList}" var="slist" varStatus="status">
 		<div class="selectlist">
-			<img src="../resources/img/productimg/${slist.p_filesrc }.jpg" width="50" alt="" /> <br />
+			<img src="../resources/img/productimg/${slist.p_filesrc }" width="50" alt="" /> <br />
 			<div class="selectprdinfo">
 				<div id="p_name">
 					<span>${slist.p_name}</span>

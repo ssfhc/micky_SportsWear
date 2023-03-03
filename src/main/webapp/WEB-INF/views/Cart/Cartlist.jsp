@@ -187,7 +187,7 @@ b{
                        
                        <td>
                            <!-- 상품의 상세정보로 이동 -->
-                           <a href="#"><img src="../resources/img/productimg/${cart.productDto.p_filesrc }.jpg" alt="img_link" width="100px" height="100px"/></a>
+                           <a href="#"><img src="../resources/img/productimg/${cart.productDto.p_filesrc }" alt="img_link" width="100px" height="100px"/></a>
                            ${cart.productDto.p_name } <br />
                            ${cart.productDto.p_size }/${cart.productDto.p_no } <br />
 <%--                            제품선택수량 : ${cart.c_cnt } <br />    	 --%>

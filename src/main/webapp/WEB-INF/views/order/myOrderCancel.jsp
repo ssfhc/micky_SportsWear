@@ -41,7 +41,7 @@ td{padding: 3px;margin: 3px;border:1px solid #ccc;}
 				<td><fmt:formatDate value="${myOrderCancelOffer.om_date }" pattern="yyyy.MM.dd"/></td>
 				<td>${myOrderCancelOffer.om_num }</td>
 				<td>
-				<img src="../resources/img/productimg/${myOrderCancelOffer.productDto.p_filesrc }.jpg" width="50" alt="상품사진" /></td>
+				<img src="../resources/img/productimg/${myOrderCancelOffer.productDto.p_filesrc }" width="50" alt="상품사진" /></td>
 				<td>
 					${myOrderCancelOffer.productDto.p_name } <br />
 					${myOrderCancelOffer.productDto.p_color } <br />
